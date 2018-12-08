@@ -8,12 +8,14 @@ subtitle: 锦绣前程
 description: 程序员的梦工厂
 keywords: 博客
 author: lill
-language: 简体中文
+language:
+- zh-tw
+- en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://ellenjack.github.io/hexo/
 root: /hexo
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,7 +75,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: cafe
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
