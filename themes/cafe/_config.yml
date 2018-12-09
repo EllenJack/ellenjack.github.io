@@ -22,8 +22,8 @@ social:
   zhihu: http://www.zhihu.com/people/giscafer
   email: 'youemail@outlook.com'
 
-# WeChat 微信公众号二维码url
-wechat_url: http://blog.giscafer.com/static/images/qrcode_giscafer.jpg ## 启用wechat widget才会生效
+# WeChat 微信 url
+wechat_url: /hexo/images/qrcode_giscafer.jpg ## 启用wechat widget才会生效
 
 
 # Friendly links 友情链接
@@ -116,8 +116,8 @@ gitment:
   enable: false #如果不使用则设置false关闭
   owner: giscafer # 你的github名称或者id id的获取方式为https://api.github.com/users/forvoid（你的名称）中的id极为github id
   repo: giscafer.github.io # 你的留言存放的位置 我的是放在我的github的github page上面
-  client_id: 7e5dd6cdb9xxaxa4cf91a # Register a new OAuth application https://github.com/settings/applications/new 
-  client_secret: 97f37d5c27c4a511xx4fxx623d391c85cb97f8 
+  client_id: 7e5dd6cdb9xxaxa4cf91a # Register a new OAuth application https://github.com/settings/applications/new
+  client_secret: 97f37d5c27c4a511xx4fxx623d391c85cb97f8
 
 ## disqus
 disqus_shortname: false

@@ -1,1 +1,1 @@
-[{"title":"锦绣前程","date":"2018.12.08","uri":"2018/12/08/glorious-future/","excerpt":""},{"title":"RabbitMQ 安装部署","date":"2018.12.08","uri":"2018/12/08/RabbitMQ-install/","excerpt":""}]
+[{"title":"RabbitMQ 安装部署","date":"2018.12.08","uri":"2018/12/08/RabbitMQ-install/","excerpt":""},{"title":"锦绣前程","date":"2018.12.08","uri":"2018/12/08/glorious-future/","excerpt":""}]
