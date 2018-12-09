@@ -7,7 +7,7 @@ Cafe 主题旨在追求简约、操作简单、阅读舒适度。 英文版介�
 
 体验参考本人博客 [Giscafer's blog](http://blog.giscafer.com)
 
-响应式兼容手机端
+响应式兼容手机端------
 
 ## [开发历史 Changelog](https://github.com/giscafer/hexo-theme-cafe/wiki/Changelog)
 
