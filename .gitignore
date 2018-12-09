@@ -2,7 +2,9 @@
 Thumbs.db
 db.json
 *.log
+hexo.iml
 node_modules/
 public/
 .deploy*/
 .idea/
+
