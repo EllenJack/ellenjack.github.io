@@ -26,6 +26,8 @@ docker.io   docker.io/transmitsms/rabbitmq-sharded        Fork of rabbitmq:manag
 [root@localhost ~]#
 ```
 
+<!--more -->
+
 # 获取镜像
 
 ```
@@ -76,4 +78,4 @@ e194a2dbeb52f2296dfb6d1c527cf052d82be5ed9a4c974d70dcd6af3da3eb7e
 
 
 
-![RabbitMQ-1](/hexo/images/RabbitMQ-1.png)
+![img](/hexo/images/RabbitMQ-1.png)
