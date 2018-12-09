@@ -5,6 +5,5 @@ db.json
 hexo.iml
 node_modules/
 public/
-.deploy*/
 .idea/
 
