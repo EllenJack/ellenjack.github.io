@@ -19,7 +19,7 @@
         var _photoUrl = post.img || (urls.length > 0 && urls[random]) || (urls2.length > 0 && urls2[random2]) ;
     %>
     <li  class="article-excerpt-wrap <%if(theme.stick&&post.top&&post.top>0){%><%- "stick"%><%}%>" _href = "<%- url_for(post.path)%>">
-        <div class="article-img img-ajax" data-src= <%- url_for(_photoUrl) %>>
+        <div class="article-img img-ajax" data-src= <%- _photoUrl %>>
            <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
         </div>
         <div class="article-excerpt">

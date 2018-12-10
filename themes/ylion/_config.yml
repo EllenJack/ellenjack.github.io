@@ -11,7 +11,7 @@ menu:
   icon: fa-rss
 
 ## favicon -- 网站图标位置{@favicon}
-favicon: /favicon.ico
+favicon: /hexo/favicon.ico
 
 ## rss --rss文件位置{@rss}
 rss: /atom.xml
@@ -108,8 +108,8 @@ warning:
 ### 首页文章简介的图片
 ### 规则:Front-matter中的自定义'img'字段 > 文章内的图片(随机获取) > defaultImgs(随机获取)
 defaultImgs:
-  - http://XXXX.example.jpg
-  - /img/default-1.jpg
+  - /hexo/images/default-1.jpg
+  - /hexo/images/default-1.jpg
 excerptLength: 400
 
 ### article meta
@@ -120,14 +120,14 @@ whichCategory: 0
 ### post footer
 ### 作者信息部分设置
 high_song: 'high起来 &#128541;'  ### 歌曲显示文字，若不需要该功能，则留空或移除
-author_img: http://example.com/author.jpg
+author_img: /images/author.jpg
 author_profile_page: /about.html
 donate:
   text: '赠我一杯 &#128536;' ### 打赏功能显示文字，若不需要，则留空或移除
   img: ### 打赏图片地址
-  - url: http://example.com/alipay.jpg
+  - url: /hexo/images/alipay.jpg
     alt: '支付宝付款'
-  - url: http://example.com/wechat.png
+  - url: /hexo/images/wechat.png
     alt: '微信付款'
 
 ### support html&text like notification's support in this theme,
