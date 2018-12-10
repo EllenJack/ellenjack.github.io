@@ -156,7 +156,7 @@ leancloud:
   app_id: 4TQ4mu7XNAqLxgNxKQ4QbOnW-gzGzoHsz
   app_key: Iu1RVxQY2MpSp2GY4WAPP1kR
   region:
-  limits: 10
+  limits: 0
 
 ## comments -- 评论框
 ### disqus
