@@ -3,7 +3,7 @@
 
 ## menu -- 导航菜单显示{[@page:名字/*多语言支持*/,@url:地址,@icon:显示的图标],[...]}
 menu:
-- page: home
+- page: 首页
   url: /
   icon: fa-home
 - page: rss
@@ -153,8 +153,8 @@ visits_count:
 leancloud:
   enable: true
   className: "BlogCounter"
-  app_id:
-  app_key:
+  app_id: 4TQ4mu7XNAqLxgNxKQ4QbOnW-gzGzoHsz
+  app_key: Iu1RVxQY2MpSp2GY4WAPP1kR
   region:
   limits: 10
 
