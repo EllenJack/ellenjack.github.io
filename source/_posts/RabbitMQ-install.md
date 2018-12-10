@@ -3,7 +3,7 @@ title: RabbitMQ 安装部署
 date: 2018-12-08 22:01:01
 tags: RabbitMQ
 category: 
-- 消息中间件
+- 消息中间件2222222222222222
 - RabbitMQ
 common: on
 ---
