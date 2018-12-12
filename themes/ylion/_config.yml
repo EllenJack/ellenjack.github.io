@@ -4,7 +4,7 @@
 ## menu -- 导航菜单显示{[@page:名字/*多语言支持*/,@url:地址,@icon:显示的图标],[...]}
 menu:
 - page: 首页
-  url: /
+  url: /hexo/
   icon: fa-home
 - page: rss
   url: /atom.xml
@@ -73,10 +73,10 @@ stick: true
 ## social config
 ## 社交功能设置 {@social:[url:地址,title:a标签的title,icon:显示图标],[]}
 social:
-- url: https://www.example1.com
+- url: https://github.com/EllenJack/hexo.git
   title: freecodecamp
   icon: fa-free-code-camp
-- url: https://www.example2.com
+- url: https://github.com/EllenJack/hexo.git
   title: Follow me~
   icon: fa-github
 
@@ -166,10 +166,10 @@ duoshuo_shortname:
 ### gitment
 gitment:
   enable: true
-  owner: GeekaholicLin
-  repo: geekaholiclin.github.io
-  client_id: aa2215dfc8ee944d1205
-  client_secret: 77cd2afa5d161bc0ab04639ed81300d808c6e22b
+  owner: EllenJack
+  repo: github.com/EllenJack/hexo.git
+  client_id: 1847064bfc712fca60b7
+  client_secret: eebfb052442784c732ddc098c1e9cb3f967889c1
   labels: "blog,gitment"
   perPage: 20
   maxCommentHeight:
