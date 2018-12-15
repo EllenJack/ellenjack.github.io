@@ -6,7 +6,7 @@ tag: 关于我
 
 ```
 { 
-    name: "Ellen">,
+    name: "Ellen",
      
     birthday: "1994-12-13", 
     
