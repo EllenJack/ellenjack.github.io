@@ -77,5 +77,4 @@ e194a2dbeb52f2296dfb6d1c527cf052d82be5ed9a4c974d70dcd6af3da3eb7e
 访问管理界面的地址就是 http://[宿主机IP]:15672，可以使用默认的账户登录，用户名和密码都guest，如：
 
 
-
 ![img](/hexo/images/RabbitMQ-1.png)
