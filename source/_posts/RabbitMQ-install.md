@@ -10,7 +10,7 @@ common: on
 
 这里注意获取镜像的时候要获取management版本的，不要获取last版本的，management版本的才带有管理界面。
 
-# 获查询镜像
+# 查询镜像
 
 ```
  docker search rabbitmq:management
