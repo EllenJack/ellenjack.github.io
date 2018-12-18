@@ -18,7 +18,11 @@
     var _fontAwe = theme.fontAwesome || '/css/thirdParty/font-awesome.min.css';
     var _highlight = '/css/thirdParty/highlight/'+theme.highlightStyle;
     if (is_post()) {
-        cssList = [base, needed, _fontAwe, _highlight,comment];
+        if(comment == ""){
+            cssList = [base, needed, _fontAwe, _highlight];
+        }else{
+            cssList = [base, needed, _fontAwe, _highlight,comment];
+        }
     } else {
         cssList = [base, needed, _fontAwe, _highlight];
     }

@@ -10,7 +10,7 @@ common: on
 
 这里注意获取镜像的时候要获取management版本的，不要获取last版本的，management版本的才带有管理界面。
 
-# 获查询镜像
+# 查询镜像
 
 ```
  docker search rabbitmq:management
@@ -75,7 +75,6 @@ e194a2dbeb52f2296dfb6d1c527cf052d82be5ed9a4c974d70dcd6af3da3eb7e
 # 访问管理界面
 
 访问管理界面的地址就是 http://[宿主机IP]:15672，可以使用默认的账户登录，用户名和密码都guest，如：
-
 
 
 ![img](/hexo/images/RabbitMQ-1.png)
