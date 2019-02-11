@@ -17,35 +17,35 @@ category:
 
 ## 防火墙设置
 
-//开启防火墙
+- 开启防火墙
 ```
 systemctl start firewalld
 ```
-//开启3306端口
+- 开启3306端口
 ```
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
 ```
-//开启3307端口
+- 开启3307端口
 ```
 firewall-cmd --zone=public --add-port=3307/tcp --permanent
 ```
 
-//开启3308端口
+- 开启3308端口
 ```
 firewall-cmd --zone=public --add-port=3308/tcp --permanent
 ```
 
-//开启6000-7000端口
+- 开启6000-7000端口
 ```
 firewall-cmd --zone=public --add-port=6000-7000/tcp --permanent
 ```
 
-//重启防火墙
+- 重启防火墙
 ```
 systemctl restart firewalld.service
 ```
 
-<pre>
+```
 CentOS 7.2默认使用的是firewall作为防火墙，使用iptables必须重新设置一下
 
 1、直接关闭防火墙
@@ -116,6 +116,6 @@ COMMIT
 systemctl restart iptables.service #重启防火墙使配置生效
 systemctl enable iptables.service #设置防火墙开机启动
 最后重启系统使设置生效即可。
-</pre>
+```
 
 
