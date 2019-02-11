@@ -1,10 +1,11 @@
 ---
-title: Linux 运维常识
+title: 网关、防火墙设置
 date: 2018-12-18 11:26:19
 tags: linux
 category: 
 - linux
 - 运维
+- 网关、防火墙设置
 ---
 
 ## 更改ip和网关

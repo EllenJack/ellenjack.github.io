@@ -4,6 +4,7 @@ date: 2018-12-16 23:08:56
 tags: vsftpd
 category:
 - linux
+- 运维
 - vsftpd
 ---
 
