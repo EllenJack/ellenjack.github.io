@@ -22,7 +22,7 @@ tag: 关于我
     
     skills: ["Java"], 
     
-    blog: "http://ellenjack.github.io/hexo/",
+    blog: "http://ellenjack.github.io/",
      
     Email: "1198566763@qq.com", 
     

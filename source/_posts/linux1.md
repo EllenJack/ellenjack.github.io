@@ -10,10 +10,10 @@ category:
 
 ## 更改ip和网关
 
-![img](/hexo/images/linux-1.png)
+![img](/images/linux-1.png)
 
 ## 修改安全策略
-![img](/hexo/images/linux-2.png)
+![img](/images/linux-2.png)
 
 ## 防火墙设置
 

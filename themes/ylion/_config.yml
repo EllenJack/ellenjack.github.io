@@ -4,20 +4,20 @@
 ## menu -- 导航菜单显示{[@page:名字/*多语言支持*/,@url:地址,@icon:显示的图标],[...]}
 menu:
 - page: 首页
-  url: /hexo/
+  url: /
   icon: fa-home
 - page: 关于我
-  url: /hexo/2018/12/15/about/
+  url: /2018/12/15/about/
   icon: fa-user
 - page: rss
-  url: /hexo/atom.xml
+  url: /atom.xml
   icon: fa-rss
 
 ## favicon -- 网站图标位置{@favicon}
-favicon: /hexo/favicon.ico
+favicon: /favicon.ico
 
 ## rss --rss文件位置{@rss}
-rss: /hexo/atom.xml
+rss: /atom.xml
 
 ## widgets -- 6个左边小工具{@widgets:[notification,category,archive,popular,tagcloud,friends]}
 widgets:
@@ -109,8 +109,8 @@ warning:
 ### 首页文章简介的图片
 ### 规则:Front-matter中的自定义'img'字段 > 文章内的图片(随机获取) > defaultImgs(随机获取)
 defaultImgs:
-  - /hexo/images/default-1.jpg
-  - /hexo/images/default-1.jpg
+  - /images/default-1.jpg
+  - /images/default-1.jpg
 excerptLength: 400
 
 ### article meta
@@ -126,9 +126,9 @@ author_profile_page: /about.html
 donate:
   text: '赠我一杯 &#128536;' ### 打赏功能显示文字，若不需要，则留空或移除
   img: ### 打赏图片地址
-  - url: /hexo/images/alipay.jpg
+  - url: /images/alipay.jpg
     alt: '支付宝付款'
-  - url: /hexo/images/wechat.png
+  - url: /images/wechat.png
     alt: '微信付款'
 
 ### support html&text like notification's support in this theme,

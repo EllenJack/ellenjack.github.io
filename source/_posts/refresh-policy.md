@@ -13,7 +13,7 @@ category:
 
 ## 缓存在系统部署中的位置
 
-![img](/hexo/images/refresh-policy-1.png)
+![img](/images/refresh-policy-1.png)
 
 
 
