@@ -61,9 +61,9 @@ tagcloud_config:
 ### friends' links settings
 ### 友链设置:{@links:[,,,]}
 links:
+- 享学课堂: http://enjoy.ke.qq.com
 - 主题作者: http://geekaholiclin.github.io
-
-
+- 撄而后成: https://pleuvoir.github.io
 
 # content -- 内容显示相关
 
