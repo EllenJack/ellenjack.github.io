@@ -86,7 +86,7 @@ theme: ylion
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:EllenJack/hexo.git
+  repo: git@github.com:EllenJack/ellenjack.github.io.git
   branch: master
 
 
