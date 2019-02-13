@@ -45,9 +45,8 @@ firewall-cmd --zone=public --add-port=6000-7000/tcp --permanent
 systemctl restart firewalld.service
 ```
 
+- CentOS 7.2默认使用的是firewall作为防火墙，使用iptables必须重新设置一下
 ```
-CentOS 7.2默认使用的是firewall作为防火墙，使用iptables必须重新设置一下
-
 1、直接关闭防火墙
 systemctl stop firewalld.service #停止firewall
 systemctl disable firewalld.service #禁止firewall开机启动
