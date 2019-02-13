@@ -15,5 +15,9 @@ category:
 
 ![img](/images/refresh-policy-1.png)
 
+## 解决缓存数据一致性问题方案
+
+![img](/images/refresh-policy-2.png)
+
 
 
