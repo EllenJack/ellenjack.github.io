@@ -74,10 +74,10 @@ stick: true
 ## social config
 ## 社交功能设置 {@social:[url:地址,title:a标签的title,icon:显示图标],[]}
 social:
-- url: https://github.com/EllenJack/hexo.git
+- url: https://github.com/EllenJack/ellenjack.github.io.git
   title: freecodecamp
   icon: fa-free-code-camp
-- url: https://github.com/EllenJack/hexo.git
+- url: https://github.com/EllenJack/ellenjack.github.io.git
   title: Follow me~
   icon: fa-github
 

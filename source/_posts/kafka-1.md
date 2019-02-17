@@ -29,7 +29,7 @@ Kafka可以看成一个流平台，这个平台上可以发布和订阅数据流
 
 Kafka里的消息用**主题**进行分类，主题下有可以被分为若干个**分区**。分区本质上是个提交日志，有新消息，这个消息就会以追加的方式写入分区，然后用先入先出的顺序读取。
 
-![img](/images/kafka1.png)
+![img](/images/kafka-1.png)
 
 但是因为主题会有多个分区，所以在整个主题的范围内，是无法保证消息的顺序的，单个分区则可以保证。
 
@@ -47,7 +47,7 @@ Kafka通过分区来实现数据冗余和伸缩性，因为分区可以分布在
 
 多个消费者可以构成一个消费者群组。怎么构成？共同读取一个主题的消费者们，就形成了一个群组。群组可以保证每个分区只被一个消费者使用。
 
-![img](/images/kafka2.png)
+![img](/images/kafka-2.png)
 
 消费者和分区之间的这种映射关系叫做消费者对分区的所有权关系，很明显，一个分区只有一个消费者，而一个消费者可以有多个分区。
 
@@ -59,7 +59,7 @@ Kafka通过分区来实现数据冗余和伸缩性，因为分区可以分布在
 
 集群里，一个分区从属于一个broker，这个broker被称为首领。但是分区可以被分配给多个broker，这个时候会发生分区复制。
 
-![img](/images/kafka3.png)
+![img](/images/kafka-3.png)
 
 分区复制带来的好处是，提供了消息冗余。一旦首领broker失效，其他broker可以接管领导权。当然相关的消费者和生产者都要重新连接到新的首领上。
 
@@ -131,35 +131,35 @@ Kafka需要Zookeeper保存集群的元数据信息和消费者信息。Kafka一�
 
 Linux下与此类似，进入bin后，执行对应的sh文件即可
 
-![img](/images/kafka4.png)
+![img](/images/kafka-4.png)
 
 #### 基本的操作和管理
 
-**##** **列出所有主题**
+**列出所有主题**
 
 kafka-topics.bat --zookeeper localhost:2181/kafka --list
 
-**##****列出所有主题的详细信息**
+**列出所有主题的详细信息**
 
 kafka-topics.bat --zookeeper localhost:2181/kafka --describe
 
-**##** **创建主题** **主题名 my-topic****，1****副本，8****分区**
+**创建主题** **主题名 my-topic****，1****副本，8****分区**
 
 kafka-topics.bat --zookeeper localhost:2181/kafka --create --topic my-topic --replication-factor 1 --partitions 8
 
-**##** **增加分区，注意：分区无法被删除**
+**增加分区，注意：分区无法被删除**
 
 kafka-topics.bat --zookeeper localhost:2181/kafka --alter --topic my-topic --partitions 16
 
-**##** **删除主题**
+**删除主题**
 
 kafka-topics.bat --zookeeper localhost:2181/kafka --delete --topic my-topic
 
-**##** **列出消费者群组（仅Linux****）**
+**列出消费者群组（仅Linux****）**
 
 kafka-topics.sh --new-consumer --bootstrap-server localhost:9092/kafka --list
 
-**##** **列出消费者群组详细信息（仅Linux****）**
+**列出消费者群组详细信息（仅Linux****）**
 
 kafka-topics.sh --new-consumer --bootstrap-server localhost:9092/kafka --describe --group 群组名
 
@@ -248,7 +248,7 @@ Kafka对cpu的要求不高，主要是用在对消息解压和压缩上。所以
 
 ## Kafka的集群
 
-![img](/images/kafka5.png)
+![img](/images/kafka-5.png)
 
 ### 为何需要Kafka集群
 

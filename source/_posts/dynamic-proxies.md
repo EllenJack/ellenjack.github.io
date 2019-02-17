@@ -19,7 +19,7 @@ category:
 
 - CGLIB动态代理
 
-### 1. JDK 原生动态代理
+### JDK 原生动态代理
 
 - Proxy : Proxy是所有动态代理的父类，它提供了一个静态方法来创建动态代理的class对象和实例
 
@@ -58,7 +58,7 @@ UserService proxy = (UserService) Proxy.newProxyInstance(us.getClass().getClassL
 proxy.addUser(user);
 ```
 
-### 2. CGLIB动态代理
+### CGLIB动态代理
 
 > CGLIB (Code Generation Library) 是一个基于ASM的字节码生成库，它允许我们在运行时对字节码进行修改和动态生成。CGLIB通过继承方式实现代理
 
