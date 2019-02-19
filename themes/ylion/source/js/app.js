@@ -1,11 +1,12 @@
 ;(function () {
-    document.body.insertAdjacentHTML("beforeend", "<div id=\"loading\"><i class=\"load-info\"></i></div>");
-    document.addEventListener("readystatechange", function () {
-        if (document.readyState === "complete") {
-            var $load = document.getElementById("loading");
-            document.body.removeChild($load);
-        }
-    });
+    //加载动画效果隐藏
+    // document.body.insertAdjacentHTML("beforeend", "<div id=\"loading\"><i class=\"load-info\"></i></div>");
+    // document.addEventListener("readystatechange", function () {
+    //     if (document.readyState === "complete") {
+    //         var $load = document.getElementById("loading");
+    //         document.body.removeChild($load);
+    //     }
+    // });
 })();
 
 window.onload = function () {
