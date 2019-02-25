@@ -69,7 +69,7 @@ ImportSelector可以批量导入组件的全类名数组,自定义逻辑返回�
 
 @Import({Dog.class,Cat.class,JamesImportSelector.class})
 
-**新建** **JamesImportSelector****, 新建Fish  Tiger类(与建Cat和Dog一样)**
+**新建** **JamesImportSelector** **, 新建Fish  Tiger类(与建Cat和Dog一样)**
 
 ![img](/images/spring-2-7.png)
 

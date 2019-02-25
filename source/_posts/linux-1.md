@@ -5,7 +5,6 @@ tags: linux
 category: 
 - linux
 - 运维
-- 网关、防火墙设置
 ---
 
 ## 更改ip和网关

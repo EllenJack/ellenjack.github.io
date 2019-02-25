@@ -5,7 +5,6 @@ tags: vsftpd
 category:
 - linux
 - 运维
-- vsftpd
 ---
 
 **1.** **默认配置：**
