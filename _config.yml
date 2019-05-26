@@ -23,7 +23,7 @@ permalink_defaults:
 #Search
 search:
   path: search.xml
-  field: all
+  field: post
 
 # Directory
 source_dir: source
