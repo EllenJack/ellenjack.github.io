@@ -24,7 +24,7 @@ docker理念里，容器启动时，应当为它指定主业是什么，如nginx
 
 ![img](/images/docker-3/wps2.jpg) 
 
-#### **推荐的****ENTRYPOINT方式**
+#### **推荐的** **ENTRYPOINT方式**
 
 1、镜像本身应该有稳定的主业，应当指定后即不能更改用途，于是引入ENTRYPOINT
 

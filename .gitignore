@@ -7,3 +7,4 @@ node_modules/
 public/
 .idea/
 
+/.deploy_git/
