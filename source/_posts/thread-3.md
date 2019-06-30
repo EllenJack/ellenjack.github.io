@@ -130,7 +130,7 @@ CONDITION :当前节点处于等待队列
 
 ### 独占式同步状态获取与释放
 
-![img](/images/thread-1.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jcj8pbs8j30b90cggnj.jpg)
 
 ### 其他同步状态获取与释放 
 

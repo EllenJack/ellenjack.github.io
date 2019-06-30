@@ -9,10 +9,10 @@ category:
 
 ## 更改ip和网关
 
-![img](/images/linux-1.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jcfvy393j30lf0c60wj.jpg)
 
 ## 修改安全策略
-![img](/images/linux-2.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jcfvqlabj30np0a8dg8.jpg)
 
 ## 防火墙设置
 

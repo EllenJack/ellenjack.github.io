@@ -29,7 +29,7 @@ Kafka可以看成一个流平台，这个平台上可以发布和订阅数据流
 
 Kafka里的消息用**主题**进行分类，主题下有可以被分为若干个**分区**。分区本质上是个提交日志，有新消息，这个消息就会以追加的方式写入分区，然后用先入先出的顺序读取。
 
-![img](/images/kafka-1.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jccvy2a1j30jm093wgk.jpg)
 
 但是因为主题会有多个分区，所以在整个主题的范围内，是无法保证消息的顺序的，单个分区则可以保证。
 
@@ -47,7 +47,7 @@ Kafka通过分区来实现数据冗余和伸缩性，因为分区可以分布在
 
 多个消费者可以构成一个消费者群组。怎么构成？共同读取一个主题的消费者们，就形成了一个群组。群组可以保证每个分区只被一个消费者使用。
 
-![img](/images/kafka-2.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jccvnildj30i409375s.jpg)
 
 消费者和分区之间的这种映射关系叫做消费者对分区的所有权关系，很明显，一个分区只有一个消费者，而一个消费者可以有多个分区。
 
@@ -59,7 +59,7 @@ Kafka通过分区来实现数据冗余和伸缩性，因为分区可以分布在
 
 集群里，一个分区从属于一个broker，这个broker被称为首领。但是分区可以被分配给多个broker，这个时候会发生分区复制。
 
-![img](/images/kafka-3.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jccviv4lj30me0dtq5l.jpg)
 
 分区复制带来的好处是，提供了消息冗余。一旦首领broker失效，其他broker可以接管领导权。当然相关的消费者和生产者都要重新连接到新的首领上。
 
@@ -131,7 +131,7 @@ Kafka需要Zookeeper保存集群的元数据信息和消费者信息。Kafka一�
 
 Linux下与此类似，进入bin后，执行对应的sh文件即可
 
-![img](/images/kafka-4.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jccuo8uzj30kf0evdia.jpg)
 
 #### 基本的操作和管理
 
@@ -248,7 +248,7 @@ Kafka对cpu的要求不高，主要是用在对消息解压和压缩上。所以
 
 ## Kafka的集群
 
-![img](/images/kafka-5.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jcbjnas0j30cx0bdq3w.jpg)
 
 ### 为何需要Kafka集群
 

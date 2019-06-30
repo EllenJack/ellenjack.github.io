@@ -22,7 +22,7 @@ category:
     
     3>可伸缩 
       
-![img](/images/hashmap-3.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4j40kyx3cj30h008w0t2.jpg)
 
 ## Hash算法
 
@@ -46,7 +46,7 @@ category:
 - 单向链表
     用于解决Hash冲突的方案，加入一个next记录下一个节点
 
-![img](/images/hashmap-1.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4j40kvqmdj30c407mdi8.jpg)
 
 ## 扩容
 
@@ -64,7 +64,7 @@ category:
 - 触发条件
     在链表长度大于8的时候，将后面的数据存在红黑树中
 
-![img](/images/hashmap-2.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4j40kr6ddj30go0da74r.jpg)
 
 
 

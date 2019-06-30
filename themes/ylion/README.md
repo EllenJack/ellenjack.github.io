@@ -207,9 +207,9 @@ author_profile_page: /about.html  ### 点击作者的名字跳转的地址，默
 donate:
   text: '赠我一杯 &#128536;' ### 打赏功能显示文字，若不需要，则留空或移除
   img: ### 打赏图片地址
-  - url: http://example.com/alipay.jpg
+  - url: http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg
     alt: '支付宝付款'
-  - url: http://example.com/wechat.png
+  - url: http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg
     alt: '微信付款'
 
 ### support html&text like notification's support in this theme,

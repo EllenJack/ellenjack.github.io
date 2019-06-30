@@ -209,9 +209,9 @@ author_profile_page: /about.html  ### 저자의 이름을 클릭할 때 이동�
 donate:
   text: '赠我一杯 &#128536;' ### 컨텐츠에 만족한 구독자가 donation을 해주는 기능을 나타내는 문자입니다. 필요하지 않다면 비우거나 제거하세요
   img: ### donation 이미지주소
-  - url: http://example.com/alipay.jpg
+  - url: http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg
     alt: '支付宝付款'
-  - url: http://example.com/wechat.png
+  - url: http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg
     alt: '微信付款'
 
 ### support html&text like notification's support in this theme,
