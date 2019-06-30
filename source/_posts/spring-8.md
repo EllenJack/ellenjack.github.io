@@ -1,12 +1,13 @@
 ---
 title: BeanFactory的两个重要后置处理器
-date: 2019-07-01 01:10:14
+date: 2019-07-01 01:37:49
 tags:
 - Spring
 category:
 - 框架
 - Spring
----		
+---
+	
 
 **1，扩展原理－BeanFactoryPostProcessor**
 

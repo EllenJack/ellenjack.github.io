@@ -1,12 +1,12 @@
 ---
 title: Servlet3.0与SpringMvc那些事
-date: 2019-07-01 01:16:48
+date: 2019-07-01 01:38:49
 tags:
 - Spring
 category:
 - 框架
 - Spring
---- 
+---
 
 1，以前来写web的三大组件：以前写servlet filter listener都需要在web.xml进行注册，包括springmvc的前端控制器DispactherServlet也需要在web.xml注册，现在可以通过注解的方式快速搭建我们的web应用
 
