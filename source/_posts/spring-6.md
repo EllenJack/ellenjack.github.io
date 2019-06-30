@@ -10,19 +10,19 @@ category:
 
 使用JoinPoint可以拿到相关的内容, 比如方法名,  参数
 
-![img](/images/spring-6/clip_image001.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmudvzulj30v705fmxf.jpg)
 
  
 
 那么方法正常返回, 怎么拿方法的返回值呢?
 
-![img](/images/spring-6/clip_image003.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmudrttkj30g802e0so.jpg)
 
  
 
 那么如果是异常呢?定义
 
-![img](/images/spring-6/clip_image005.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmudoswfj30sm046q4c.jpg)
 
 **小结:** AOP看起来很麻烦, 只要3步就可以了:
 
@@ -74,11 +74,11 @@ category:
 
 它引入AspectJAutoProxyRegistrar, 并实现了ImportBeanDefinitionRegistrar接口
 
-![img](/images/spring-6/clip_image007.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmuyhromj30ix01dwea.jpg)
 
 ImportBeanDefinitionRegistrar接口作用: 能给容器中自定义注册组件, 以前也使用过, 比如我们以前也使用过这个类
 
-![img](/images/spring-6/clip_image009.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmuydcrcj30p50410ss.jpg)
 
  
 
@@ -88,7 +88,7 @@ ImportBeanDefinitionRegistrar接口作用: 能给容器中自定义注册组件,
 
 给**AspectJAutoProxyRegistrar** **类**的**registerBeanDefinitions**()方法打上断点.
 
-![img](/images/spring-6/clip_image011.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmuy9lpsj30hp0dzdgw.jpg)
 
  
 
@@ -124,15 +124,11 @@ AopConfigUtils.*registerAspectJAnnotationAutoProxyCreatorIfNecessary*(registry);
 
 注册一个这个组件, 如果有需要的话....
 
- 
-
- 
-
-![img](/images/spring-6/clip_image013.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmvhkrv8j30rk0dywfg.jpg)
 
 点进去看看
 
-![img](/images/spring-6/clip_image015.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmvh6ck7j30n206d3yq.jpg)
 
 想注册一个AnnotationAwareAspectJAutoProxyCreator的组件, 如果registry已经有了的话,就执行以下操作;
 
@@ -144,9 +140,7 @@ AopConfigUtils.*registerAspectJAnnotationAutoProxyCreatorIfNecessary*(registry);
 
 翻译过来其实就叫做 ”注解装配模式的ASPECT切面自动代理创建器”组件
 
- 
-
-![img](/images/spring-6/clip_image017.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmvh09tzj30m20dnt9p.jpg)
 
 判断if(registry.containsBeanDefinition(*ATUO_PROXY_CREATOR_BEAN_NAME*))
 
@@ -200,7 +194,7 @@ BeanFactoryAware 能把beanFacotry bean工厂传进来
 
 通过分析以上的bean继承关系我们发现,   具有BeanPostProcessor特点, 也有Aware接口的特点, 实现了BeanFactoryAware 接口
 
-![IMG_256](/images/spring-6/clip_image019.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmwiypegj30wc0f3aas.jpg)
 
  
 
@@ -472,6 +466,5 @@ BeanFactoryAware 能把beanFacotry bean工厂传进来
 
 拦截流程图如下：
 
-![img](/images/spring-6/clip_image021.png)
-
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmwivm0xj30qg0eejv3.jpg)
 

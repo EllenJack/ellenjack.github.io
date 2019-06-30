@@ -18,11 +18,11 @@ docker理念里，容器启动时，应当为它指定主业是什么，如nginx
 
 2、在dockerfile打包镜像时，可以使用cmd命令来指定一个默认的主业，如下：
 
-![img](/images/docker-3/wps1.jpg) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmnpxyiqj30fe02ydgd.jpg)
 
 3、既然镜像里是默认主业，即意味着创建容器时，可以覆盖此默认命令，如下
 
-![img](/images/docker-3/wps2.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmnptnolj30fe01r753.jpg)
 
 #### **推荐的** **ENTRYPOINT方式**
 
@@ -30,11 +30,11 @@ docker理念里，容器启动时，应当为它指定主业是什么，如nginx
 
 2、使用ENTRYPOINT字义即容器入口，它不能被run中cmd覆盖，如下例：
 
-![img](/images/docker-3/wps3.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmnpo31sj30fe02ojs3.jpg)
 
 执行：docker build -t nginxx:v3 .
 
-![img](/images/docker-3/wps4.jpg) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmo2h987j30fe01n3z6.jpg)
 
 以后使用nginxx:v3这个镜像时，只能做nginx服务来使用啦
 
@@ -46,21 +46,21 @@ docker理念里，容器启动时，应当为它指定主业是什么，如nginx
 
 2、在同级目录下，创建Dockerfile文件，内容如下：
 
-![img](/images/docker-3/wps5.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmo2c2foj30fe02pq3x.jpg)
 
 3、dockerfile打包业务镜像
 
-![img](/images/docker-3/wps6.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmo27pqpj30fe07udj3.jpg)
 
 4、启动镜像，即得到业务运行
 
 docker run -d -p 8090:8090  --name member member:v1
 
-![img](/images/docker-3/wps7.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmoff2vej30fe01a74p.jpg)
 
 5、浏览器打开页面校验：http://192.168.244.7:8090/
 
-![img](/images/docker-3/wps8.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmofcfmrj30fe046aat.jpg)
 
 #### **maven源码打包用法**
 
@@ -90,27 +90,27 @@ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
 1、上传原码到docker环境中（一般是git/svn直接拉取源码）
 
-![img](/images/docker-3/wps9.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmof8uerj30fe02w75j.jpg)
 
 2、maven打包
 
 mvn clean package
 
-![img](/images/docker-3/wps10.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmot22j5j30fe04qjt8.jpg)
 
 生成的jar在同级target目录下
 
-![img](/images/docker-3/wps11.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmosxy4oj30fe052ac9.jpg)
 
 3、执行docker命令生成镜像
 
 dockerfile文件内容
 
-![img](/images/docker-3/wps12.jpg) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmosq36dj30fe01tt94.jpg)
 
 命令创建镜像
 
-![img](/images/docker-3/wps13.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmp5rf9rj30b203tjsk.jpg)
 
  
 
@@ -134,51 +134,51 @@ dockerfile文件内容
 
 3、输入docker-machine env命令，返回docker服务的api接口和证书位置，如下：
 
-![img](/images/docker-3/wps14.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmp5jh7fj30fd0380u1.jpg)
 
 4、输入docker-machine ssh命令，进入sh环境中，配置http仓库路径
 
-![img](/images/docker-3/wps15.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmp5frkgj30fe05b75k.jpg)
 
 修改文件配置（当前用户是docker不是root，要sudo提升至root）：
 
 sudo vi /var/lib/boot2docker/profile
 
-![img](/images/docker-3/wps16.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpl46apj30be05jjsi.jpg)
 
 5、修改完成，保存。重启docker服务
 
 sudo /etc/init.d/docker restart
 
-![img](/images/docker-3/wps17.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpl177jj30e001o3yn.jpg)
 
 ##### 项目环境配置maven插件
 
 在我们的工程pom中加入docker-maven-plugin插件的配置，如下
 
-![img](/images/docker-3/wps18.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmpkyhjzj30cr07s76e.jpg) 
 
 1、其中，imageName配置镜像的全路径名，即指定私库的名称
 
 2、dockerHost和dockerCertPath对应配置上一步中docker的api和证书值
 
-![img](/images/docker-3/wps19.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmpzcgrfj30fd0380u1.jpg)
 
 ##### 打包运行
 
 以idea为例，整个项目装配完成，只需要操作maven的一二三步骤，即直接镜像进入仓库，整个过程毫无违和感
 
-![img](/images/docker-3/wps20.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpz860uj30fe06fjso.jpg) 
 
 若使用的不是idea工具，可直接使用maven命令，一句完成打包，如下：
 
-![img](/images/docker-3/wps21.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpz23t0j30fe058t9t.jpg)
 
-![img](/images/docker-3/wps22.jpg) 
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmqg96iwj30fe09lmz4.jpg)
 
 ##### 校验镜像仓库结果
 
-![img](/images/docker-3/wps23.jpg) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmqf5inzj30fe0500tj.jpg)
 
 至此，我们的服务器环境，已经可以直接运行docker run 镜像得到结果了
 
@@ -202,7 +202,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 docker-compose version
 
-![img](/images/docker-3/wps24.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmqf1wxnj30e202qjse.jpg)
 
 ## **docker-compose.yaml命令**
 
@@ -218,23 +218,23 @@ down 停止并删除容器： docker-compose down
 
 ## **docker-compose实战**
 
-![img](/images/docker-3/wps25.jpg) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmsb8gcgj30fe0bmjtg.jpg)
 
 编写一个项目整体服务，一个网关nginx + springboot的集群，如上图
 
 其中nginx服务，将配置文件挂载在主机当前项目目录的路径下：nginx/conf.d/
 
-![img](/images/docker-3/wps26.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmsb64igj30fe07ytb4.jpg)
 
 命令：docker-compose up -d
 
-![img](/images/docker-3/wps27.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmsb3olyj30fe03kjsw.jpg)
 
 docker-compose up -d --scale member-1=2
 
 把member-1服务启动两个容器
 
-![img](/images/docker-3/wps28.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmsncxdkj30fe04dwgc.jpg)
 
 # **Docker网络路由**
 
@@ -242,7 +242,7 @@ docker-compose up -d --scale member-1=2
 
 假设我们现在有两台docker主机，各启动了自己的容器在运行
 
-![img](/images/docker-3/wps29.jpg) 
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmsn8k8pj30fe06iab2.jpg)
 
 ### **问题由来**
 
@@ -268,7 +268,7 @@ b机，route add -net 172.17.6.0 netmask 255.255.255.0  gw 192.168.244.7
 
 添加好后，路由表类似下图
 
-![img](/images/docker-3/wps30.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmsn5no9j30fe03dabj.jpg)
 
 然后a机ping b机容器，发现仍是ping不通，卡住ping不通，就是数据包被drop掉了
 
@@ -278,7 +278,7 @@ b机，route add -net 172.17.6.0 netmask 255.255.255.0  gw 192.168.244.7
 
 iptables -t filter -nvL FORWARD
 
-![img](/images/docker-3/wps31.jpg) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jmsyrbwrj30fe037myu.jpg)
 
 我们需要b机上配置，寻找172.17段ip的网络包不要丢掉，要转发
 
@@ -288,4 +288,4 @@ b机：	iptables -I DOCKER  --dst 172.17.0.0/16 -j ACCEPT
 
 网络ok，整个网络包的流程，完整如下：
 
-![img](/images/docker-3/wps32.jpg) 
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmsylf74j30fe061dgz.jpg)

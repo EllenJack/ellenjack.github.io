@@ -68,9 +68,9 @@ shutdown()设置线程池的状态，只会中断所有没有执行任务的线�
 
 ## 工作机制
 
-![img](/images/thread-5/clip_image001.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jmxm3wb1j30pl0dpjsl.jpg)
 
-![img](/images/thread-5/clip_image003.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmxlv3kdj30mh0m0gpr.jpg)
 
 # 合理配置线程池
 
@@ -120,7 +120,7 @@ scheduleWithFixedDelay：提交固定延时间隔执行的任务
 
 两者的区别：
 
-![img](/images/thread-5/clip_image005.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jmxloga8j30re0cjaab.jpg)
 
  
 
@@ -140,7 +140,7 @@ scheduleAtFixedRate任务超时：
 
 参加代码：ScheduleWorkerTime类，执行效果如图：
 
-![img](/images/thread-5/clip_image007.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmybst9sj30pt0d4dgy.jpg)
 
  
 
