@@ -54,7 +54,7 @@ Docker 容器几乎可以在任意的平台上运行，包括物理机、虚拟�
 
 ## **Docker架构**
 
-![img](/images/docker-1-1.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jf5g0c6hj30fe09lgo7.jpg)
 
 host --- 主机载体 == docker安装的地方
 
@@ -100,7 +100,7 @@ Docker 利用容器来运行应用。
 
 ## **容器、镜像的运行关系** 
 
-![img](/images/docker-1-2.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jf5fwgb4j30b108075d.jpg)
 
  
 
@@ -140,7 +140,7 @@ CentOS7 系统 CentOS-Extras 库中已带 Docker，可以直接安装：
 
 $ sudo yum install docker			##不是最新版本
 
-![img](/images/docker-1-3.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf5frbcrj30fe02cmxr.jpg)
 
 \#最新版安装
 
@@ -168,7 +168,7 @@ sudo chkconfig docker on
 
 ## **Docker初体验**
 
-docker run hello-world  ##进入docker世界	![img](/images/docker-1-4.jpg)
+docker run hello-world  ##进入docker世界	![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jf5uxgzrj30cd07iwh6.jpg)
 
 # **Docker基本操作**
 
@@ -230,7 +230,7 @@ docker run hello-world  ##进入docker世界	![img](/images/docker-1-4.jpg)
 
 例：docker history hello-world
 
-![img](/images/docker-1-5.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jf5ur21bj30fe01igm4.jpg)
 
 显示镜像hello-world分三层，其中两个空层
 
@@ -240,7 +240,7 @@ docker run hello-world  ##进入docker世界	![img](/images/docker-1-4.jpg)
 
 一般在image/overlay2/imagedb/content/sha256下
 
-![img](/images/docker-1-6.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf5unv9aj30fe01lwfc.jpg)
 
  
 
@@ -380,17 +380,17 @@ cat f09fe80eb0e75e97b04b9dfb065ac3fda37a8fac0161f42fca1e6fe4d0977c80
 
 ll /var/lib/docker/image/overlay2/layerdb/sha256 
 
-![img](/images/docker-1-7.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jf6wqsywj30fe01n0tp.jpg)
 
 \#镜像层文件内结构：
 
-![img](/images/docker-1-8.jpg) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf6woaklj30fe0233zh.jpg)
 
 ## **镜像与容器总结**
 
 一个镜像就是一层层的layer层文件，盖楼而成，上层文件叠于下层文件上，若上层文件有与下层文件重复的，则覆盖掉下层文件重复的部分，如下图：
 
-![img](/images/docker-1-9.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf6wgbf1j30fe04775b.jpg)
 
  
 
@@ -406,17 +406,17 @@ ll /var/lib/docker/image/overlay2/layerdb/sha256
 
 ### **交互式创建容器并进入：** 
 
-![img](/images/docker-1-10.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jf7a91jqj30fe01sdgh.jpg)
 
 docker run -it --name centos centos /bin/bash（前台进程） 
 
 ------------------------exit退出也关闭容器; Ctrl+P+Q退出不关闭容器 
 
-![img](/images/docker-1-11.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jf7a3xo0j30fe01baad.jpg)
 
 ### **后台启动容器：**
 
-![img](/images/docker-1-12.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jf7a1jt1j30fe020751.jpg)
 
 docker run -d --name nginx nginx 
 

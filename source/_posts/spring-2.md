@@ -15,15 +15,15 @@ category:
 
 2,  新建Cap7MainConfig1.java,
 
-![img](/images/spring-2-1.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jert16t7j30d80e73yz.jpg)
 
 新建WinCondition.java类做为条件类, 同时必须得实现spring提供的Confition接口
 
-![img](/images/spring-2-2.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jersxaduj30mm0duq3i.jpg)
 
 新建 LinuxCondition条件类, 用来处理操作系统为LINUX的bean注册
 
-![img](/images/spring-2-3.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jerst85cj30ls0dygm5.jpg)
 
 3,  把IOC容器里的所有person实例名打印出来(为了看效果,刚开始在配置类可以**不加@Conditinal**)
 
@@ -31,13 +31,13 @@ category:
 
 ​	 **public** **void** test01()
 
-![img](/images/spring-2-4.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jes58bq6j30tc08hgm2.jpg)
 
  
 
 4,  新建test02(), 测试@Conditional  条件加载bean到IOC容器(**加上@Conditinal**)
 
-![img](/images/spring-2-5.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jes558sgj30r808ggm1.jpg)
 
 当引入@Conditional时, 容器可以选择性的注册bean.
 
@@ -55,7 +55,7 @@ category:
 
 按以下1,2,3箭头步骤分别导入多个类,使用import将dog, cat的bean注册到容器中,并测试打印,看容器中是否已加载此类
 
-![img](/images/spring-2-6.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jet10h3qj30op0mbabm.jpg)
 
 **分别使用** 
 
@@ -71,11 +71,11 @@ ImportSelector可以批量导入组件的全类名数组,自定义逻辑返回�
 
 **新建** **JamesImportSelector** **, 新建Fish  Tiger类(与建Cat和Dog一样)**
 
-![img](/images/spring-2-7.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jet89v75j30lq0aq3yv.jpg)
 
 怎么测呢?
 
-![img](/images/spring-2-8.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jet864nwj30si09gdg6.jpg)
 
  
 
@@ -85,7 +85,7 @@ ImportSelector可以批量导入组件的全类名数组,自定义逻辑返回�
 
 新建**JamesImportBeanDefinitionRegistrar**自定义注册类,实现bean注册
 
-![img](/images/spring-2-9.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jet82pznj30tm0exq3u.jpg)
 
 当然除了以上加载方式,还可以通过实现FactoryBean接口方式来加载bean
 
@@ -112,10 +112,9 @@ ImportSelector可以批量导入组件的全类名数组,自定义逻辑返回�
 
 */	
 
-![img](/images/spring-2-10.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jetlbtstj30fc0bo74k.jpg)
 
 把自定义的**JamesImportBeanDefinitionRegistrar**加入配置类进行测试
 
-![img](/images/spring-2-11.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jetl6qb6j30op06lq31.jpg)
 
- 

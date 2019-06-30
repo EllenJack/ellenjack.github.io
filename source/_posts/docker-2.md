@@ -18,7 +18,7 @@ https://hub.docker.com
 
 自由注册，邮件激活即可使用
 
-![img](/images/docker-2-1.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf80y1zjj30an05ewf0.jpg)
 
 ### **命令使用**
 
@@ -40,19 +40,19 @@ Login：登陆仓库
 
 1、命令登陆dockerhub
 
-![img](/images/docker-2-2.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf80n6p5j30b602xwff.jpg)
 
 2、再使用tag命令标记一个镜像，指定自己的仓库
 
-![img](/images/docker-2-3.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jf80jt87j30fe047q4s.jpg)
 
 3、使用push命令推送此镜像到仓库里
 
-![img](/images/docker-2-4.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf8c9oanj30fe01igm5.jpg)
 
 4、打开查询自己仓库的镜像
 
-![img](/images/docker-2-5.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jf8c67l3j308405674g.jpg)
 
 ## **私有仓库**
 
@@ -62,23 +62,23 @@ Login：登陆仓库
 
 -----可配置加速器加速下载 
 
-![img](/images/docker-2-6.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jf8c3w87j30fe02fwf3.jpg)
 
 ### **启动**
 
 docker run -d --name reg -p 5000:5000 registry
 
-![img](/images/docker-2-7.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf8nl5a3j30fe01idga.jpg)
 
 然后可以通过restful接口查看仓库中的镜像（当前仓库是空的）
 
-![img](/images/docker-2-8.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jf8niq5tj30fe01jdgd.jpg)
 
 ### **配置http传输**
 
 私服默认只能使用https，需要配置开放http
 
-![img](/images/docker-2-9.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jf8nfacnj30fe039wfg.jpg)
 
 配置完毕重启下docker服务
 
@@ -90,19 +90,19 @@ systemctl restart docker
 
 docker tag hello-world [http://192.168.244.7:5000/hello-world](http://192.168.244.5:5000/hello-world) 
 
-![img](/images/docker-2-10.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jf942rrej30fe01adge.jpg)
 
 docker push 192.168.244.7:5000/hello-world
 
-![img](/images/docker-2-11.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf940krxj30fe01mmxx.jpg)
 
 查询镜像：http://192.168.244.5:5000/v2/_catalog   
 
-![img](/images/docker-2-12.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jf93vbhuj30fe01b0t5.jpg)
 
 查询hello版本：	  http://192.168.244.5:5000/v2/hello/tags/list 
 
-![img](/images/docker-2-13.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jf9wosjwj30fe014aaf.jpg)
 
 ## **commit镜像并上传仓库**
 
@@ -110,7 +110,7 @@ docker push 192.168.244.7:5000/hello-world
 
 启动后自动进入此容器
 
-![img](/images/docker-2-14.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jf9wkh7zj30fe00yaac.jpg)
 
 ### **容器内安装nginx服务：**
 
@@ -124,11 +124,11 @@ yum install nginx -y    ## 安装
 
 启动nginx服务
 
-![img](/images/docker-2-15.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jf9when6j30fe01w74x.jpg)
 
 ctrl +P+Q退出容器，在主机环境内校验nginx请求，正常得到欢迎页
 
-![img](/images/docker-2-16.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfa98umwj30fe0av77m.jpg)
 
 ### **commit服务为一个nginx镜像**
 
@@ -138,24 +138,24 @@ docker commit cent cent-ng:v1
 
 可看到得到了新的镜像cent-ng:v1
 
-![img](/images/docker-2-17.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfa93yjzj30fe02xwfj.jpg)
 
 ### **启动此nginx镜像**
 
 1、使用新建的镜像创建容器，并进入查看，发现已安装有nginx，但nginx并未启动
 
-![img](/images/docker-2-18.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfa8zdifj30fe01lt99.jpg)
 
 容器内启动nginx服务，并退出容器。在主机方校验，nginx欢迎页面出现
 
-![img](/images/docker-2-19.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfatefp0j30fe06a0u9.jpg)
  
 
 2、现在我们希望启动容器时，直接启动nginx服务，怎么做？
 
 docker run -d --name ngx3 cent-ng:v1  /usr/sbin/nginx  -g  "daemon off;"
 
-![img](/images/docker-2-20.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfat9s86j30fe01c3yt.jpg)
 
 可看到，容器内nginx服务也已正常运行
 
@@ -169,7 +169,7 @@ daemon off是指nginx服务不运行在后端，而是在前台运行（containe
 
 ## **commit创建镜像方式的本质**
 
-![img](/images/docker-2-21.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jfat76q8j30fe05p3zc.jpg)
 
 原容器与commit后的镜像，在文件系统上并无区别。只是把容器层原来的可写属性，置成了只读。于是变成了一个不可改的镜像
 
@@ -179,7 +179,7 @@ docker容器运行，产生一些数据/文件/等等持久化的东西，不应
 
 ## **docker的文件系统**
 
-![img](/images/docker-2-22.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfb923bej30fe04c3zb.jpg)
 
 \1. 镜像与容器读写层，通过联合文件系统，组成系统文件视角
 
@@ -191,29 +191,29 @@ docker容器运行，产生一些数据/文件/等等持久化的东西，不应
 
 1、volume参数创建容器数据卷
 
-![img](/images/docker-2-23.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfb8xcbaj30fe00hwej.jpg)
 
 2、我们通过docker inspect data查看容器元数据，可看到挂载信息
 
-![img](/images/docker-2-24.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfb8uxusj30b700st8s.jpg)
 
-![img](/images/docker-2-25.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfbmc3hfj30fe03nt9f.jpg)
 
 3、在容器端添加一个文件
 
-![img](/images/docker-2-26.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfbm9pxzj30f004qmym.jpg)
 
 回主机目录查看，果然存在此文件：
 
-![img](/images/docker-2-27.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfbm5egej30fe00xt8x.jpg)
 
 4、在主机方添加一个文件
 
-![img](/images/docker-2-28.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfbx34d5j30fe00c0sr.jpg)
 
 回容器里查看，果然也同步增加了此文件
 
-![img](/images/docker-2-29.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfbx0d68j30db03pmyi.jpg)
 
 5、指定主机目录方式挂载文件
 
@@ -221,21 +221,21 @@ docker容器运行，产生一些数据/文件/等等持久化的东西，不应
 
 如下命令，容器方会自动增加一个data目录
 
-![img](/images/docker-2-30.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jfbwx7f7j30fe03m3ze.jpg)
 
 宿主机方，同样自动增加一个/opt/data目录
 
-![img](/images/docker-2-31.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfcch0hnj30fe014t8v.jpg)
 
 ## **volumes-from引用数据卷**
 
 新启一容器，引入上一步的data容器目录
 
-![img](/images/docker-2-32.jpg)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfccec9fj30fe00nq34.jpg)
 
 自动得到同一个目录，内容与data容器里挂载一样
 
-![img](/images/docker-2-33.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfccbyw8j30e3028t9e.jpg)
  
 
 ## **备份/恢复数据卷**   
@@ -276,19 +276,19 @@ docker rm -v data
 
 最简单的dockerfile
 
-![img](/images/docker-2-34.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfcrbmk5j30fe0323z2.jpg)
 
 创建镜像
 
-![img](/images/docker-2-35.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfcr84xdj30fe06jgns.jpg)
 
 使用此镜像运行一个容器
 
-![img](/images/docker-2-36.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfcr1z2kj30f401aglu.jpg)
 
 ### **dockerfile基本要素**
 
-![img](/images/docker-2-37.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfdaok9cj30fe08i0w4.jpg)
 
 ### **dockerfile指令**
 
@@ -366,7 +366,7 @@ wget  http://nginx.org/download/nginx-1.13.2.tar.gz
 
 并创建一个Dockerfile文件，文件内制作一系列nginx的编译安装流程，内容如文件：
 
-![img](/images/docker-2-38.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jfdaj4wjj30fe08l0w6.jpg)
 
 其中，每一个RUN就是增加一个镜像层文件，一层层的RUN命令最终形成一系列镜像层
 
@@ -376,11 +376,11 @@ wget  http://nginx.org/download/nginx-1.13.2.tar.gz
 
 docker build -t cent-ngx2  .
 
-![img](/images/docker-2-39.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jfdaelrcj30fe045dhl.jpg)
 
 我们查看一下这个镜像的层次历史
 
-![img](/images/docker-2-40.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jfdno3lwj30fe03bjsx.jpg)
 
 可看到，此镜像层基本与dockerfile文件的RUN是一一对应的
 
@@ -390,24 +390,23 @@ docker build -t cent-ngx2  .
 
 因此镜像无前台命令，因为必须指定启动命令 ：/usr/local/nginx/sbin/nginx -g "daemon off;"
 
-![img](/images/docker-2-41.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfdnkr54j30fe02caar.jpg)
 
 #### **为镜像指定环境变量，挂载目录，默认启动命令**
 
 在上一版镜像的基础上，我们新加配置
 
-![img](/images/docker-2-42.jpg)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfdngzdwj30fe04k0tt.jpg)
 
 执行：docker build -t cent-ngx3  .
 
-![img](/images/docker-2-43.jpg)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfe1dbcej30eo05sgol.jpg)
 
 查看镜像的历史，可看到比ngx2的镜像多了几个层
 
-![img](/images/docker-2-44.jpg)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jfe194myj30fe04sacu.jpg)
 
 ngx3的镜像创建容器，已经不需要再指定cmd命令了
 
 可执行命令自行校验：docker run -d --name ng2 cent-ngx3
 
- 

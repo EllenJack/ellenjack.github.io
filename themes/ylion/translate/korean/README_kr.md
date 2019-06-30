@@ -193,7 +193,7 @@ warning:
 ### 규칙 : Front-matter 'img'에 있는 이미지 -> 해당 블로그 글의 임의 이미지 -> 디폴트 이미지 순으로 적용
 defaultImgs:
   - http://XXXX.example.jpg
-  - /img/default-1.jpg
+  - http://ww3.sinaimg.cn/large/006tNc79ly1g4jednrpvaj30fa0a6t97.jpg
 excerptLength: 400
 
 ### article meta

@@ -14,9 +14,9 @@ category:
 
 1，创建Maven工程：
 
-2，![img](/images/spring-1-1.png)
+2，![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jeoimup8j30fq06lab2.jpg)
 
-3，![img](/images/spring-1-2.png)
+3，![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jeoijxd5j30g907rdgp.jpg)
 
 4，pom.xml引入spring-context jar和Junit测试用例包
 
@@ -54,19 +54,19 @@ category:
 
  
 
-![img](/images/spring-1-3.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeoif48lj30ms09qmym.jpg)
 
 beans.xml内容如下,使用bean标签注册一些组件<新建Person.java>:
 
-![img](/images/spring-1-4.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jeow2zgaj30kp043aba.jpg)
 
 3,新建cap1包名，新建Person.java类
 
-![img](/images/spring-1-5.png) 
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeovnukej30dn0ch76c.jpg)
 
 4，新建MainTest1测试类：ClassPathXmlApplicationContext:类路径下的XML
 
-![img](/images/spring-1-6.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeovh6pfj30o004gab5.jpg)
 
 如果我们用注解开发, 很明显是不需要XML的
 
@@ -76,14 +76,14 @@ beans.xml内容如下,使用bean标签注册一些组件<新建Person.java>:
 
 新建MainConfig类
 
-![img](/images/spring-1-7.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jepawgjtj30d4070jsa.jpg)
 
  
 
 6，注解测试： 新建MainTest2注解测试，用来测试//AnnoatationConfigApplicationContext: 注解配置来获取IOC容器
 
 
-![img](/images/spring-1-8.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jeparrqnj30o0091ac2.jpg)
 
  
 ## CAP2 章节  ComponentScan 扫描规则
@@ -96,13 +96,13 @@ beans.xml内容如下,使用bean标签注册一些组件<新建Person.java>:
 
 作用:指定要扫描的包
 
-![img](/images/spring-1-9.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jepanw9jj30o009976c.jpg)
 
 1,@ComponentScan(value="com.enjoy.cap2")表示扫描此目录下的包
 
 2,建立测试用例方法;
 
-![img](/images/spring-1-10.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jepob1zsj30ny064ta4.jpg)
 
  
 
@@ -112,7 +112,7 @@ beans.xml内容如下,使用bean标签注册一些组件<新建Person.java>:
 
 新建dao, service,controller
 
-![img](/images/spring-1-11.png) ![img](/images/spring-1-12.png) ![img](/images/spring-1-13.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jepo64e1j306h02yaa4.jpg) ![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jepo1hh2j306f03rmxe.jpg) ![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jeqdrrqvj307201ygln.jpg)
  
 
 在Cap2MainConfig2加入配置: @Filter: 扫描规则
@@ -153,7 +153,7 @@ beans.xml内容如下,使用bean标签注册一些组件<新建Person.java>:
 
 先新增自定义过滤规则类:
 
-![img](/images/spring-1-14.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeqdo6qrj30o00aztcf.jpg)
 
 在Cap2MainConfig申明
 
@@ -166,17 +166,17 @@ beans.xml内容如下,使用bean标签注册一些组件<新建Person.java>:
 public class Cap2MainConfig2 {}
 
  
-![img](/images/spring-1-15.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jeqdfzi6j30o00c3jvl.jpg)
 
 ## CAP3 章节  scope 扫描规则
 
 1,新建Cap3MainConfig.java
 
-![img](/images/spring-1-16.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jeqv6gcxj30ny091abv.jpg)
 
 2,没加@Scope之前, 默认的bean是单实例的. 新建 test01()方法测试如下:
 
-![img](/images/spring-1-17.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jeqv231xj30o009udi3.jpg)
 
 返回true, 证明取到的是同一个person bean,只实例化了一次.
 
@@ -199,11 +199,11 @@ session:  同一个session创建一个实例（后面两个用得不多，了解
 
 1,新建Cap4MainConfig.java
 
-![img](/images/spring-1-18.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jequwmh6j30ny0cuq5c.jpg)
 
 2,建立测试用例test01();
 
-![img](/images/spring-1-19.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jer5yo2mj30ny05dab8.jpg)
 
 当在Cap4MainConfig加入@Lazy时,  只有获取anno.getBean时才会加载到IOC容器中
 

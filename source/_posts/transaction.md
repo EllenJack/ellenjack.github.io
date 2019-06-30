@@ -12,11 +12,11 @@ category:
 
 ## @Transaction注解一般写在什么位置? 如何控制其回滚？
 
-![img](/images/transaction-1.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jegsglbsj30on0c1jsy.jpg)
 
 ## @Transaction事务回滚规则
 
-![img](/images/transaction-2.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jegs4sh7j30pn0co404.jpg)
 
 ## 总结
 

@@ -11,7 +11,7 @@ category:
 
 > 动态代理：是使用反射和字节码的技术，在运行期创建指定接口或类的子类（动态代理）以及其实例对象的技术，通过这个技术可以无侵入行的为代码进行增强
 
-![img](/images/dynamic-proxies-1.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfgfq4zwj30jf055aba.jpg)
 
 ## Java的动态代理技术实现主要有两种方式
 
@@ -25,7 +25,7 @@ category:
 
 - InvocationHandler : 每个动态代理实例都有一个关联的InvocationHandler。 在代理实例上调用方法时，方法调用将被转发到InvocationHandler的invoke方法；
 
-![img](/images/dynamic-proxies-2.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfgflfbuj30sm09ldh3.jpg)
 
 code 实例：
 
@@ -66,7 +66,7 @@ proxy.addUser(user);
 
 - MethodInterceptor : 动态代理对象的方法调用都会转发到 intercept 方法进行增强；
 
-![img](/images/dynamic-proxies-3.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfgfh65gj30tb09h74x.jpg)
 
 code 实例：
 

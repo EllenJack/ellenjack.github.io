@@ -10,19 +10,19 @@ category:
 
 ## @Autowired方法, 参数, 构造方法都可加载, 跟进源码看看
 
-![img](/images/spring-5-1.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jei1x6huj30ny03ct9o.jpg)
 A>放到方法上的测试步骤:
 
 ​    新建Moon.java
 
-![img](/images/spring-5-2.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jei1uhn7j30e007v752.jpg)
  
 
  
 
    新建Sun.java
 
-![img](/images/spring-5-3.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jei1riisj30hf0anabp.jpg)
 
 setMoon()方法使用的参数,自定义类型的值从IOC容器中获取, 方法里的moon会从容器中拿到
 
@@ -32,18 +32,18 @@ setMoon()方法使用的参数,自定义类型的值从IOC容器中获取, 方�
 
 在配置类要加入扫描bean包
 
-![img](/images/spring-5-4.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeiv0rwqj30k207ndhj.jpg)
 
 测试:
 
   新建test02()测试方法
 
-![img](/images/spring-5-5.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeiuwb6vj30o006xgn1.jpg)
  
 
 结果如下:(为同一个bean)
 
-![img](/images/spring-5-7.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jeiurwsjj30g7025aah.jpg)
 
 方法使用的参数,自定义类型的值从IOC容器中获取, 方法里的moon会从容器中拿到
 
@@ -53,7 +53,7 @@ setMoon()方法使用的参数,自定义类型的值从IOC容器中获取, 方�
 
 B> 将Autowired标记在有参构造器
 
-![img](/images/spring-5-8.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jej7vpbcj30ny0hpgqa.jpg)
 
 构造函数的moon是从容器里拿到的
 
@@ -71,7 +71,7 @@ B> 将Autowired标记在有参构造器
 
 同样,也可以放在构造器的参数位置也可以获取到IOC容器的bean.
 
-![img](/images/spring-5-9.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jej7prfqj30jw07n75w.jpg)
  
 
 结论: 不管@Autowired是放到参数, 方法还是构造方法, 都是从容器里取到的bean...
@@ -92,18 +92,18 @@ B> 将Autowired标记在有参构造器
 
 ​    之前讲过Plane.java就是使用这个
 
-![img](/images/spring-5-10.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jej7lt6ij30hd0etwi6.jpg)
  
 
  
 
 CTRL+SHIFT+T  找到Aware
 
-![img](/images/spring-5-11.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jejy1axqj30ar03074a.jpg)
 
 查看有哪些接口继承了Aware接口
 
-![img](/images/spring-5-12.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jejxx6mwj30fc08cjv1.jpg)
  
 
  
@@ -116,12 +116,12 @@ CTRL+SHIFT+T  找到Aware
 
 1, 新建Light.java类, 实现ApplicaitonContextAware接口
 
-![img](/images/spring-5-13.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jejxrwqmj30i207gdhq.jpg)
  
 
  2,实现BeanNameAware接口
 
-![img](/images/spring-5-14.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jekhx9krj30m509qjug.jpg)
  
 
  
@@ -132,22 +132,22 @@ CTRL+SHIFT+T  找到Aware
 
  2,实现EmbeddedValueResolverAware接口
 
-![img](/images/spring-5-15.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jekhqrwaj30m10bsdjn.jpg)
  
 
 3, 将Light类加入@Component, 声明为被扫描的组件
 
-![img](/images/spring-5-16.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jekhl6t7j30lp03tjsi.jpg)
  
 
 4,将test02()加入打印anno容器, 用来比如
 
-![img](/images/spring-5-17.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeky3p6uj30ht03cmxj.jpg)
  
 
 5,测试, 执行test()02;
 
-![img](/images/spring-5-18.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jekxo5k4j30o008maea.jpg)
  
 
  
@@ -190,22 +190,22 @@ AOP: 面向切面编程[底层就是动态代理]
 
 1,先建立MainConfigOfAOP配置类
 
-![img](/images/spring-5-19.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jekxisgdj30kr0870u5.jpg)
 
 2,在POM.XML中导入spring-aspects依赖包
 
-![img](/images/spring-5-20.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jeldkvodj30ev03laau.jpg)
  
 
 3,新建立一个业务逻辑类Calculator.java
 
-![img](/images/spring-5-21.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jeldfoe8j309b048gm5.jpg)
 
 在div()方法运行之前, 记录一下日志, 运行后也记录一下,运行出异常,也打印一下
 
 有的同学可能会这么做, 在每个方法加入个打印.
 
-![img](/images/spring-5-22.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jeldc0mvj30gu04zq3i.jpg)
 
 但这样会有问题, 这种方式耦合了....
 
@@ -213,7 +213,7 @@ AOP: 面向切面编程[底层就是动态代理]
 
 新建一个日志切面类....
 
-![img](/images/spring-5-23.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jeltp4s4j30i80ac40m.jpg)
 
 日志切面类的方法需要动态感知到div()方法运行到哪里了, 然后再执行, 如果除法开始, 就日志开始方法, 
 
@@ -237,36 +237,36 @@ AOP: 面向切面编程[底层就是动态代理]
 
 怎么加入 呢?
 
-![img](/images/spring-5-24.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jeltl88kj30ny07nwg4.jpg)
 
 若不想区分切入了哪个方法及参数类型和个数,可以有如下指定方式:
 
-![img](/images/spring-5-25.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jelthnl0j30o008in11.jpg)
  
 
 不难发现问题:注解里的内容是冗余重复的, 公共的代码应该抽出来
 
-![img](/images/spring-5-26.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jem6mm2bj30j506pju7.jpg)
 
 并加上Around环绕通知
 
-![img](/images/spring-5-27.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jem6iqisj30o004c0u1.jpg)
 
 那么应该写一个公共切入点表达式.
 
-![img](/images/spring-5-28.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jem6esb6j30fu0bz0vc.jpg)
  
 
 公共切入方法加要指定的方法
 
-![img](/images/spring-5-29.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jemkfqkxj30ny0i2q9s.jpg)
  
 
  
 
 有了以上操作, 我们还需要将切面类和被切面的类, 都加入到容器中
 
-![img](/images/spring-5-30.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jemk770bj30cs0acmyp.jpg)
  
 
 但这个时候还会有问题, Spring无法区别以上的两个bean哪个是切面类, 哪个是业务逻辑类
@@ -275,7 +275,7 @@ AOP: 面向切面编程[底层就是动态代理]
 
 只需要给切面类LogAspects上加一个注解@Aspect即可.
 
-![img](/images/spring-5-31.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jemjsrztj30ny05mq45.jpg)
  
 
 是不是就完了呢?并没有
@@ -286,7 +286,7 @@ AOP: 面向切面编程[底层就是动态代理]
 
 注意: 在spring以后会有很多@EnableXXXX, 表示开启某项功能, 取代XML配置
 
-![img](/images/spring-5-32.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jemzkb51j30cd09s75r.jpg)
  
 
 测试: 新建一个测试类Cap10Test.java
@@ -295,12 +295,12 @@ AOP: 面向切面编程[底层就是动态代理]
 
 大家可能会这么写:
 
-![img](/images/spring-5-33.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jemzgs9tj30fg04qwfe.jpg)
 
 没用到容器, 肯定是不行的, 获取bean时使用IOC容器取出bean
 
-![img](/images/spring-5-34.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jemzcytjj30gs05hgmq.jpg)
 
  运行结果如下:
 
-![img](/images/spring-5-35.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jenbhojxj309d07n0tq.jpg)

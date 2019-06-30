@@ -13,11 +13,11 @@ category:
 
 ## 缓存在系统部署中的位置
 
-![img](/images/refresh-policy-1.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jfhdeaxij30jg0a0wg0.jpg)
 
 ## 解决缓存数据一致性问题方案
 
-![img](/images/refresh-policy-2.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jfhd85vkj31420bz436.jpg)
 
 ### 数据实时同步失效 （增量/主动）
 
@@ -95,7 +95,7 @@ public ProfitDetail addProfitDetail(ProfitDetail detail) {
 
 ### 数据准实时更新 （增量/被动）
 
-![img](/images/refresh-policy-3.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfhd2n8mj30qo0e9gqt.jpg)
 
 - code 实例：
 

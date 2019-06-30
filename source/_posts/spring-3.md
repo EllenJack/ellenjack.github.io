@@ -25,17 +25,17 @@ bean的生命周期是由容器进行管理的
 
 ​	用注释如何做: 新建Bike.java
 
-![img](/images/spring-3-1.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeu5j5q8j30e505qgll.jpg)
 
 1.1> 指定初始化和销毁方法
 
 ​	在配置类里通过@Bean(initMethod="init", destroyMethod="destroy")指定
 
-![img](/images/spring-3-2.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jeu5gr75j30cx045dfs.jpg)
 
 1.2> 单实例: 当容器关闭的时候,会调用destroy消耗
 
-![img](/images/spring-3-3.png)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g4jeu5cnetj30vj07l74k.jpg)
 
  
 
@@ -53,7 +53,7 @@ A, InitializingBean(定义初始化逻辑,可点进去看此类):afterProperties
 
  2.1> 新建Train.java类, 实现 InitializingBean, DisposableBean 接口
 
-![img](/images/spring-3-4.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jeunpw3ij30g00990sz.jpg)
 
 
  2.2> 加载bean方式
@@ -62,7 +62,7 @@ A, InitializingBean(定义初始化逻辑,可点进去看此类):afterProperties
 
 ​	或[在Config加上扫描@ComponentScan("com.enjoy.cap7.bean")](mailto:在Config加上扫描@ComponentScan(\),用以下方式
 
-![img](/images/spring-3-5.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jeunlsgpj30bh01y3yd.jpg)
 
 
 ​    测试用例只要加载容器和关闭容器即可.
@@ -77,7 +77,7 @@ A, InitializingBean(定义初始化逻辑,可点进去看此类):afterProperties
 
 ​	 步骤:新建Jeep.java
 
-![img](/images/spring-3-6.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jeunhf86j30ev08kmxa.jpg)
 
 
  
@@ -98,14 +98,14 @@ BeanPostProcessor类[interface]: bean的后 置处理器,在bean初始化之前�
 
 ​	 步骤: 新建后置处理器类JamesBeanPostProcessor
 
-​	 ![img](/images/spring-3-7.png)
+​	 ![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jev1w7r9j30na0a40t2.jpg)
 
 
 总结:bean的整个生命周期我们都能控制 	
 
 可以分析Bike的日志证明在init初始化之前调用了**postProcessBeforeInitialization** **(),**
 
-![img](/images/spring-3-8.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jev1qoofj30lx02q748.jpg)
 
 
 
@@ -113,11 +113,11 @@ BeanPostProcessor类[interface]: bean的后 置处理器,在bean初始化之前�
 
 针对以上cap12进行debug测试;
 
-![img](/images/spring-3-9.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jev1kt87j30oy08fwey.jpg)
 
 加完断点后, 测试用例debug, 分析容器创建流程
 
-![img](/images/spring-3-10.png)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g4jevf8zzhj30j704sjrh.jpg)
 
 
 BeanPostProcessor原理:

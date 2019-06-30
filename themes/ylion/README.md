@@ -191,7 +191,7 @@ warning:
 ### 规则:Front-matter中的自定义'img'字段 > 文章内的图片(随机获取) > defaultImgs(随机获取)
 defaultImgs:
   - http://XXXX.example.jpg
-  - /img/default-1.jpg
+  - http://ww3.sinaimg.cn/large/006tNc79ly1g4jednrpvaj30fa0a6t97.jpg
 excerptLength: 400 ### 简介文字显示最大字数
 
 ### article meta

@@ -19,7 +19,7 @@ category:
 
 4. path携带Cookie的请求路径（/：表示全部请求）
 
-![img](/images/conversation-1.png)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jfeyok2mj30f40843z7.jpg)
 
 ## 认识Session
 
@@ -51,7 +51,7 @@ category:
 
 4. 当程序请求session时，首先根据cookie中携带的session id检索session（检索不到，会新建一个）
 
-![img](/images/conversation-2.png)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g4jfeyjj9cj30hb06wt9m.jpg)
 
 ## 总结
 
