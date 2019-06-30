@@ -69,7 +69,7 @@ l  取模的操作 a % (Math.pow(2,n)) 等价于 a&( Math.pow(2,n)-1)
 
 ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segment实际继承自可重入锁（ReentrantLock），在ConcurrentHashMap里扮演锁的角色；HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组，每个Segment里包含一个HashEntry数组，我们称之为table，每个HashEntry是一个链表结构的元素。
 
-![img](/images/clip_image002.jpg)
+![img](/images/clip_image001.png)
 
 **面试常问：**
 
@@ -91,25 +91,25 @@ ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segme
 
 1、
 
- ![img](/images/clip_image004.jpg)
+ ![img](/images/clip_image003.png)
 
 保证Segment数组的大小，一定为2的幂，例如用户设置并发度为17，则实际Segment数组大小则为32
 
 2、
 
-![img](/images/clip_image006.jpg)
+![img](/images/clip_image005.png)
 
 保证每个Segment中tabel数组的大小，一定为2的幂，初始化的三个参数取默认值时，table数组大小为2
 
 3、
 
-![img](/images/clip_image008.jpg)
+![img](/images/clip_image007.png)
 
 初始化Segment数组，并实际只填充Segment数组的第0个元素。
 
 4、
 
-![img](/images/clip_image010.jpg)
+![img](/images/clip_image009.png)
 
 用于定位元素所在segment。segmentShift表示偏移位数，通过前面的int类型的位的描述我们可以得知，int类型的数字在变大的过程中，低位总是比高位先填满的，为保证元素在segment级别分布的尽量均匀，计算元素所在segment时，总是取hash值的高位进行计算。segmentMask作用就是为了利用位运算中取模的操作：    a % (Math.pow(2,n)) 等价于 a&( Math.pow(2,n)-1)
 
@@ -119,13 +119,13 @@ ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segme
 
 **定位segment** **：**取得key的hashcode值进行一次再散列（通过Wang/Jenkins算法），拿到再散列值后，以再散列值的高位进行取模得到当前元素在哪个segment上。
 
-![img](/images/clip_image012.jpg)
+![img](/images/clip_image011.png)
 
-![img](/images/clip_image014.jpg)
+![img](/images/clip_image013.png)
 
 定位table：同样是取得key的再散列值以后，用再散列值的全部和table的长度进行取模，得到当前元素在table的哪个元素上。
 
-![img](/images/clip_image016.jpg)
+![img](/images/clip_image015.png)
 
 ### get（）方法
 
@@ -135,7 +135,7 @@ ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segme
 
 答：用于存储键值对数据的HashEntry，在设计上它的成员变量value等都是volatile类型的，这样就保证别的线程对value值的修改，get方法可以马上看到。
 
-![img](/images/clip_image018.jpg)
+![img](/images/clip_image017.png)
 
 ### put()方法
 
@@ -143,21 +143,21 @@ ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segme
 
 2、 对Segment 加锁
 
-![img](/images/clip_image020.jpg)
+![img](/images/clip_image019.png)
 
 3、定位所在的table元素，并扫描table下的链表，**找到时：**
 
-![img](/images/clip_image022.jpg)
+![img](/images/clip_image021.png)
 
 **没有找到时：**
 
-![img](/images/clip_image024.jpg)
+![img](/images/clip_image023.png)
 
 ### 扩容操作
 
 Segment 不扩容，扩容下面的table数组，每次都是将数组翻倍
 
-![img](/images/clip_image026.jpg)
+![img](/images/clip_image025.png)
 
 **带来的好处**
 
@@ -213,25 +213,25 @@ TreeNode 用在红黑树，表示树的节点, TreeBin是实际放在table数组
 
 ### 在get和put操作中，是如何快速定位元素放在哪个位置的？
 
-![img](/images/clip_image028.jpg)
+![img](/images/clip_image027.png)
 
-![img](/images/clip_image030.jpg)
+![img](/images/clip_image029.png)
 
 ### get（）方法
 
-![img](/images/clip_image032.jpg)
+![img](/images/clip_image031.png)
 
 ### put()方法
 
 数组的实际初始化
 
-![img](/images/clip_image034.jpg)
+![img](/images/clip_image033.png)
 
-![img](/images/clip_image036.jpg)
+![img](/images/clip_image035.png)
 
-![img](/images/clip_image038.jpg)
+![img](/images/clip_image037.png)
 
-![img](/images/clip_image040.jpg)
+![img](/images/clip_image039.png)
 
 ### 扩容操作
 

@@ -63,9 +63,9 @@ l  内存的可见性
 
 ## 简单的
 
-![img](/images/thread-6/clip_image002.jpg)![img](/images/thread-6/clip_image004.jpg)
+![img](/images/thread-6/clip_image001.png)![img](/images/thread-6/clip_image003.png)
 
-![img](/images/thread-6/clip_image006.jpg)
+![img](/images/thread-6/clip_image005.png)
 
 怀疑发送死锁：
 
@@ -165,7 +165,7 @@ ConcurrrentHashMap就是典型的锁分段。
 
 ## 双重检查锁定
 
-![img](/images/thread-6/clip_image008.jpg)
+![img](/images/thread-6/clip_image007.png)
 
 解决办法，加**volatile** **关键字**
 
