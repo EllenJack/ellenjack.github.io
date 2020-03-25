@@ -63,7 +63,6 @@ tagcloud_config:
 links:
 - 享学课堂: http://enjoy.ke.qq.com
 - 朝·闻·道: http://wuwenliang.net
-- 主题作者: http://geekaholiclin.github.io
 - 撄而后成: https://pleuvoir.github.io
 
 # content -- 内容显示相关
@@ -120,8 +119,7 @@ excerptLength: 400
 whichCategory: 0
 
 ### post footer
-### 作者信息部分设置
-high_song: 'high起来 &#128541;'  ### 歌曲显示文字，若不需要该功能，则留空或移除
+### 作者信息部分设置h
 author_img: http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg
 author_profile_page: /about.html
 donate:
