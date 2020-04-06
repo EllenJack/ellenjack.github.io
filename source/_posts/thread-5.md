@@ -5,7 +5,6 @@ tags:
 - 多线程
 category:
 - 并发编程
-- 多线程
 ---
 
 # 什么是线程池？为什么要用线程池？  
@@ -142,15 +141,8 @@ scheduleAtFixedRate任务超时：
 
 ![](http://ww4.sinaimg.cn/large/006tNc79ly1g4jmybst9sj30pt0d4dgy.jpg)
 
- 
+ 建议在提交给ScheduledThreadPoolExecutor的任务要住catch异常。
 
-建议在提交给ScheduledThreadPoolExecutor的任务要住catch异常。
-
-# Executor框架
-
- 
-
-# 了解CompletionService
 
  
 
