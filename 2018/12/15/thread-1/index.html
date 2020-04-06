@@ -1,0 +1,420 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>线程基础、线程之间的共享和协作 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="线程基础、线程之间的共享和协作">
+                
+                线程基础、线程之间的共享和协作
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2018/12/15</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>477</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p><strong>CPU</strong> <strong>核心数和线程数的关系</strong></p>
+<p>核心数:线程数=1:1  ;使用了超线程技术后—&gt; 1:2</p>
+<p><strong>CPU</strong> <strong>时间片轮转机制</strong></p>
+<p>又称RR调度，会导致上下文切换</p>
+<p><strong>什么是进程和线程</strong></p>
+<p>进程：程序运行资源分配的最小单位，进程内部有多个线程，会共享这个进程的资源</p>
+<p>线程：CPU调度的最小单位，必须依赖进程而存在。</p>
+<p><strong>澄清并行和并发</strong></p>
+<p>并行：同一时刻，可以同时处理事情的能力</p>
+<p>并发：与单位时间相关，在单位时间内可以处理事情的能力</p>
+<p><strong>高并发编程的意义、好处和注意事项</strong></p>
+<p>好处：充分利用cpu的资源、加快用户响应的时间，程序模块化，异步化</p>
+<p>问题：</p>
+<p>线程共享资源，存在冲突；</p>
+<p>容易导致死锁；</p>
+<p>启用太多的线程，就有搞垮机器的可能</p>
+<h2 id="认识Java里的线程"><a href="#认识Java里的线程" class="headerlink" title="认识Java里的线程"></a>认识Java里的线程</h2><p><strong>新启线程的方式</strong></p>
+<p>三种</p>
+<p><strong>怎么样才能让Java**</strong>里的线程安全停止工作呢**</p>
+<p>线程自然终止：自然执行完或抛出未处理异常</p>
+<p>stop()，resume(),suspend()已不建议使用，stop()会导致线程不会正确释放资源，suspend()容易导致死锁。</p>
+<p>java线程是协作式，而非抢占式</p>
+<p>调用一个线程的interrupt() 方法中断一个线程，并不是强行关闭这个线程，只是跟这个线程打个招呼，将线程的中断标志位置为true，线程是否中断，由线程本身决定。</p>
+<p>isInterrupted() 判定当前线程是否处于中断状态。</p>
+<p>static方法interrupted() 判定当前线程是否处于中断状态，同时中断标志位改为false。</p>
+<p>方法里如果抛出InterruptedException，线程的中断标志位会被复位成false，如果确实是需要中断线程，要求我们自己在catch语句块里再次调用interrupt()。</p>
+<h2 id="对Java里的线程再多一点点认识"><a href="#对Java里的线程再多一点点认识" class="headerlink" title="对Java里的线程再多一点点认识"></a>对Java里的线程再多一点点认识</h2><p><strong>线程常用方法和线程的状态</strong></p>
+<p>线程只有5种状态。整个生命周期就是这几种状态的切换。</p>
+<p>run()和start() ：run方法就是普通对象的普通方法，只有调用了start()后，Java才会将线程对象和操作系统中实际的线程进行映射，再来执行run方法。</p>
+<p>yield() ：让出cpu的执行权，将线程从运行转到可运行状态，但是下个时间片，该线程依然有可能被再次选中运行。</p>
+<p><strong>线程的优先级</strong></p>
+<p>取值为1~10，缺省为5，但线程的优先级不可靠，不建议作为线程开发时候的手段</p>
+<p><strong>守护线程</strong></p>
+<p>和主线程共死，finally不能保证一定执行</p>
+<h2 id="线程间的共享"><a href="#线程间的共享" class="headerlink" title="线程间的共享"></a>线程间的共享</h2><h3 id="synchronized内置锁"><a href="#synchronized内置锁" class="headerlink" title="synchronized内置锁"></a>synchronized内置锁</h3><p>对象锁，锁的是类的对象实例。</p>
+<p>类锁 ，锁的是每个类的的Class对象，每个类的的Class对象在一个虚拟机中只有一个，所以类锁也只有一个。</p>
+<h3 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h3><p>适合于只有一个线程写，多个线程读的场景，因为它只能确保可见性。</p>
+<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><p>线程变量。可以理解为是个map，类型 Map&lt;Thread,Integer&gt;</p>
+<h2 id="线程间协作"><a href="#线程间协作" class="headerlink" title="线程间协作"></a>线程间协作</h2><p>轮询：难以保证及时性，资源开销很大，</p>
+<h3 id="等待和通知"><a href="#等待和通知" class="headerlink" title="等待和通知"></a>等待和通知</h3><p>wait()    对象上的方法</p>
+<p>notify/notifyAll  对象上的方法</p>
+<p><strong>等待和通知的标准范式</strong></p>
+<p>等待方：</p>
+<p>1、 获取对象的锁；</p>
+<p>2、 循环里判断条件是否满足，不满足调用wait方法，</p>
+<p>3、 条件满足执行业务逻辑</p>
+<p>通知方来说</p>
+<p>1、 获取对象的锁；</p>
+<p>2、 改变条件</p>
+<p>3、 通知所有等待在对象的线程</p>
+<p>notify和notifyAll应该用谁？</p>
+<p>应该尽量使用notifyAll，使用notify因为有可能发生信号丢失的的情况</p>
+<p><strong>等待超时模式实现一个连接池</strong></p>
+<p>假设  等待时间时长为T，当前时间now+T以后超时</p>
+<p>long  overtime = now+T;</p>
+<p>long remain = T;//等待的持续时间</p>
+<p>while(result不满足条件&amp;&amp; remain&gt;0){</p>
+<p>​       wait(remain);</p>
+<p>​       remain = overtime – now;//等待剩下的持续时间</p>
+<p>}</p>
+<p>return result;</p>
+<h3 id="join-方法"><a href="#join-方法" class="headerlink" title="join()方法"></a>join()方法</h3><p>面试点</p>
+<p>线程A，执行了线程B的join方法，线程A必须要等待B执行完成了以后，线程A才能继续自己的工作</p>
+<h3 id="调用yield-、sleep-、wait-、notify-等方法对锁有何影响？"><a href="#调用yield-、sleep-、wait-、notify-等方法对锁有何影响？" class="headerlink" title="调用yield() 、sleep()、wait()、notify()等方法对锁有何影响？"></a>调用yield() 、sleep()、wait()、notify()等方法对锁有何影响？</h3><p>面试点</p>
+<p>线程在执行yield()以后，持有的锁是不释放的</p>
+<p>sleep()方法被调用以后，持有的锁是不释放的</p>
+<p>调动方法之前，必须要持有锁。调用了wait()方法以后，锁就会被释放，当wait方法返回的时候，线程会重新持有锁</p>
+<p>调动方法之前，必须要持有锁，调用notify()方法本身不会释放锁的</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2018-12-15  23:51:07</span></li>
+                
+                <li>Updated Date: <span>2020-03-29  19:28:31</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/并发编程/">并发编程</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/多线程/">多线程</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2018/12/16/kafka-1/" class="pre-post fa fa-caret-left">Kafka入门</a>
+        
+        
+        <a href="/2018/12/15/about/" class="next-post fa">关于我</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础概念"><span class="toc-number">1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#认识Java里的线程"><span class="toc-number">2.</span> <span class="toc-text">认识Java里的线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对Java里的线程再多一点点认识"><span class="toc-number">3.</span> <span class="toc-text">对Java里的线程再多一点点认识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程间的共享"><span class="toc-number">4.</span> <span class="toc-text">线程间的共享</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized内置锁"><span class="toc-number">4.1.</span> <span class="toc-text">synchronized内置锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile关键字"><span class="toc-number">4.2.</span> <span class="toc-text">volatile关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal"><span class="toc-number">4.3.</span> <span class="toc-text">ThreadLocal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程间协作"><span class="toc-number">5.</span> <span class="toc-text">线程间协作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#等待和通知"><span class="toc-number">5.1.</span> <span class="toc-text">等待和通知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join-方法"><span class="toc-number">5.2.</span> <span class="toc-text">join()方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用yield-、sleep-、wait-、notify-等方法对锁有何影响？"><span class="toc-number">5.3.</span> <span class="toc-text">调用yield() 、sleep()、wait()、notify()等方法对锁有何影响？</span></a></li></ol></li></ol>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

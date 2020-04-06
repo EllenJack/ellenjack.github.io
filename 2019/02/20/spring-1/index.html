@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>Spring基础及组件使用(1) | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="Spring基础及组件使用(1)">
+                
+                Spring基础及组件使用(1)
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/02/20</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>411</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="CAP1-章节-将你的工程从-XML-配置到注解"><a href="#CAP1-章节-将你的工程从-XML-配置到注解" class="headerlink" title="CAP1 章节  将你的工程从 XML 配置到注解"></a>CAP1 章节  将你的工程从 XML 配置到注解</h2><p>一、创建工程</p>
+<p>1，创建Maven工程：</p>
+<p>2，<img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeoimup8j30fq06lab2.jpg" alt></p>
+<p>3，<img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeoijxd5j30g907rdgp.jpg" alt></p>
+<p>4，pom.xml引入spring-context jar和Junit测试用例包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">​      &lt;dependency&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;version&gt;5.0.6.RELEASE&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">​      &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line"></span><br><span class="line">​      &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<p>5，如果是以前,我们应该建立spring的beanx.xml</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeoif48lj30ms09qmym.jpg" alt></p>
+<p>beans.xml内容如下,使用bean标签注册一些组件&lt;新建Person.java&gt;:</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jeow2zgaj30kp043aba.jpg" alt></p>
+<p>3,新建cap1包名，新建Person.java类</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeovnukej30dn0ch76c.jpg" alt></p>
+<p>4，新建MainTest1测试类：ClassPathXmlApplicationContext:类路径下的XML</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeovh6pfj30o004gab5.jpg" alt></p>
+<p>如果我们用注解开发, 很明显是不需要XML的</p>
+<p>5，注解测试： 如何使用注解（去掉配置文件）开发</p>
+<p>新建MainConfig类</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jepawgjtj30d4070jsa.jpg" alt></p>
+<p>6，注解测试： 新建MainTest2注解测试，用来测试//AnnoatationConfigApplicationContext: 注解配置来获取IOC容器</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jeparrqnj30o0091ac2.jpg" alt></p>
+<h2 id="CAP2-章节-ComponentScan-扫描规则"><a href="#CAP2-章节-ComponentScan-扫描规则" class="headerlink" title="CAP2 章节  ComponentScan 扫描规则"></a>CAP2 章节  ComponentScan 扫描规则</h2><p>2.1 操作:新建cap2文件夹,新建Cap2MainConfig.java配置类</p>
+<p>作用:指定要扫描的包</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jepanw9jj30o009976c.jpg" alt></p>
+<p>1,@ComponentScan(value=”com.enjoy.cap2”)表示扫描此目录下的包</p>
+<p>2,建立测试用例方法;</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jepob1zsj30ny064ta4.jpg" alt></p>
+<p>2.2 新建Cap2MainConfig2配置类</p>
+<p>作用:定制包扫描时的过滤规则</p>
+<p>新建dao, service,controller</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jepo64e1j306h02yaa4.jpg" alt> <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jepo1hh2j306f03rmxe.jpg" alt> <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jeqdrrqvj307201ygln.jpg" alt></p>
+<p>在Cap2MainConfig2加入配置: @Filter: 扫描规则</p>
+<p> @ComponentScan(value=”com.enjoy.cap2”,includeFilters={       @Filter(type=FilterType.ANNOTATION,classes={Controller.class}),      @Filter(type=FilterType.ASSIGNABLE_TYPE,classes={BookService.class})</p>
+<p>},useDefaultFilters=false) //默认是true,扫描所有组件，要改成false,使用自定义扫描范围</p>
+<p>*/</p>
+<p>//@ComponentScan value:指定要扫描的包</p>
+<p>//excludeFilters = Filter[] 指定扫描的时候按照什么规则排除那些组件</p>
+<p>//includeFilters = Filter[] 指定扫描的时候只需要包含哪些组件</p>
+<p>//useDefaultFilters = false 默认是true,扫描所有组件，要改成false</p>
+<p>//－－－－扫描规则如下</p>
+<p>//FilterType.ANNOTATION：按照注解</p>
+<p>//FilterType.ASSIGNABLE_TYPE：按照给定的类型；比如按BookService类型</p>
+<p>//FilterType.ASPECTJ：使用ASPECTJ表达式</p>
+<p>//FilterType.REGEX：使用正则指定</p>
+<p>//FilterType.CUSTOM：使用自定义规则，自已写类，实现TypeFilter接口</p>
+<p>//FilterType.CUSTOM的例子,常用</p>
+<p>先新增自定义过滤规则类:</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeqdo6qrj30o00aztcf.jpg" alt></p>
+<p>在Cap2MainConfig申明</p>
+<p>@ComponentScan(value=”com.enjoy.cap2”,includeFilters={</p>
+<p>​       @Filter(type=FilterType.CUSTOM,classes={JamesTypeFilters.class})</p>
+<p>},useDefaultFilters=false) </p>
+<p>public class Cap2MainConfig2 {}</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeqdfzi6j30o00c3jvl.jpg" alt></p>
+<h2 id="CAP3-章节-scope-扫描规则"><a href="#CAP3-章节-scope-扫描规则" class="headerlink" title="CAP3 章节  scope 扫描规则"></a>CAP3 章节  scope 扫描规则</h2><p>1,新建Cap3MainConfig.java</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeqv6gcxj30ny091abv.jpg" alt></p>
+<p>2,没加@Scope之前, 默认的bean是单实例的. 新建 test01()方法测试如下:</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jeqv231xj30o009udi3.jpg" alt></p>
+<p>返回true, 证明取到的是同一个person bean,只实例化了一次.</p>
+<p>3, 加入@Scope(“prototype”) //多实例</p>
+<p>prototype: 多实例：IOC容器启动并不会去调用方法创建对象放在容器中，而是                                                                  每次获取的时候才会调用方法创建对象,见test02</p>
+<p>singleton: 单实例（默认）：IOC容器启动会调用方法创建对象放到IOC容器中</p>
+<p>以后每交获取就是直接从容器（理解成从map.get对象）中拿  </p>
+<p>request:  主要针对WEB应用，同一次请求创建一个实例</p>
+<p>session:  同一个session创建一个实例（后面两个用得不多，了解即可）</p>
+<h2 id="CAP4-章节-lazy-懒加载"><a href="#CAP4-章节-lazy-懒加载" class="headerlink" title="CAP4 章节  lazy 懒加载"></a>CAP4 章节  lazy 懒加载</h2><p>1,新建Cap4MainConfig.java</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jequwmh6j30ny0cuq5c.jpg" alt></p>
+<p>2,建立测试用例test01();</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jer5yo2mj30ny05dab8.jpg" alt></p>
+<p>当在Cap4MainConfig加入@Lazy时,  只有获取anno.getBean时才会加载到IOC容器中</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-02-20  13:23:34</span></li>
+                
+                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/框架/">框架</a>
+                    
+                    <a href="/categories/框架/Spring/">Spring</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/Spring/">Spring</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/02/20/spring-2/" class="pre-post fa fa-caret-left">Spring基础及组件使用(2)</a>
+        
+        
+        <a href="/2019/02/19/thread-3/" class="next-post fa">显式锁和AQS</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP1-章节-将你的工程从-XML-配置到注解"><span class="toc-number">1.</span> <span class="toc-text">CAP1 章节  将你的工程从 XML 配置到注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP2-章节-ComponentScan-扫描规则"><span class="toc-number">2.</span> <span class="toc-text">CAP2 章节  ComponentScan 扫描规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP3-章节-scope-扫描规则"><span class="toc-number">3.</span> <span class="toc-text">CAP3 章节  scope 扫描规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP4-章节-lazy-懒加载"><span class="toc-number">4.</span> <span class="toc-text">CAP4 章节  lazy 懒加载</span></a></li></ol>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

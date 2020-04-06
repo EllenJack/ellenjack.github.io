@@ -1,0 +1,399 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>线程池 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="线程池">
+                
+                线程池
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/20</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+        </div>
+        
+        <div id="post-body">
+            <h1 id="什么是线程池？为什么要用线程池？"><a href="#什么是线程池？为什么要用线程池？" class="headerlink" title="什么是线程池？为什么要用线程池？"></a>什么是线程池？为什么要用线程池？</h1><p>1、 降低资源的消耗。降低线程创建和销毁的资源消耗；</p>
+<p>2、 提高响应速度：线程的创建时间为T1，执行时间T2,销毁时间T3，免去T1和T3的时间</p>
+<p>3、 提高线程的可管理性。</p>
+<h1 id="JDK中的线程池和工作机制"><a href="#JDK中的线程池和工作机制" class="headerlink" title="JDK中的线程池和工作机制"></a>JDK中的线程池和工作机制</h1><h2 id="线程池的创建"><a href="#线程池的创建" class="headerlink" title="线程池的创建"></a>线程池的创建</h2><p>ThreadPoolExecutor，jdk所有线程池实现的父类</p>
+<h3 id="各个参数含义"><a href="#各个参数含义" class="headerlink" title="各个参数含义"></a>各个参数含义</h3><p><strong>int</strong> corePoolSize  ：线程池中核心线程数，&lt; corePoolSize  ，就会创建新线程，= corePoolSize  ，这个任务就会保存到BlockingQueue，如果调用prestartAllCoreThreads（）方法就会一次性的启动corePoolSize  个数的线程。</p>
+<p><strong>int</strong> maximumPoolSize, 允许的最大线程数，BlockingQueue也满了，&lt; maximumPoolSize时候就会再次创建新的线程</p>
+<p><strong>long</strong> keepAliveTime, 线程空闲下来后，存活的时间，这个参数只在&gt; corePoolSize才有用</p>
+<p>TimeUnit unit, 存活时间的单位值</p>
+<p>BlockingQueue<runnable> workQueue, 保存任务的阻塞队列</runnable></p>
+<p>ThreadFactory threadFactory, 创建线程的工厂，给新建的线程赋予名字</p>
+<p>RejectedExecutionHandler handler ：饱和策略</p>
+<p>AbortPolicy ：直接抛出异常，默认；</p>
+<p>CallerRunsPolicy：用调用者所在的线程来执行任务</p>
+<p>DiscardOldestPolicy：丢弃阻塞队列里最老的任务，队列里最靠前的任务</p>
+<p>DiscardPolicy ：当前任务直接丢弃</p>
+<p>实现自己的饱和策略，实现RejectedExecutionHandler接口即可</p>
+<h2 id="提交任务"><a href="#提交任务" class="headerlink" title="提交任务"></a>提交任务</h2><p>execute(Runnable command)  不需要返回</p>
+<p>Future<t> submit(Callable<t> task) 需要返回</t></t></p>
+<h2 id="关闭线程池"><a href="#关闭线程池" class="headerlink" title="关闭线程池"></a>关闭线程池</h2><p>shutdown(),shutdownNow();</p>
+<p>shutdownNow():设置线程池的状态，还会尝试停止正在运行或者暂停任务的线程</p>
+<p>shutdown()设置线程池的状态，只会中断所有没有执行任务的线程</p>
+<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmxm3wb1j30pl0dpjsl.jpg" alt></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmxlv3kdj30mh0m0gpr.jpg" alt></p>
+<h1 id="合理配置线程池"><a href="#合理配置线程池" class="headerlink" title="合理配置线程池"></a>合理配置线程池</h1><p>根据任务的性质来：计算密集型（CPU），IO密集型，混合型</p>
+<p>计算密集型：加密，大数分解，正则…….， 线程数适当小一点，最大推荐：机器的Cpu核心数+1，为什么+1，防止页缺失，(机器的Cpu核心=Runtime.<em>getRuntime</em>().availableProcessors();)</p>
+<p>IO密集型：读取文件，数据库连接，网络通讯, 线程数适当大一点，机器的Cpu核心数*2,</p>
+<p>混合型：尽量拆分，IO密集型&gt;&gt;计算密集型，拆分意义不大，IO密集型~计算密集型</p>
+<p>队列的选择上，应该使用有界，无界队列可能会导致内存溢出，OOM</p>
+<h1 id="预定义的线程池"><a href="#预定义的线程池" class="headerlink" title="预定义的线程池"></a>预定义的线程池</h1><h2 id="FixedThreadPool"><a href="#FixedThreadPool" class="headerlink" title="FixedThreadPool"></a>FixedThreadPool</h2><p>创建固定线程数量的，适用于负载较重的服务器，使用了无界队列</p>
+<h2 id="SingleThreadExecutor"><a href="#SingleThreadExecutor" class="headerlink" title="SingleThreadExecutor"></a>SingleThreadExecutor</h2><p>创建单个线程，需要顺序保证执行任务，不会有多个线程活动，使用了无界队列</p>
+<h2 id="CachedThreadPool"><a href="#CachedThreadPool" class="headerlink" title="CachedThreadPool"></a>CachedThreadPool</h2><p>会根据需要来创建新线程的，执行很多短期异步任务的程序，使用了SynchronousQueue</p>
+<h2 id="WorkStealingPool（JDK7以后）"><a href="#WorkStealingPool（JDK7以后）" class="headerlink" title="WorkStealingPool（JDK7以后）"></a>WorkStealingPool（JDK7以后）</h2><p>基于ForkJoinPool实现</p>
+<h2 id="ScheduledThreadPoolExecutor"><a href="#ScheduledThreadPoolExecutor" class="headerlink" title="ScheduledThreadPoolExecutor"></a>ScheduledThreadPoolExecutor</h2><p>需要定期执行周期任务，Timer不建议使用了。</p>
+<p>newSingleThreadScheduledExecutor：只包含一个线程，只需要单个线程执行周期任务，保证顺序的执行各个任务</p>
+<p>newScheduledThreadPool 可以包含多个线程的，线程执行周期任务，适度控制后台线程数量的时候</p>
+<p>方法说明：</p>
+<p>schedule：只执行一次，任务还可以延时执行</p>
+<p>scheduleAtFixedRate：提交固定时间间隔的任务</p>
+<p>scheduleWithFixedDelay：提交固定延时间隔执行的任务</p>
+<p>两者的区别：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmxloga8j30re0cjaab.jpg" alt></p>
+<p>scheduleAtFixedRate任务超时：</p>
+<p>规定60s执行一次，有任务执行了80S，下个任务马上开始执行</p>
+<p>第一个任务 时长 80s，第二个任务20s，第三个任务 50s</p>
+<p>第一个任务第0秒开始，第80S结束；</p>
+<p>第二个任务第80s开始，在第100秒结束；</p>
+<p>第三个任务第120s秒开始，170秒结束</p>
+<p>第四个任务从180s开始</p>
+<p>参加代码：ScheduleWorkerTime类，执行效果如图：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmybst9sj30pt0d4dgy.jpg" alt></p>
+<p> 建议在提交给ScheduledThreadPoolExecutor的任务要住catch异常。</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-06-20  22:31:21</span></li>
+                
+                <li>Updated Date: <span>2020-03-29  19:28:31</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/并发编程/">并发编程</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/多线程/">多线程</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/06/20/thread-6/" class="pre-post fa fa-caret-left">并发安全</a>
+        
+        
+        <a href="/2019/06/20/thread-4/" class="next-post fa">并发容器</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是线程池？为什么要用线程池？"><span class="toc-number">1.</span> <span class="toc-text">什么是线程池？为什么要用线程池？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDK中的线程池和工作机制"><span class="toc-number">2.</span> <span class="toc-text">JDK中的线程池和工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池的创建"><span class="toc-number">2.1.</span> <span class="toc-text">线程池的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#各个参数含义"><span class="toc-number">2.1.1.</span> <span class="toc-text">各个参数含义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交任务"><span class="toc-number">2.2.</span> <span class="toc-text">提交任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭线程池"><span class="toc-number">2.3.</span> <span class="toc-text">关闭线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作机制"><span class="toc-number">2.4.</span> <span class="toc-text">工作机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#合理配置线程池"><span class="toc-number">3.</span> <span class="toc-text">合理配置线程池</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#预定义的线程池"><span class="toc-number">4.</span> <span class="toc-text">预定义的线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FixedThreadPool"><span class="toc-number">4.1.</span> <span class="toc-text">FixedThreadPool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SingleThreadExecutor"><span class="toc-number">4.2.</span> <span class="toc-text">SingleThreadExecutor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CachedThreadPool"><span class="toc-number">4.3.</span> <span class="toc-text">CachedThreadPool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WorkStealingPool（JDK7以后）"><span class="toc-number">4.4.</span> <span class="toc-text">WorkStealingPool（JDK7以后）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ScheduledThreadPoolExecutor"><span class="toc-number">4.5.</span> <span class="toc-text">ScheduledThreadPoolExecutor</span></a></li></ol></li></ol>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

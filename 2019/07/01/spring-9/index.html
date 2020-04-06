@@ -1,0 +1,558 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>Servlet3.0与SpringMvc那些事 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="Servlet3.0与SpringMvc那些事">
+                
+                Servlet3.0与SpringMvc那些事
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/01</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+        </div>
+        
+        <div id="post-body">
+            <p>1，以前来写web的三大组件：以前写servlet filter listener都需要在web.xml进行注册，包括springmvc的前端控制器DispactherServlet也需要在web.xml注册，现在可以通过注解的方式快速搭建我们的web应用</p>
+<p>2，servlet3.0需要tomcat7以上版本进行支持</p>
+<p>3，创建动态web工程（Dynamic Web Project），看一看原生版的servlet：</p>
+<p>   步骤如下</p>
+<p>3.1创建工程：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jowb7l5xj30dd0jrn16.jpg" alt="img">   <img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jowfa9coj30dk0k1tad.jpg" alt="img"></p>
+<p>  3.2新建jsp页面</p>
+<p>   <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jowfrtbzj30hp0l7mzq.jpg" alt="img"></p>
+<p>  3.3打开页面，新增请求地址，请求地址为order</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jowgp0n6j30um0caq84.jpg" alt="img"> </p>
+<p>3.4那么我们建立一个原生的servlet来处理 order的请求</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joubc54fj30um07wadh.jpg" alt="img"> </p>
+<p>加入tomcat，启动后测试访问地址，结果如下：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jouieozxj30um04zt9e.jpg" alt="img"> </p>
+<p>可以访问到路径地址。</p>
+<p>当然这些注解不是我们讲的重点，原生的servlet开发还是很少的。</p>
+<p>4，Shared libraries（共享库） and runtimes pluggability（运行时插件）的原理,在后面的框架整合里，用得比较多，来分析下它；</p>
+<p><strong>ServletContainerInitializer初始化web容器：</strong></p>
+<p>在web容器启动时为提供给第三方组件机会做一些初始化的工作，例如注册servlet或者filters等，servlet规范(JSR356)中通过ServletContainerInitializer实现此功能。</p>
+<p>每个框架要使用ServletContainerInitializer就必须在对应的jar包的<strong>META-INF/services</strong> 目录创建一个名为javax.servlet.ServletContainerInitializer的文件，文件内容指定具体的ServletContainerInitializer实现类，那么，当web容器启动时就会运行这个初始化器做一些组件内的初始化工作。</p>
+<p><strong>操作步骤：</strong></p>
+<p>4.1创建META-INF/services目录</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jowhl8j1j30j309itbj.jpg" alt="img"> </p>
+<p>4.2创建javax.servlet.ServletContainerInitializer文件</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jowi1jjqj30fr02n0t5.jpg" alt="img"> </p>
+<p>4.3,新建JamesServletContainerInitializer实现ServletContainerInitializer接口</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jp06mvxlj30om0a9jvi.jpg" alt="img"></p>
+<p>4.4编辑javax.servlet.ServletContainerInitializer文件内容</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jou92r6aj30nz02r3zk.jpg" alt="img"> </p>
+<p>4.5一般伴随着ServletContainerInitializer一起使用的还有HandlesTypes注解，通过HandlesTypes可以将感兴趣的一些类注入到ServletContainerInitializer的onStartup方法作为参数传入。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jou40zfqj30ul0haqby.jpg" alt="img"> </p>
+<p>并新建JamesService接口的所有子类型</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jp20k6krj30a601yaa2.jpg" alt="img"></p>
+<p>JamesService接口：</p>
+<p>分别新建JamesServiceOther,JamesServiceImpl,AbstractJamesService</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jouh2c50j30f901zwet.jpg" alt="img"> </p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jowddqrej30fx023aac.jpg" alt="img"> </p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jou3iyyzj30kv028t95.jpg" alt="img"> </p>
+<p>4.6启动tomcat测试，看打印日志，不难发现，都拿到了，可以根据需要来反射创建对象</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joujtmlgj30ll066gpd.jpg" alt="img"> </p>
+<p>这其实就是基于运行时插件的机制，启动并运行这个ServletContainerInitializer，在整合springmvc的时候会用到</p>
+<p>4.7使用ServletContext注册web组件（其实就是Servlet,Filter,Listener三大组件），</p>
+<p>对于我们自己写的JamesServlet，我们可以使用@WebServlet注解来加入JamesServlet组件，</p>
+<p>但若是我们要导入第三方阿里的连接池或filter，以前的web.xml方式就可通过配置加载就可以了，但现在我们使用ServletContext注入进来；</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jowiik05j30ul05mq5i.jpg" alt="img"> </p>
+<p>操作步骤：新建以下三个组件</p>
+<p>A，新建OrderFilter.java过滤器</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jou88pv1j30k20ca0vh.jpg" alt="img"> </p>
+<p>B，新建OrderListener.java监听类</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jouf3m1xj30kj0f9wj5.jpg" alt="img"> </p>
+<p>C，新建OrderServlet.java类</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4joucvlgsj30oa06c0uq.jpg" alt="img"> </p>
+<p>D，使用ServletContext来注册以上三个组件</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jou9k6iij30um0dfdn3.jpg" alt="img"> </p>
+<p>注意：在运行的过程中，是不可以注册组件， 和IOC道理一样，出于安全考虑</p>
+<p>5，利用以上机制来整合springmvc;创建一个新的maven工程,springmvc注解版</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4joweiw9cj30el0dgta8.jpg" alt="img"> <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jowcgnxsj30eo0dfmz2.jpg" alt="img"></p>
+<p>5.1，建立完工程后，pom.xml会报错，老铁们，怎么办？？？不要慌，哈哈看下面吧</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jowbzomcj30my082n0v.jpg" alt="img"> </p>
+<p>做个设置即可</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4joukpeufj30jj0btgpi.jpg" alt="img"> </p>
+<p>再右键工程名，update更新一下maven配置就不会有错啦 啦 ……</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joufkqyuj30lz07zac7.jpg" alt="img"> </p>
+<p>5.2，加入必要的jar包依赖</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jowg89q1j30o909in0h.jpg" alt="img"> </p>
+<p>5.3，导入依赖包后，查看maven的一个spring-web.jar包</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jou7rk3hj30k10kl0zr.jpg" alt="img"> </p>
+<p>打开ServletContainerInitializer这个文件看看</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jouagvv4j30mj045tal.jpg" alt="img"> </p>
+<p>5.4打开SpringServletContainerInitializer源码类</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jouay059j30uk0dk45m.jpg" alt="img"> </p>
+<p>5.5打开WebApplicationInitializer源码看看组件及实现（ctrl+t）</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jouiv5m6j30ul05j0w7.jpg" alt="img"> </p>
+<p>子类AbstractContextLoaderInitializer作用：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jowcyd0cj30pl0fy11g.jpg" alt="img"> </p>
+<p>子类AbstractDispatcherServletInitializer的作用：从名字来看可知是DispatcherServlet初始化</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joud8x1vj30ul0lutnb.jpg" alt="img"> </p>
+<p>子类AbstractAnnotationConfigDispatcherServletInitializer：注解方式配置的dispatcherServlet初始化器</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4joucduzyj30uk0fpn5e.jpg" alt="img"> </p>
+<p>root根容器与servlet容器的区别在哪呢？父子容器</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jowjgabkj30lu0jd0wh.jpg" alt="img"> </p>
+<p>很明显，servlet的容器用来处理@Controller，视图解析，和web相关组件</p>
+<p>而root根容器主要针对服务层，和数据源DAO层及事务控制相关处理（图源自spring官网）</p>
+<p><a href="https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/web.html#mvc-servlet-context-hierarchy" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/web.html#mvc-servlet-context-hierarchy</a></p>
+<p>后面我们根据这些来配置操作一下。</p>
+<p>6，与springmvc的整合流程。</p>
+<p>操作步骤：</p>
+<p>新建JamesWebInitializer继承AbstractAnnotationConfigDispatcherServletInitializer类</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jowj5algj30ul0hptev.jpg" alt="img"> </p>
+<p>新建两个配置类JamesRootConfig和JamesAppConfig，形成父子容器的效果</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jowh3eh6j30rt093adw.jpg" alt="img"> </p>
+<p>再建JamesAppConfig类</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jou59z58j30um092djm.jpg" alt="img"> </p>
+<p>再建OrderController控制类来测试</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jou79h5aj30oj0bhdjr.jpg" alt="img"> </p>
+<p>再建OrderService服务层类</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4joug1n5jj30hl07rdhs.jpg" alt="img"> </p>
+<p>OrderController来调用一下service组件</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4joua0d2zj30i908nwgp.jpg" alt="img"> </p>
+<p>注意：JamesWebAppInitializer还需要指定配置类（配置文件）位置，修改以下返回</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4joulosimj30ul0gbjy1.jpg" alt="img"> </p>
+<p>重启tomcat，进行测试：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jouk9pxqj30ul056gmr.jpg" alt="img"> </p>
+<p>这就使用注解的方式（配置类）来完成配置springmvc的整合</p>
+<p>7，如何定制与接管springmvc</p>
+<p>以前是通过配置的方式来完成相应的处理</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jou5q71hj30uk0960wt.jpg" alt="img"> </p>
+<p>现在使用配置注解，定制我们的springmvc,可看官网描述，加入@EnableWebMvc,来定制配置功能。</p>
+<p>我们直接在JamesAppConfig实现WebMvcConfigurer</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jouhjovvj30um0k87dv.jpg" alt="img"> </p>
+<p>点击进去WebMvcConfigurer， ctrl+t发现WebMvcConfigurerAdapter实现了WebMvcConfigurer接口，但方法都为空，我们只要继承一下这个类即可</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jougk068j30ul05kdih.jpg" alt="img"> </p>
+<p>开始继承WebMvcConfigurerAdapter这个类（可以挑选部分方法进行重写）。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jou4ba7nj30um09xgpi.jpg" alt="img"> </p>
+<p>我们得新建这些目录</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jowbfy4jj30hy06d0tj.jpg" alt="img"> </p>
+<p>在pages下新建一个名为 ok.jsp的页面</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jou4t47gj30ee02egln.jpg" alt="img"> </p>
+<p>页面内容如下：</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jou8likfj30ul080tby.jpg" alt="img"> </p>
+<p>直接在OrderController控制类加一个解析器的定制页面返回</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jou66szoj30jp0dfq67.jpg" alt="img"> </p>
+<p>重启tomcat，测试一下，结果为如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4joudua7zj30pq049my1.jpg" alt="img"> </p>
+<p>静态资源如何配置访问呢？</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jouhxcjrj30uk0an42k.jpg" alt="img"> </p>
+<p>xml配置文件有个<a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a>，效果一样。</p>
+<p>比如新增一张图片和一个JSP页面</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joubtdpkj30in0793za.jpg" alt="img"> </p>
+<p>新增index.jsp修改一下：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joweusjbj30lk0633za.jpg" alt="img"> </p>
+<p>浏览器测试结果如下，能访问到页面</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jou6nv2tj30li06gaau.jpg" alt="img"> </p>
+<p>接下来我们玩一个稍微复杂点的，拦截器？</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jowdw20nj30oi0egte2.jpg" alt="img"> </p>
+<p>新建 JamesInterceptor拦截器，需实现HandlerInterceptor接口</p>
+<p>之前在xml里有， <a href="mvc:interceptors" target="_blank" rel="noopener">mvc:interceptors</a>,效果是一样的。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4joue606tj30ul0cewj8.jpg" alt="img"> </p>
+<p>把拦截器加到子容器配置类</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4joujb6f9j30pb0dd0xr.jpg" alt="img"> </p>
+<p>重启tomcat进行测试，输入网些访问ok方法</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jouemjufj30k8045dgr.jpg" alt="img"> </p>
+<p>同时eclipse打印内容如下，拦截成功。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4joul7iwkj30mr04u40i.jpg" alt="img"> </p>
+<p>8，servlet3.0异步请求分析</p>
+<p>8.1，什么是同步处理，请求发出后，等待服务端响应</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jpe5k2ftj30h40f50ts.jpg" alt="img"> </p>
+<p>8.2同步请求原理，从tomcat中获取连接线程进行处理，但tomcat的线程数有限，会造成线程资源的紧张。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jpe3k7t9j30jg0cqmym.jpg" alt="img"> </p>
+<p>8.3同步机制操作步骤：</p>
+<p>a,在servlet工程目录下，修改JamesServlet类，把当前处理的线程也打印出来</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jpe41wg7j30uk0ckjvt.jpg" alt="img"> </p>
+<p>重启tomcat，得到如下结果</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jpe1no3pj30sf03w0ur.jpg" alt="img"> </p>
+<p>从头到尾都是由同一个线程4进行处理的，同一线程处理</p>
+<p>很明显，线程从头执行到尾，会造成资源占用不能释放</p>
+<p>b,异步请求操作步骤：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jpe9po0hj30wt0lek0v.jpg" alt="img"> </p>
+<p>从servlet3.0文档的9.6章节也可以看到，要声明的内容</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jpe6cqs6j30qb05m0vu.jpg" alt="img"> </p>
+<p>重启tomcat,查看运行结果如下，主线程与副线程分别为不同的线程，主线程从开始到结束不等待副线程就返回了：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jpe57b3bj30um055tco.jpg" alt="img"> </p>
+<p>页面返回结果如下：等待3S后才返回，但线程资源其实早已释放</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jpe5xo0jj30um04bdgl.jpg" alt="img"> </p>
+<p>c,异步请求原理</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jpe09ogjj30um0ehadp.jpg" alt="img"> </p>
+<p>当然怎么样定义servlet的异步处理线程池，不多讲，springmvc已集成了异步处理线程池</p>
+<p>9，springmvc的异步请求</p>
+<p>我们可以打官网</p>
+<p><a href="https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/web.html#mvc-servlet-context-hierarchy" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/web.html#mvc-servlet-context-hierarchy</a></p>
+<p>第1.7.1章节，讲述得很清晰</p>
+<p>springmvc异步机制是基于servlet3来做的封装处理，通过这两种返回值都可以完成异步</p>
+<p>官网例子如下：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jpe36io1j30df05n3zd.jpg" alt="img">或<img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jpe15fqcj30g005idh5.jpg" alt="img"></p>
+<p>我们接下来实现一下：</p>
+<p>操作步骤：</p>
+<p>a,新建AsyncOrderController测试类 </p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jpe8a3ttj30ul0e7ag9.jpg" alt="img"> </p>
+<p>控制台打印结果如下：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jpean64dj30um03ctbi.jpg" alt="img"> </p>
+<p>页面运行结果如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jpeb1t65j30um03zq3q.jpg" alt="img"> </p>
+<p>Callable的原理是什么呢？还是一样，请打开官网哈…………第1.7.1章节</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jpe0pzq0j30qe06paec.jpg" alt="img"> </p>
+<p>思考：控制台打印结果为什么会两次进入拦截器preHandle呢？</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jpe98vzwj30um080tdc.jpg" alt="img"> </p>
+<p>很明显可知：请求进入时拦截了一次，将Callable返回结果时，将请求重新派发给容器时又拦截了一次，所以进了两次拦截；</p>
+<p>如何验证？只要在拦截器打印的地方加上getRequestURI()便知晓。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jpea6mv1j30ul050dil.jpg" alt="img"> </p>
+<p>重启tomcat，并测试结果如下：分析见箭头的中文描述：</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jpe6szs5j30ul0bndno.jpg" alt="img"> </p>
+<p>10，springmvc异步请求及返回实战</p>
+<p>以上只是原理，但在开发的过程并不是像Callable简单</p>
+<p>比如现在我们有以下需求：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jpe7sb5tj30pf0bedi1.jpg" alt="img"> </p>
+<p>需求描述：以创建订单为例，tomcat启动线程1来完成一个请求，但实际上是订单服务才能创建订单，那么tomcat线程应该把请求转发给订单服务，使用消息中间件来处理，订单服务把处理结果也放到消息中间件，由tomcat的线程N拿到结果后，响应给客户端。</p>
+<p>我们打开官网第1.7.1章节</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jpe8r8q7j30um0arwjc.jpg" alt="img"> </p>
+<p>操作步骤：</p>
+<p>很明显我们不会用到MQ等消息中间件，写一个队列为模拟消息中间件</p>
+<p>a,新建JamesDefferdQueue消息队列类</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jpe2l2gzj30ul0augq3.jpg" alt="img"> </p>
+<p>b,在AsyncOrderController新增两方法（其实就是两个线程，线程1和线程N）</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jpe7b8jcj30um0f710h.jpg" alt="img"> </p>
+<p>测试结果为：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jpe23o7tj30px02lq3m.jpg" alt="img"> </p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jpe00e6qj30pz03k3ze.jpg" alt="img"> </p>
+<p>通过create (tomcat线程N处理的订单结果)，异步返回给createOrder(tomcat线程1),两结果一致，异步返回了结果。</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-07-01  01:38:49</span></li>
+                
+                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/框架/">框架</a>
+                    
+                    <a href="/categories/框架/Spring/">Spring</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/Spring/">Spring</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/07/01/spring-10/" class="pre-post fa fa-caret-left">手写SpringMVC笔记</a>
+        
+        
+        <a href="/2019/07/01/spring-8/" class="next-post fa">BeanFactory的两个重要后置处理器</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

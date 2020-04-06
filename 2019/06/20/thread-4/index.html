@@ -1,0 +1,624 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>并发容器 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="并发容器">
+                
+                并发容器
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/20</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+        </div>
+        
+        <div id="post-body">
+            <h1 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h1><p>Hashmap多线程会导致HashMap的Entry链表形成环形数据结构，一旦形成环形数据结构，Entry的next节点永远不为空，就会产生死循环获取Entry。</p>
+<p>HashTable使用synchronized来保证线程安全，但在线程竞争激烈的情况下HashTable的效率非常低下。因为当一个线程访问HashTable的同步方法，其他线程也访问HashTable的同步方法时，会进入阻塞或轮询状态。如线程1使用put进行元素添加，线程2不但不能使用put方法添加元素，也不能使用get方法来获取元素，所以竞争越激烈效率越低。</p>
+<p>putIfAbsent() ：没有这个值则放入map，有这个值则返回key本来对应的值。</p>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>散列，哈希：把任意长度的输入通过一种算法（散列），变换成为固定长度的输出，这个输出值就是散列值。属于压缩映射，容易产生哈希冲突。Hash算法有直接取余法等。</p>
+<p>产生哈希冲突时解决办法：开放寻址；2、再散列；3、链地址法（相同hash值的元素用链表串起来）。</p>
+<p>ConcurrentHashMap在发生hash冲突时采用了链地址法。</p>
+<p>md4,md5,sha-hash算法也属于hash算法，又称摘要算法。</p>
+<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><p><strong>int</strong> <strong>类型的位</strong></p>
+<p><strong>高位</strong>                                                                                                                      <strong>低位</strong></p>
+<table>
+<thead>
+<tr>
+<th>31</th>
+<th>30</th>
+<th>29</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>2的0次方 = 1，2的1次方=2…….，以上表格代表数字 （2的5次方+2的3次方）= 40</p>
+<p>由上面的表格可以看出，数字类型在数字渐渐变大时，是由低位慢慢向高位扩展的。</p>
+<p>Java实际保存int型时 正数  第31位 =0      负数：第31位=1</p>
+<p>常用位运算有：</p>
+<p>l  位与  &amp;  (1&amp;1=1       1&amp;0=0     0&amp;0=0)</p>
+<p>l  位或  |   (1|1=1        1|0=1  0|0=0)</p>
+<p>l  位非  ~  （ ~1=0       ~0=1）</p>
+<p>l  位异或  ^   (1^1=0    1^0=1   0^0=0) </p>
+<p>l  &lt;&lt;有符号左移     &gt;&gt;有符号的右移    &gt;&gt;&gt;无符号右移  例如：8 &lt;&lt; 2 = 32    8&gt;&gt;2 = 2</p>
+<p>l  取模的操作 a % (Math.pow(2,n)) 等价于 a&amp;( Math.pow(2,n)-1)</p>
+<p><strong>位运算适用</strong>：权限控制，物品的属性非常多时的保存</p>
+<h2 id="1-7中原理和实现"><a href="#1-7中原理和实现" class="headerlink" title="1.7中原理和实现"></a>1.7中原理和实现</h2><h3 id="ConcurrentHashMap中的数据结构"><a href="#ConcurrentHashMap中的数据结构" class="headerlink" title="ConcurrentHashMap中的数据结构"></a>ConcurrentHashMap中的数据结构</h3><p>ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segment实际继承自可重入锁（ReentrantLock），在ConcurrentHashMap里扮演锁的角色；HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组，每个Segment里包含一个HashEntry数组，我们称之为table，每个HashEntry是一个链表结构的元素。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfiojbmej30fu08g756.jpg" alt></p>
+<p><strong>面试常问：</strong></p>
+<p><strong>1、</strong> <strong>ConcurrentHashMap</strong> <strong>实现原理是怎么样的或者问ConcurrentHashMap</strong> <strong>如何在保证高并发下线程安全的同时实现了性能提升？</strong></p>
+<p>答：ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了<strong>锁分离</strong>技术。它使用了多个锁来控制对hash表的不同部分进行的修改。内部使用段(Segment)来表示这些不同的部分，每个段其实就是一个小的hash table，只要多个修改操作发生在不同的段上，它们就可以并发进行。</p>
+<h3 id="初始化做了什么事？"><a href="#初始化做了什么事？" class="headerlink" title="初始化做了什么事？"></a>初始化做了什么事？</h3><p>初始化有三个参数</p>
+<p><strong>initialCapacity</strong>：初始容量大小 ，默认16。</p>
+<p><strong>loadFactor,</strong> 扩容因子，默认0.75，当一个Segment存储的元素数量大于initialCapacity* loadFactor时，该Segment会进行一次扩容。</p>
+<p><strong>concurrencyLevel</strong> 并发度，默认16。并发度可以理解为程序运行时能够同时更新ConccurentHashMap且不产生锁竞争的最大线程数，实际上就是ConcurrentHashMap中的分段锁个数，即Segment[]的数组长度。如果并发度设置的过小，会带来严重的锁竞争问题；如果并发度设置的过大，原本位于同一个Segment内的访问会扩散到不同的Segment中，CPU cache命中率会下降，从而引起程序性能下降。</p>
+<p><strong>构造方法中部分代码解惑：</strong></p>
+<p>1、</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfiogmarj30bv02j744.jpg" alt></p>
+<p>保证Segment数组的大小，一定为2的幂，例如用户设置并发度为17，则实际Segment数组大小则为32</p>
+<p>2、</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfioebfej30cs024745.jpg" alt></p>
+<p>保证每个Segment中tabel数组的大小，一定为2的幂，初始化的三个参数取默认值时，table数组大小为2</p>
+<p>3、</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfj6fvh7j30o504o3ys.jpg" alt></p>
+<p>初始化Segment数组，并实际只填充Segment数组的第0个元素。</p>
+<p>4、</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfj6cu4aj30br01d0sl.jpg" alt></p>
+<p>用于定位元素所在segment。segmentShift表示偏移位数，通过前面的int类型的位的描述我们可以得知，int类型的数字在变大的过程中，低位总是比高位先填满的，为保证元素在segment级别分布的尽量均匀，计算元素所在segment时，总是取hash值的高位进行计算。segmentMask作用就是为了利用位运算中取模的操作：    a % (Math.pow(2,n)) 等价于 a&amp;( Math.pow(2,n)-1)</p>
+<h3 id="在get和put操作中，是如何快速定位元素放在哪个位置的？"><a href="#在get和put操作中，是如何快速定位元素放在哪个位置的？" class="headerlink" title="在get和put操作中，是如何快速定位元素放在哪个位置的？"></a>在get和put操作中，是如何快速定位元素放在哪个位置的？</h3><p>对于某个元素而言，一定是放在某个segment元素的某个table元素中的，所以在定位上，</p>
+<p><strong>定位segment</strong> <strong>：</strong>取得key的hashcode值进行一次再散列（通过Wang/Jenkins算法），拿到再散列值后，以再散列值的高位进行取模得到当前元素在哪个segment上。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfj68s4lj30xk040mxw.jpg" alt></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfjskqhhj30mo09wdgj.jpg" alt></p>
+<p>定位table：同样是取得key的再散列值以后，用再散列值的全部和table的长度进行取模，得到当前元素在table的哪个元素上。</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfjsh6xaj30ol037aa7.jpg" alt></p>
+<h3 id="get（）方法"><a href="#get（）方法" class="headerlink" title="get（）方法"></a>get（）方法</h3><p>定位segment和定位table后，依次扫描这个table元素下的的链表，要么找到元素，要么返回null。</p>
+<p><strong>在高并发下的情况下如何保证取得的元素是最新的？</strong></p>
+<p>答：用于存储键值对数据的HashEntry，在设计上它的成员变量value等都是volatile类型的，这样就保证别的线程对value值的修改，get方法可以马上看到。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfjsdqimj30gq03rjre.jpg" alt></p>
+<h3 id="put-方法"><a href="#put-方法" class="headerlink" title="put()方法"></a>put()方法</h3><p>1、首先定位segment，当这个segment在map初始化后，还为null，由ensureSegment方法负责填充这个segment。</p>
+<p>2、 对Segment 加锁</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfkako3sj30k402tmx7.jpg" alt></p>
+<p>3、定位所在的table元素，并扫描table下的链表，<strong>找到时：</strong></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfkah4n4j30m70bt0tp.jpg" alt></p>
+<p><strong>没有找到时：</strong></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfkackvsj30mn09o0tt.jpg" alt></p>
+<h3 id="扩容操作"><a href="#扩容操作" class="headerlink" title="扩容操作"></a>扩容操作</h3><p>Segment 不扩容，扩容下面的table数组，每次都是将数组翻倍</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfkvqoffj30im04eglu.jpg" alt></p>
+<p><strong>带来的好处</strong></p>
+<p>假设原来table长度为4，那么元素在table中的分布是这样的：</p>
+<table>
+<thead>
+<tr>
+<th>Hash值</th>
+<th>15</th>
+<th>23</th>
+<th>34</th>
+<th>56</th>
+<th>77</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在table中下标</td>
+<td>3  = 15%4</td>
+<td>3 = 23 % 4</td>
+<td>2 = 34%4</td>
+<td>0 = 56%4</td>
+<td>1 = 77 % 4</td>
+</tr>
+</tbody>
+</table>
+<p>扩容后table长度变为8，那么元素在table中的分布变成：</p>
+<table>
+<thead>
+<tr>
+<th>Hash值</th>
+<th>56</th>
+<th></th>
+<th>34</th>
+<th></th>
+<th></th>
+<th>77</th>
+<th></th>
+<th>15,23</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下标</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>可以看见 hash值为34和56的下标保持不变，而15,23,77的下标都是在原来下标的基础上+4即可，可以快速定位和减少重排次数。</p>
+<h3 id="size方法"><a href="#size方法" class="headerlink" title="size方法"></a>size方法</h3><p>size的时候进行两次不加锁的统计，两次一致直接返回结果，不一致，重新加锁再次统计</p>
+<h3 id="弱一致性"><a href="#弱一致性" class="headerlink" title="弱一致性"></a>弱一致性</h3><p>get方法和containsKey方法都是通过对链表遍历判断是否存在key相同的节点以及获得该节点的value。但由于遍历过程中其他线程可能对链表结构做了调整，因此get和containsKey返回的可能是过时的数据，这一点是ConcurrentHashMap在弱一致性上的体现。</p>
+<h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><h3 id="与1-7相比的重大变化"><a href="#与1-7相比的重大变化" class="headerlink" title="与1.7相比的重大变化"></a>与1.7相比的重大变化</h3><p>1、 取消了segment数组，直接用table保存数据，锁的粒度更小，减少并发冲突的概率。</p>
+<p>2、 存储数据时采用了链表+红黑树的形式，纯链表的形式时间复杂度为O(n)，红黑树则为O（logn），性能提升很大。什么时候链表转红黑树？当key值相等的元素形成的链表中元素个数超过8个的时候。</p>
+<h3 id="主要数据结构和关键变量"><a href="#主要数据结构和关键变量" class="headerlink" title="主要数据结构和关键变量"></a>主要数据结构和关键变量</h3><p>Node类存放实际的key和value值。</p>
+<p>sizeCtl：</p>
+<p>负数：表示进行初始化或者扩容,-1表示正在初始化，-N，表示有N-1个线程正在进行扩容</p>
+<p>正数：0 表示还没有被初始化，&gt;0的数，初始化或者是下一次进行扩容的阈值</p>
+<p>TreeNode 用在红黑树，表示树的节点, TreeBin是实际放在table数组中的，代表了这个红黑树的根。</p>
+<h3 id="初始化做了什么事？-1"><a href="#初始化做了什么事？-1" class="headerlink" title="初始化做了什么事？"></a>初始化做了什么事？</h3><p>只是给成员变量赋值，put时进行实际数组的填充</p>
+<h3 id="在get和put操作中，是如何快速定位元素放在哪个位置的？-1"><a href="#在get和put操作中，是如何快速定位元素放在哪个位置的？-1" class="headerlink" title="在get和put操作中，是如何快速定位元素放在哪个位置的？"></a>在get和put操作中，是如何快速定位元素放在哪个位置的？</h3><p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfkvn261j30u60ct75t.jpg" alt></p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfkviq4kj30ny053glu.jpg" alt></p>
+<h3 id="get（）方法-1"><a href="#get（）方法-1" class="headerlink" title="get（）方法"></a>get（）方法</h3><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfljlcocj30q30cbq3z.jpg" alt></p>
+<h3 id="put-方法-1"><a href="#put-方法-1" class="headerlink" title="put()方法"></a>put()方法</h3><p>数组的实际初始化</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfljg8w3j30rv0dt3zp.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfljch3pj30r90fe75r.jpg" alt></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfm3prkvj30mu07zt91.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfm3lptvj30lp075weo.jpg" alt></p>
+<h3 id="扩容操作-1"><a href="#扩容操作-1" class="headerlink" title="扩容操作"></a>扩容操作</h3><p>transfer()方法进行实际的扩容操作，table大小也是翻倍的形式，有一个并发扩容的机制。</p>
+<h3 id="size方法-1"><a href="#size方法-1" class="headerlink" title="size方法"></a>size方法</h3><p>估计的大概数量，不是精确数量</p>
+<h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>弱一致</p>
+<h1 id="更多的并发容器"><a href="#更多的并发容器" class="headerlink" title="更多的并发容器"></a>更多的并发容器</h1><h2 id="ConcurrentSkipListMap-和-ConcurrentSkipListSet"><a href="#ConcurrentSkipListMap-和-ConcurrentSkipListSet" class="headerlink" title="ConcurrentSkipListMap  和 ConcurrentSkipListSet"></a>ConcurrentSkipListMap  和 ConcurrentSkipListSet</h2><p>TreeMap和TreeSet有序的容器，这两种容器的并发版本</p>
+<h3 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h3><p>SkipList，以空间换时间，在原链表的基础上形成多层索引，但是某个节点在插入时，是否成为索引，随机决定，所以跳表又称为概率数据结构。</p>
+<h2 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h2><p>无界非阻塞队列，底层是个链表，遵循先进先出原则。</p>
+<p>add,offer将元素插入到尾部，peek（拿头部的数据，但是不移除）和poll（拿头部的数据，但是移除）</p>
+<h2 id="写时复制容器"><a href="#写时复制容器" class="headerlink" title="写时复制容器"></a>写时复制容器</h2><p>写时复制的容器。通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一个新的容器，然后新的容器里添加元素，添加完元素之后，再将原容器的引用指向新的容器。这样做的好处是我们可以对容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以写时复制容器也是一种读写分离的思想，读和写不同的容器。如果读的时候有多个线程正在向容器添加数据，读还是会读到旧的数据，因为写的时候不会锁住旧的，只能保证最终一致性。</p>
+<p>适用读多写少的并发场景，常见应用：白名单/黑名单， 商品类目的访问和更新场景。</p>
+<p>存在内存占用问题。</p>
+<h1 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h1><h2 id="概念、生产者消费者模式"><a href="#概念、生产者消费者模式" class="headerlink" title="概念、生产者消费者模式"></a>概念、生产者消费者模式</h2><p>1)当队列满的时候，插入元素的线程被阻塞，直达队列不满。</p>
+<p>2)队列为空的时候，获取元素的线程被阻塞，直到队列不空。</p>
+<h3 id="生产者和消费者模式"><a href="#生产者和消费者模式" class="headerlink" title="生产者和消费者模式"></a>生产者和消费者模式</h3><p>生产者就是生产数据的线程，消费者就是消费数据的线程。在多线程开发中，如果生产者处理速度很快，而消费者处理速度很慢，那么生产者就必须等待消费者处理完，才能继续生产数据。同样的道理，如果消费者的处理能力大于生产者，那么消费者就必须等待生产者。为了解决这种生产消费能力不均衡的问题，便有了生产者和消费者模式。生产者和消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通信，而是通过阻塞队列来进行通信，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而是直接从阻塞队列里取，阻塞队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>抛出异常</th>
+<th>返回值</th>
+<th>一直阻塞</th>
+<th>超时退出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插入方法</td>
+<td>add</td>
+<td>offer</td>
+<td>put</td>
+<td>Offer(time)</td>
+</tr>
+<tr>
+<td>移除方法</td>
+<td>remove</td>
+<td>poll</td>
+<td>take</td>
+<td>Poll(time)</td>
+</tr>
+<tr>
+<td>检查方法</td>
+<td>element</td>
+<td>peek</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>l  <strong>抛出异常</strong>：当队列满时，如果再往队列里插入元素，会抛出IllegalStateException（”Queuefull”）异常。当队列空时，从队列里获取元素会抛出NoSuchElementException异常。</p>
+<p>l  <strong>返回特殊值</strong>：当往队列插入元素时，会返回元素是否插入成功，成功返回true。如果是移除方法，则是从队列里取出一个元素，如果没有则返回null。</p>
+<p>l  <strong>一直阻塞</strong>：当阻塞队列满时，如果生产者线程往队列里put元素，队列会一直阻塞生产者线程，直到队列可用或者响应中断退出。当队列空时，如果消费者线程从队列里take元素，队列会阻塞住消费者线程，直到队列不为空。</p>
+<p>l  <strong>超时退出</strong>：当阻塞队列满时，如果生产者线程往队列里插入元素，队列会阻塞生产者线程一段时间，如果超过了指定的时间，生产者线程就会退出。</p>
+<h2 id="常用阻塞队列"><a href="#常用阻塞队列" class="headerlink" title="常用阻塞队列"></a>常用阻塞队列</h2><p>·<strong>ArrayBlockingQueue</strong>：一个由数组结构组成的有界阻塞队列。</p>
+<p>按照先进先出原则，要求设定初始大小</p>
+<p>·<strong>LinkedBlockingQueue</strong>：一个由链表结构组成的有界阻塞队列。</p>
+<p>按照先进先出原则，可以不设定初始大小，Integer.Max_Value</p>
+<p><strong>ArrayBlockingQueue</strong> <strong>和LinkedBlockingQueue</strong> <strong>不同：</strong></p>
+<p>l  锁上面：ArrayBlockingQueue只有一个锁，LinkedBlockingQueue用了两个锁，</p>
+<p>l  实现上：ArrayBlockingQueue直接插入元素，LinkedBlockingQueue需要转换。</p>
+<p>·<strong>PriorityBlockingQueue</strong>：一个支持优先级排序的无界阻塞队列。</p>
+<p>默认情况下，按照自然顺序，要么实现compareTo()方法，指定构造参数Comparator</p>
+<p>·<strong>DelayQueue</strong>：一个使用优先级队列实现的无界阻塞队列。</p>
+<p>支持延时获取的元素的阻塞队列，元素必须要实现Delayed接口。适用场景：实现自己的缓存系统，订单到期，限时支付等等。</p>
+<p>·<strong>SynchronousQueue</strong>：一个不存储元素的阻塞队列。</p>
+<p>每一个put操作都要等待一个take操作</p>
+<p>·<strong>LinkedTransferQueue</strong>：一个由链表结构组成的无界阻塞队列。</p>
+<p>transfer()，必须要消费者消费了以后方法才会返回，tryTransfer()无论消费者是否接收，方法都立即返回。</p>
+<p>·<strong>LinkedBlockingDeque</strong>：一个由链表结构组成的双向阻塞队列。</p>
+<p>可以从队列的头和尾都可以插入和移除元素，实现工作密取，方法名带了First对头部操作，带了last从尾部操作，另外：add=addLast;       remove=removeFirst;    take=takeFirst</p>
+<h2 id="阻塞队列的实现原理"><a href="#阻塞队列的实现原理" class="headerlink" title="阻塞队列的实现原理"></a>阻塞队列的实现原理</h2><p>比如，ArrayBlockingQueue就是基于Lock和Condition实现的。</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-06-20  21:40:13</span></li>
+                
+                <li>Updated Date: <span>2020-03-29  19:28:31</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/并发编程/">并发编程</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/多线程/">多线程</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/06/20/thread-5/" class="pre-post fa fa-caret-left">线程池</a>
+        
+        
+        <a href="/2019/03/05/docker-2/" class="next-post fa">docker进阶</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-number">1.</span> <span class="toc-text">ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#预备知识"><span class="toc-number">1.1.</span> <span class="toc-text">预备知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">1.1.1.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算"><span class="toc-number">1.1.2.</span> <span class="toc-text">位运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7中原理和实现"><span class="toc-number">1.2.</span> <span class="toc-text">1.7中原理和实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap中的数据结构"><span class="toc-number">1.2.1.</span> <span class="toc-text">ConcurrentHashMap中的数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化做了什么事？"><span class="toc-number">1.2.2.</span> <span class="toc-text">初始化做了什么事？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在get和put操作中，是如何快速定位元素放在哪个位置的？"><span class="toc-number">1.2.3.</span> <span class="toc-text">在get和put操作中，是如何快速定位元素放在哪个位置的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get（）方法"><span class="toc-number">1.2.4.</span> <span class="toc-text">get（）方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-方法"><span class="toc-number">1.2.5.</span> <span class="toc-text">put()方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩容操作"><span class="toc-number">1.2.6.</span> <span class="toc-text">扩容操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#size方法"><span class="toc-number">1.2.7.</span> <span class="toc-text">size方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弱一致性"><span class="toc-number">1.2.8.</span> <span class="toc-text">弱一致性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8"><span class="toc-number">1.3.</span> <span class="toc-text">1.8</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#与1-7相比的重大变化"><span class="toc-number">1.3.1.</span> <span class="toc-text">与1.7相比的重大变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要数据结构和关键变量"><span class="toc-number">1.3.2.</span> <span class="toc-text">主要数据结构和关键变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化做了什么事？-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">初始化做了什么事？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在get和put操作中，是如何快速定位元素放在哪个位置的？-1"><span class="toc-number">1.3.4.</span> <span class="toc-text">在get和put操作中，是如何快速定位元素放在哪个位置的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get（）方法-1"><span class="toc-number">1.3.5.</span> <span class="toc-text">get（）方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-方法-1"><span class="toc-number">1.3.6.</span> <span class="toc-text">put()方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩容操作-1"><span class="toc-number">1.3.7.</span> <span class="toc-text">扩容操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#size方法-1"><span class="toc-number">1.3.8.</span> <span class="toc-text">size方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一致性"><span class="toc-number">1.3.9.</span> <span class="toc-text">一致性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多的并发容器"><span class="toc-number">2.</span> <span class="toc-text">更多的并发容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ConcurrentSkipListMap-和-ConcurrentSkipListSet"><span class="toc-number">2.1.</span> <span class="toc-text">ConcurrentSkipListMap  和 ConcurrentSkipListSet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#跳表"><span class="toc-number">2.1.1.</span> <span class="toc-text">跳表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConcurrentLinkedQueue"><span class="toc-number">2.2.</span> <span class="toc-text">ConcurrentLinkedQueue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写时复制容器"><span class="toc-number">2.3.</span> <span class="toc-text">写时复制容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#阻塞队列"><span class="toc-number">3.</span> <span class="toc-text">阻塞队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念、生产者消费者模式"><span class="toc-number">3.1.</span> <span class="toc-text">概念、生产者消费者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生产者和消费者模式"><span class="toc-number">3.1.1.</span> <span class="toc-text">生产者和消费者模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用方法"><span class="toc-number">3.2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用阻塞队列"><span class="toc-number">3.3.</span> <span class="toc-text">常用阻塞队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#阻塞队列的实现原理"><span class="toc-number">3.4.</span> <span class="toc-text">阻塞队列的实现原理</span></a></li></ol></li></ol>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

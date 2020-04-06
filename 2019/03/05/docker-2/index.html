@@ -1,0 +1,504 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>docker进阶 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="docker进阶">
+                
+                docker进阶
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>docker</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            docker
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/03/05</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>398</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h1 id="仓库使用"><a href="#仓库使用" class="headerlink" title="仓库使用"></a><strong>仓库使用</strong></h1><h2 id="docker官方仓库"><a href="#docker官方仓库" class="headerlink" title="docker官方仓库"></a><strong>docker官方仓库</strong></h2><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a><strong>注册</strong></h3><p><a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a></p>
+<p>自由注册，邮件激活即可使用</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf80y1zjj30an05ewf0.jpg" alt></p>
+<h3 id="命令使用"><a href="#命令使用" class="headerlink" title="命令使用"></a><strong>命令使用</strong></h3><p>Docker  pull/search/login/push/tag</p>
+<p>tag [镜像名：版本]  [仓库]/[镜像名：版本]：标记本地镜像，将其归入某一仓库</p>
+<p>Push [仓库]/[镜像名：版本]: 推送镜像到仓库  –需要登陆 </p>
+<p>Search [镜像名]：在仓库中查询镜像 – 无法查询到tag版本 </p>
+<p>Pull [镜像名：版本]： 下载镜像到本地 </p>
+<p>Login：登陆仓库 </p>
+<p>1、命令登陆dockerhub</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf80n6p5j30b602xwff.jpg" alt></p>
+<p>2、再使用tag命令标记一个镜像，指定自己的仓库</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jf80jt87j30fe047q4s.jpg" alt></p>
+<p>3、使用push命令推送此镜像到仓库里</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf8c9oanj30fe01igm5.jpg" alt></p>
+<p>4、打开查询自己仓库的镜像</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jf8c67l3j308405674g.jpg" alt></p>
+<h2 id="私有仓库"><a href="#私有仓库" class="headerlink" title="私有仓库"></a><strong>私有仓库</strong></h2><h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a><strong>搭建</strong></h3><p>下载registry镜像：docker pull registry</p>
+<p>—–可配置加速器加速下载 </p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jf8c3w87j30fe02fwf3.jpg" alt></p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a><strong>启动</strong></h3><p>docker run -d –name reg -p 5000:5000 registry</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf8nl5a3j30fe01idga.jpg" alt></p>
+<p>然后可以通过restful接口查看仓库中的镜像（当前仓库是空的）</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jf8niq5tj30fe01jdgd.jpg" alt></p>
+<h3 id="配置http传输"><a href="#配置http传输" class="headerlink" title="配置http传输"></a><strong>配置http传输</strong></h3><p>私服默认只能使用https，需要配置开放http</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jf8nfacnj30fe039wfg.jpg" alt></p>
+<p>配置完毕重启下docker服务</p>
+<p>systemctl daemon-reload </p>
+<p>systemctl restart docker</p>
+<h3 id="私服仓库推送镜像"><a href="#私服仓库推送镜像" class="headerlink" title="私服仓库推送镜像"></a><strong>私服仓库推送镜像</strong></h3><p>docker tag hello-world <a href="http://192.168.244.5:5000/hello-world" target="_blank" rel="noopener">http://192.168.244.7:5000/hello-world</a> </p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jf942rrej30fe01adge.jpg" alt></p>
+<p>docker push 192.168.244.7:5000/hello-world</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf940krxj30fe01mmxx.jpg" alt></p>
+<p>查询镜像：<a href="http://192.168.244.5:5000/v2/_catalog" target="_blank" rel="noopener">http://192.168.244.5:5000/v2/_catalog</a>   </p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf93vbhuj30fe01b0t5.jpg" alt></p>
+<p>查询hello版本：      <a href="http://192.168.244.5:5000/v2/hello/tags/list" target="_blank" rel="noopener">http://192.168.244.5:5000/v2/hello/tags/list</a> </p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jf9wosjwj30fe014aaf.jpg" alt></p>
+<h2 id="commit镜像并上传仓库"><a href="#commit镜像并上传仓库" class="headerlink" title="commit镜像并上传仓库"></a><strong>commit镜像并上传仓库</strong></h2><h3 id="创建一个centos容器："><a href="#创建一个centos容器：" class="headerlink" title="创建一个centos容器："></a><strong>创建一个centos容器：</strong></h3><p>启动后自动进入此容器</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jf9wkh7zj30fe00yaac.jpg" alt></p>
+<h3 id="容器内安装nginx服务："><a href="#容器内安装nginx服务：" class="headerlink" title="容器内安装nginx服务："></a><strong>容器内安装nginx服务：</strong></h3><p>添加一下nginx源：</p>
+<p>rpm -ivh <a href="http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm" target="_blank" rel="noopener">http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</a></p>
+<p>yum search nginx    ##搜索一下看看</p>
+<p>yum install nginx -y    ## 安装</p>
+<p>启动nginx服务</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jf9when6j30fe01w74x.jpg" alt></p>
+<p>ctrl +P+Q退出容器，在主机环境内校验nginx请求，正常得到欢迎页</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfa98umwj30fe0av77m.jpg" alt></p>
+<h3 id="commit服务为一个nginx镜像"><a href="#commit服务为一个nginx镜像" class="headerlink" title="commit服务为一个nginx镜像"></a><strong>commit服务为一个nginx镜像</strong></h3><p>现在要将cent容器提交成为一个镜像，命令如下：</p>
+<p>docker commit cent cent-ng:v1</p>
+<p>可看到得到了新的镜像cent-ng:v1</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfa93yjzj30fe02xwfj.jpg" alt></p>
+<h3 id="启动此nginx镜像"><a href="#启动此nginx镜像" class="headerlink" title="启动此nginx镜像"></a><strong>启动此nginx镜像</strong></h3><p>1、使用新建的镜像创建容器，并进入查看，发现已安装有nginx，但nginx并未启动</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfa8zdifj30fe01lt99.jpg" alt></p>
+<p>容器内启动nginx服务，并退出容器。在主机方校验，nginx欢迎页面出现</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfatefp0j30fe06a0u9.jpg" alt></p>
+<p>2、现在我们希望启动容器时，直接启动nginx服务，怎么做？</p>
+<p>docker run -d –name ngx3 cent-ng:v1  /usr/sbin/nginx  -g  “daemon off;”</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfat9s86j30fe01c3yt.jpg" alt></p>
+<p>可看到，容器内nginx服务也已正常运行</p>
+<p>ps:后面运行的命令都是容器命令，由于nginx命令没有设置到path中，所以全路径启动，</p>
+<p>而nginx -g这个参数是指可以在外面添加指令到nginx的配置文件中，</p>
+<p>daemon off是指nginx服务不运行在后端，而是在前台运行（container中的服务必须运行在前台）</p>
+<h2 id="commit创建镜像方式的本质"><a href="#commit创建镜像方式的本质" class="headerlink" title="commit创建镜像方式的本质"></a><strong>commit创建镜像方式的本质</strong></h2><p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfat76q8j30fe05p3zc.jpg" alt></p>
+<p>原容器与commit后的镜像，在文件系统上并无区别。只是把容器层原来的可写属性，置成了只读。于是变成了一个不可改的镜像</p>
+<h1 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a><strong>数据管理</strong></h1><p>docker容器运行，产生一些数据/文件/等等持久化的东西，不应该放在容器内部。应当以挂载的形式存在主机文件系统中。</p>
+<h2 id="docker的文件系统"><a href="#docker的文件系统" class="headerlink" title="docker的文件系统"></a><strong>docker的文件系统</strong></h2><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfb923bej30fe04c3zb.jpg" alt></p>
+<p>\1. 镜像与容器读写层，通过联合文件系统，组成系统文件视角</p>
+<p>\2. 容器服务运行中，一定会生成数据</p>
+<p>\3. 容器只是运行态的服务器，是瞬时的，不承载数据的持久功能</p>
+<h2 id="volume文件挂载的探究"><a href="#volume文件挂载的探究" class="headerlink" title="volume文件挂载的探究"></a><strong>volume文件挂载的探究</strong></h2><p>1、volume参数创建容器数据卷</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfb8xcbaj30fe00hwej.jpg" alt></p>
+<p>2、我们通过docker inspect data查看容器元数据，可看到挂载信息</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfb8uxusj30b700st8s.jpg" alt></p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfbmc3hfj30fe03nt9f.jpg" alt></p>
+<p>3、在容器端添加一个文件</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfbm9pxzj30f004qmym.jpg" alt></p>
+<p>回主机目录查看，果然存在此文件：</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfbm5egej30fe00xt8x.jpg" alt></p>
+<p>4、在主机方添加一个文件</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfbx34d5j30fe00c0sr.jpg" alt></p>
+<p>回容器里查看，果然也同步增加了此文件</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfbx0d68j30db03pmyi.jpg" alt></p>
+<p>5、指定主机目录方式挂载文件</p>
+<p>格式：-v path1：path2</p>
+<p>如下命令，容器方会自动增加一个data目录</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfbwx7f7j30fe03m3ze.jpg" alt></p>
+<p>宿主机方，同样自动增加一个/opt/data目录</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfcch0hnj30fe014t8v.jpg" alt></p>
+<h2 id="volumes-from引用数据卷"><a href="#volumes-from引用数据卷" class="headerlink" title="volumes-from引用数据卷"></a><strong>volumes-from引用数据卷</strong></h2><p>新启一容器，引入上一步的data容器目录</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfccec9fj30fe00nq34.jpg" alt></p>
+<p>自动得到同一个目录，内容与data容器里挂载一样</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfccbyw8j30e3028t9e.jpg" alt></p>
+<h2 id="备份-恢复数据卷"><a href="#备份-恢复数据卷" class="headerlink" title="备份/恢复数据卷"></a><strong>备份/恢复数据卷</strong></h2><p>备份：docker run –rm –volumes-from data -v $(pwd):/backup centos tar cvf /backup/data.tar /opt/data</p>
+<p>恢复：docker run –rm –volumes-from data -v $(pwd):/backup centos tar xvf /backup/data.tar -C /</p>
+<p>释义：</p>
+<p>docker  run –rm —– 启动一个新的容器，执行完毕删除</p>
+<p>–volumes-from data ——- data容器中挂载卷</p>
+<p>-v $(pwd):/backup   ——–挂载当前目录到容器中为backup</p>
+<p>cvf /backup/data.tar /opt/data ——— 备份/opt/data目录（即卷中所有的数据）为data.tar</p>
+<p>xvf /backup/data.tar -C /  ———- 解压data.tar 到根目录/ ，因tar归档中已包含了/opt/data路径</p>
+<h2 id="删除数据卷："><a href="#删除数据卷：" class="headerlink" title="删除数据卷："></a><strong>删除数据卷：</strong></h2><p>docker rm -v data</p>
+<h1 id="Dockerfile使用"><a href="#Dockerfile使用" class="headerlink" title="Dockerfile使用"></a><strong>Dockerfile使用</strong></h1><h2 id="dockerfile方式创建容器"><a href="#dockerfile方式创建容器" class="headerlink" title="dockerfile方式创建容器"></a><strong>dockerfile方式创建容器</strong></h2><p>最简单的dockerfile</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfcrbmk5j30fe0323z2.jpg" alt></p>
+<p>创建镜像</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfcr84xdj30fe06jgns.jpg" alt></p>
+<p>使用此镜像运行一个容器</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfcr1z2kj30f401aglu.jpg" alt></p>
+<h3 id="dockerfile基本要素"><a href="#dockerfile基本要素" class="headerlink" title="dockerfile基本要素"></a><strong>dockerfile基本要素</strong></h3><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfdaok9cj30fe08i0w4.jpg" alt></p>
+<h3 id="dockerfile指令"><a href="#dockerfile指令" class="headerlink" title="dockerfile指令"></a><strong>dockerfile指令</strong></h3><h4 id="FROM："><a href="#FROM：" class="headerlink" title="FROM："></a><strong>FROM：</strong></h4><p>　　FROM {base镜像}</p>
+<p>　　必须放在DOckerfile的第一行，表示从哪个baseimage开始构建 </p>
+<h4 id="MAINTAINER："><a href="#MAINTAINER：" class="headerlink" title="MAINTAINER："></a><strong>MAINTAINER：</strong></h4><p>可选的，用来标识image作者的地方</p>
+<h4 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a><strong>RUN</strong></h4><p>RUN都是启动一个容器、执行命令、然后提交存储层文件变更。</p>
+<p>第一层 RUN command1 的执行仅仅是当前进程，一个内存上的变化而已，其结果不会造成任何文件。</p>
+<p>而到第二层的时候，启动的是一个全新的容器，跟第一层的容器更完全没关系，自然不可能继承前一层构建过程中的内存变化。</p>
+<p>而如果需要将两条命令或者多条命令联合起来执行需要加上&amp;&amp;。</p>
+<p>如：cd /usr/local/src &amp;&amp; wget xxxxxxx</p>
+<h4 id="CMD："><a href="#CMD：" class="headerlink" title="CMD："></a><strong>CMD：</strong></h4><p>　　CMD的作用是作为执行container时候的默认行为（容器默认的启动命令）</p>
+<p>　　当运行container的时候声明了command，则不再用image中的CMD默认所定义的命令</p>
+<p>一个Dockerfile中只能有一个有效的CMD，当定义多个CMD的时候，只有最后一个才会起作用</p>
+<h4 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a><strong>EXPOSE</strong></h4><p>EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务。在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；另一个用处则是在运行时使用随机端口映射时，也就是 docker run -P 时，会自动随机映射 EXPOSE 的端口。</p>
+<h4 id="entrypoint："><a href="#entrypoint：" class="headerlink" title="entrypoint："></a><strong>entrypoint：</strong></h4><p>entrypoint的作用是，把整个container变成可执行的文件，且不能够通过替换CMD的方法来改变创建container的方式。但是可以通过参数传递的方法影响到container内部</p>
+<p>每个Dockerfile只能够包含一个entrypoint，多个entrypoint只有最后一个有效</p>
+<p>当定义了entrypoint以后，CMD只能够作为参数进行传递</p>
+<h4 id="ADD-amp-COPY："><a href="#ADD-amp-COPY：" class="headerlink" title="ADD &amp; COPY："></a><strong>ADD &amp; COPY：</strong></h4><p>　　把host上的文件或者目录复制到image中（能够进行自动解压压缩包）　 </p>
+<h4 id="ENV："><a href="#ENV：" class="headerlink" title="ENV："></a><strong>ENV：</strong></h4><p>　　用来设置环境变量，后续的RUN可以使用它所创建的环境变量 </p>
+<h4 id="WORKDIR："><a href="#WORKDIR：" class="headerlink" title="WORKDIR："></a><strong>WORKDIR：</strong></h4><p>　　用来指定当前工作目录（或者称为当前目录） </p>
+<h4 id="USER："><a href="#USER：" class="headerlink" title="USER："></a><strong>USER：</strong></h4><p>　　运行RUN指令的用户 </p>
+<h4 id="VOLUME："><a href="#VOLUME：" class="headerlink" title="VOLUME："></a><strong>VOLUME：</strong></h4><p>　　用来创建一个在image之外的mount point</p>
+<h3 id="nginx镜像制作实战"><a href="#nginx镜像制作实战" class="headerlink" title="nginx镜像制作实战"></a><strong>nginx镜像制作实战</strong></h3><h4 id="编译-安装nginx"><a href="#编译-安装nginx" class="headerlink" title="编译/安装nginx"></a><strong>编译/安装nginx</strong></h4><p>mkdir一个目录，在此目录内下载nginx源码包</p>
+<p>wget  <a href="http://nginx.org/download/nginx-1.13.2.tar.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.13.2.tar.gz</a></p>
+<p>并创建一个Dockerfile文件，文件内制作一系列nginx的编译安装流程，内容如文件：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfdaj4wjj30fe08l0w6.jpg" alt></p>
+<p>其中，每一个RUN就是增加一个镜像层文件，一层层的RUN命令最终形成一系列镜像层</p>
+<p>运行build指令（注意最后的.代表当前路径），制作镜像</p>
+<p>docker build -t cent-ngx2  .</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfdaelrcj30fe045dhl.jpg" alt></p>
+<p>我们查看一下这个镜像的层次历史</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfdno3lwj30fe03bjsx.jpg" alt></p>
+<p>可看到，此镜像层基本与dockerfile文件的RUN是一一对应的</p>
+<p>使用制作的nginx镜像，创建一个容器。</p>
+<p>因此镜像无前台命令，因为必须指定启动命令 ：/usr/local/nginx/sbin/nginx -g “daemon off;”</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfdnkr54j30fe02caar.jpg" alt></p>
+<h4 id="为镜像指定环境变量，挂载目录，默认启动命令"><a href="#为镜像指定环境变量，挂载目录，默认启动命令" class="headerlink" title="为镜像指定环境变量，挂载目录，默认启动命令"></a><strong>为镜像指定环境变量，挂载目录，默认启动命令</strong></h4><p>在上一版镜像的基础上，我们新加配置</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jfdngzdwj30fe04k0tt.jpg" alt></p>
+<p>执行：docker build -t cent-ngx3  .</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jfe1dbcej30eo05sgol.jpg" alt></p>
+<p>查看镜像的历史，可看到比ngx2的镜像多了几个层</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfe194myj30fe04sacu.jpg" alt></p>
+<p>ngx3的镜像创建容器，已经不需要再指定cmd命令了</p>
+<p>可执行命令自行校验：docker run -d –name ng2 cent-ngx3</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-03-05  13:48:53</span></li>
+                
+                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/工具/">工具</a>
+                    
+                    <a href="/categories/工具/docker/">docker</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/docker/">docker</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/06/20/thread-4/" class="pre-post fa fa-caret-left">并发容器</a>
+        
+        
+        <a href="/2019/03/05/docker-1/" class="next-post fa">Docker简介</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#仓库使用"><span class="toc-number">1.</span> <span class="toc-text">仓库使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker官方仓库"><span class="toc-number">1.1.</span> <span class="toc-text">docker官方仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">1.1.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令使用"><span class="toc-number">1.1.2.</span> <span class="toc-text">命令使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#私有仓库"><span class="toc-number">1.2.</span> <span class="toc-text">私有仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#搭建"><span class="toc-number">1.2.1.</span> <span class="toc-text">搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动"><span class="toc-number">1.2.2.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置http传输"><span class="toc-number">1.2.3.</span> <span class="toc-text">配置http传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#私服仓库推送镜像"><span class="toc-number">1.2.4.</span> <span class="toc-text">私服仓库推送镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commit镜像并上传仓库"><span class="toc-number">1.3.</span> <span class="toc-text">commit镜像并上传仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个centos容器："><span class="toc-number">1.3.1.</span> <span class="toc-text">创建一个centos容器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容器内安装nginx服务："><span class="toc-number">1.3.2.</span> <span class="toc-text">容器内安装nginx服务：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commit服务为一个nginx镜像"><span class="toc-number">1.3.3.</span> <span class="toc-text">commit服务为一个nginx镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动此nginx镜像"><span class="toc-number">1.3.4.</span> <span class="toc-text">启动此nginx镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commit创建镜像方式的本质"><span class="toc-number">1.4.</span> <span class="toc-text">commit创建镜像方式的本质</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据管理"><span class="toc-number">2.</span> <span class="toc-text">数据管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker的文件系统"><span class="toc-number">2.1.</span> <span class="toc-text">docker的文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#volume文件挂载的探究"><span class="toc-number">2.2.</span> <span class="toc-text">volume文件挂载的探究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#volumes-from引用数据卷"><span class="toc-number">2.3.</span> <span class="toc-text">volumes-from引用数据卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备份-恢复数据卷"><span class="toc-number">2.4.</span> <span class="toc-text">备份/恢复数据卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除数据卷："><span class="toc-number">2.5.</span> <span class="toc-text">删除数据卷：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dockerfile使用"><span class="toc-number">3.</span> <span class="toc-text">Dockerfile使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dockerfile方式创建容器"><span class="toc-number">3.1.</span> <span class="toc-text">dockerfile方式创建容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dockerfile基本要素"><span class="toc-number">3.1.1.</span> <span class="toc-text">dockerfile基本要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dockerfile指令"><span class="toc-number">3.1.2.</span> <span class="toc-text">dockerfile指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FROM："><span class="toc-number">3.1.2.1.</span> <span class="toc-text">FROM：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAINTAINER："><span class="toc-number">3.1.2.2.</span> <span class="toc-text">MAINTAINER：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RUN"><span class="toc-number">3.1.2.3.</span> <span class="toc-text">RUN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CMD："><span class="toc-number">3.1.2.4.</span> <span class="toc-text">CMD：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EXPOSE"><span class="toc-number">3.1.2.5.</span> <span class="toc-text">EXPOSE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#entrypoint："><span class="toc-number">3.1.2.6.</span> <span class="toc-text">entrypoint：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ADD-amp-COPY："><span class="toc-number">3.1.2.7.</span> <span class="toc-text">ADD &amp; COPY：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ENV："><span class="toc-number">3.1.2.8.</span> <span class="toc-text">ENV：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WORKDIR："><span class="toc-number">3.1.2.9.</span> <span class="toc-text">WORKDIR：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#USER："><span class="toc-number">3.1.2.10.</span> <span class="toc-text">USER：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VOLUME："><span class="toc-number">3.1.2.11.</span> <span class="toc-text">VOLUME：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx镜像制作实战"><span class="toc-number">3.1.3.</span> <span class="toc-text">nginx镜像制作实战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编译-安装nginx"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">编译/安装nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为镜像指定环境变量，挂载目录，默认启动命令"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">为镜像指定环境变量，挂载目录，默认启动命令</span></a></li></ol></li></ol></li></ol></li></ol>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

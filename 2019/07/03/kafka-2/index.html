@@ -1,0 +1,507 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>Kafka应用 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="Kafka应用">
+                
+                Kafka应用
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Kafka</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Kafka
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/03</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+        </div>
+        
+        <div id="post-body">
+            <h1 id="第一个Kafka程序"><a href="#第一个Kafka程序" class="headerlink" title="第一个Kafka程序"></a><strong>第一个Kafka程序</strong></h1><h2 id="创建我们的主题"><a href="#创建我们的主题" class="headerlink" title="创建我们的主题"></a><strong>创建我们的主题</strong></h2><p>kafka-topics.bat –zookeeper localhost:2181/kafka –create –topic hello-kafka –replication-factor 1 –partitions 4</p>
+<h2 id="生产者发送消息"><a href="#生产者发送消息" class="headerlink" title="生产者发送消息"></a><strong>生产者发送消息</strong></h2><h4 id="必选属性"><a href="#必选属性" class="headerlink" title="必选属性"></a><strong>必选属性</strong></h4><p>创建生产者对象时有三个属性必须指定。</p>
+<h5 id="bootstrap-servers"><a href="#bootstrap-servers" class="headerlink" title="bootstrap.servers"></a>bootstrap.servers</h5><p>该属性指定broker的地址清单，地址的格式为host：port。清单里不需要包含所有的broker地址，生产者会从给定的broker里查询其他broker的信息。不过最少提供2个broker的信息，一旦其中一个宕机，生产者仍能连接到集群上。</p>
+<h5 id="key-serializer"><a href="#key-serializer" class="headerlink" title="key.serializer"></a>key.serializer</h5><p>生产者接口允许使用参数化类型，可以把Java对象作为键和值传broker，但是broker希望收到的消息的键和值都是字节数组，所以，必须提供将对象序列化成字节数组的序列化器。key.serializer必须设置为实现org.apache.kafka.common.serialization.Serializer的接口类，Kafka的客户端默认提供了ByteArraySerializer,IntegerSerializer, StringSerializer，也可以实现自定义的序列化器。</p>
+<h5 id="value-serializer"><a href="#value-serializer" class="headerlink" title="value.serializer"></a>value.serializer</h5><p>同 key.serializer。</p>
+<p>参见代码，模块kafka-no-spring下包hellokafka中</p>
+<h2 id="消费者接受消息"><a href="#消费者接受消息" class="headerlink" title="消费者接受消息"></a><strong>消费者接受消息</strong></h2><h4 id="必选参数"><a href="#必选参数" class="headerlink" title="必选参数"></a><strong>必选参数</strong></h4><p>bootstrap.servers、key.serializer、value.serializer含义同生产者</p>
+<h5 id="group-id"><a href="#group-id" class="headerlink" title="group.id"></a>group.id</h5><p>并非完全必需，它指定了消费者属于哪一个群组，但是创建不属于任何一个群组的消费者并没有问题。</p>
+<p>参见代码，模块kafka-no-spring下包hellokafka中</p>
+<h1 id="Kafka的生产者"><a href="#Kafka的生产者" class="headerlink" title="Kafka的生产者"></a><strong>Kafka的生产者</strong></h1><h2 id="生产者发送消息的基本流程"><a href="#生产者发送消息的基本流程" class="headerlink" title="生产者发送消息的基本流程"></a><strong>生产者发送消息的基本流程</strong></h2><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4m0qk6nsyj30j70ligok.jpg" alt="img"> </p>
+<p>从创建一个ProducerRecord 对象开始， Producer Record 对象需要包含目标主题和要发送的内容。我们还可以指定键或分区。在发送ProducerReco rd 对象时，生产者要先把键和值对象序列化成字节数组，这样它们才能够在网络上传输。</p>
+<p>接下来，数据被传给分区器。如果之前在Producer Record 对象里指定了分区，那么分区器就不会再做任何事情，直接把指定的分区返回。如果没有指定分区，那么分区器会根据Producer Record对象的键来选择一个分区。选好分区以后，生产者就知道该往哪个主题和分区发送这条记录了。紧接着，这条记录被添加到一个记录批次里，这个批次里的所有消息会被发送到相同的主题和分区上。有一个独立的线程负责把这些记录批次发送到相应的broker 上。</p>
+<p>服务器在收到这些消息时会返回一个响应。如果消息成功写入Kafka ，就返回一个RecordMetaData 对象，它包含了主题和分区信息，以及记录在分区里的偏移量。如果写入失败， 则会返回一个错误。生产者在收到错误之后会尝试重新发送消息，几次之后如果还是失败，就返回错误信息。</p>
+<h2 id="使用Kafka生产者"><a href="#使用Kafka生产者" class="headerlink" title="使用Kafka生产者"></a><strong>使用Kafka生产者</strong></h2><h3 id="三种发送方式"><a href="#三种发送方式" class="headerlink" title="三种发送方式"></a><strong>三种发送方式</strong></h3><p>我们通过生成者的send方法进行发送。send方法会返回一个包含RecordMetadata的Future对象。RecordMetadata里包含了目标主题，分区信息和消息的偏移量。</p>
+<h4 id="发送并忘记"><a href="#发送并忘记" class="headerlink" title="发送并忘记"></a><strong>发送并忘记</strong></h4><p>忽略send方法的返回值，不做任何处理。大多数情况下，消息会正常到达，而且生产者会自动重试，但有时会丢失消息。</p>
+<h4 id="同步非阻塞发送"><a href="#同步非阻塞发送" class="headerlink" title="同步非阻塞发送"></a><strong>同步非阻塞发送</strong></h4><p>获得send方法返回的Future对象，在合适的时候调用Future的get方法。参见代码，模块kafka-no-spring下包sendtype中。</p>
+<h4 id="异步发送"><a href="#异步发送" class="headerlink" title="异步发送"></a><strong>异步发送</strong></h4><p>实现接口org.apache.kafka.clients.producer.Callback，然后将实现类的实例作为参数传递给send方法。参见代码，模块kafka-no-spring下包sendtype中。</p>
+<h3 id="多线程下的生产者"><a href="#多线程下的生产者" class="headerlink" title="多线程下的生产者"></a><strong>多线程下的生产者</strong></h3><p>KafkaProducer的实现是线程安全的，所以我们可以在多线程的环境下，安全的使用KafkaProducer的实例，如何节约资源的使用呢？参见代码，模块kafka-no-spring下包concurrent中</p>
+<h3 id="更多发送配置"><a href="#更多发送配置" class="headerlink" title="更多发送配置"></a><strong>更多发送配置</strong></h3><p>生产者有很多属性可以设置，大部分都有合理的默认值，无需调整。有些参数可能对内存使用，性能和可靠性方面有较大影响。可以参考org.apache.kafka.clients.producer包下的ProducerConfig类。</p>
+<h5 id="acks："><a href="#acks：" class="headerlink" title="acks："></a>acks：</h5><p>指定了必须要有多少个分区副本收到消息，生产者才会认为写入消息是成功的，这个参数对消息丢失的可能性有重大影响。</p>
+<p>acks=0：生产者在写入消息之前不会等待任何来自服务器的响应，容易丢消息，但是吞吐量高。</p>
+<p>acks=1：只要集群的首领节点收到消息，生产者会收到来自服务器的成功响应。如果消息无法到达首领节点（比如首领节点崩溃，新首领没有选举出来），生产者会收到一个错误响应，为了避免数据丢失，生产者会重发消息。不过，如果一个没有收到消息的节点成为新首领，消息还是会丢失。默认使用这个配置。</p>
+<p>acks=all：只有当所有参与复制的节点都收到消息，生产者才会收到一个来自服务器的成功响应。延迟高。</p>
+<h5 id="buffer-memory"><a href="#buffer-memory" class="headerlink" title="buffer.memory"></a>buffer.memory</h5><p>设置生产者内存缓冲区的大小，生产者用它缓冲要发送到服务器的消息。如果数据产生速度大于向broker发送的速度，导致生产者空间不足，producer会阻塞或者抛出异常。缺省33554432 (32M)</p>
+<h5 id="max-block-ms"><a href="#max-block-ms" class="headerlink" title="max.block.ms"></a>max.block.ms</h5><p>指定了在调用send()方法或者使用partitionsFor()方法获取元数据时生产者的阻塞时间。当生产者的发送缓冲区已满，或者没有可用的元数据时，这些方法就会阻塞。在阻塞时间达到max.block.ms时，生产者会抛出超时异常。缺省60000ms</p>
+<h5 id="retries"><a href="#retries" class="headerlink" title="retries"></a>retries</h5><p>发送失败时，指定生产者可以重发消息的次数。默认情况下，生产者在每次重试之间等待100ms，可以通过参数retry.backoff.ms参数来改变这个时间间隔。缺省0</p>
+<h5 id="receive-buffer-bytes和send-buffer-bytes"><a href="#receive-buffer-bytes和send-buffer-bytes" class="headerlink" title="receive.buffer.bytes和send.buffer.bytes"></a>receive.buffer.bytes和send.buffer.bytes</h5><p>指定TCP socket接受和发送数据包的缓存区大小。如果它们被设置为-1，则使用操作系统的默认值。如果生产者或消费者处在不同的数据中心，那么可以适当增大这些值，因为跨数据中心的网络一般都有比较高的延迟和比较低的带宽。缺省102400</p>
+<h5 id="batch-size"><a href="#batch-size" class="headerlink" title="batch.size"></a>batch.size</h5><p>当多个消息被发送同一个分区时，生产者会把它们放在同一个批次里。该参数指定了一个批次可以使用的内存大小，按照字节数计算。当批次内存被填满后，批次里的所有消息会被发送出去。但是生产者不一定都会等到批次被填满才发送，半满甚至只包含一个消息的批次也有可能被发送。缺省16384(16k)</p>
+<h5 id="linger-ms"><a href="#linger-ms" class="headerlink" title="linger.ms"></a>linger.ms</h5><p>指定了生产者在发送批次前等待更多消息加入批次的时间。它和batch.size以先到者为先。也就是说，一旦我们获得消息的数量够batch.size的数量了，他将会立即发送而不顾这项设置，然而如果我们获得消息字节数比batch.size设置要小的多，我们需要“linger”特定的时间以获取更多的消息。这个设置默认为0，即没有延迟。设定linger.ms=5，例如，将会减少请求数目，但是同时会增加5ms的延迟，但也会提升消息的吞吐量。</p>
+<h5 id="compression-type"><a href="#compression-type" class="headerlink" title="compression.type"></a>compression.type</h5><p>producer用于压缩数据的压缩类型。默认是无压缩。正确的选项值是none、gzip、snappy。压缩最好用于批量处理，批量处理消息越多，压缩性能越好。snappy占用cpu少，提供较好的性能和可观的压缩比，如果比较关注性能和网络带宽，用这个。如果带宽紧张，用gzip，会占用较多的cpu，但提供更高的压缩比。</p>
+<h5 id="client-id"><a href="#client-id" class="headerlink" title="client.id"></a>client.id</h5><p>当向server发出请求时，这个字符串会发送给server。目的是能够追踪请求源头，以此来允许ip/port许可列表之外的一些应用可以发送信息。这项应用可以设置任意字符串，因为没有任何功能性的目的，除了记录和跟踪。</p>
+<h5 id="max-in-flight-requests-per-connection"><a href="#max-in-flight-requests-per-connection" class="headerlink" title="max.in.flight.requests.per.connection"></a>max.in.flight.requests.per.connection</h5><p>指定了生产者在接收到服务器响应之前可以发送多个消息，值越高，占用的内存越大，当然也可以提升吞吐量。发生错误时，可能会造成数据的发送顺序改变,默认是5 (修改）。</p>
+<p>如果需要保证消息在一个分区上的严格顺序，这个值应该设为1。不过这样会严重影响生产者的吞吐量。</p>
+<h5 id="request-timeout-ms"><a href="#request-timeout-ms" class="headerlink" title="request.timeout.ms"></a>request.timeout.ms</h5><p>客户端将等待请求的响应的最大时间,如果在这个时间内没有收到响应，客户端将重发请求;超过重试次数将抛异常</p>
+<h5 id="metadata-fetch-timeout-ms"><a href="#metadata-fetch-timeout-ms" class="headerlink" title="metadata.fetch.timeout.ms"></a>metadata.fetch.timeout.ms</h5><p>是指我们所获取的一些元数据的第一个时间数据。元数据包含：topic，host，partitions。此项配置是指当等待元数据fetch成功完成所需要的时间，否则会跑出异常给客户端</p>
+<h5 id="timeout-ms"><a href="#timeout-ms" class="headerlink" title="timeout.ms"></a>timeout.ms</h5><p>此配置选项控制broker等待副本确认的最大时间。如果确认的请求数目在此时间内没有实现，则会返回一个错误。这个超时限制是以server端度量的，没有包含请求的网络延迟。这个参数和acks的配置相匹配。</p>
+<h5 id="max-request-size"><a href="#max-request-size" class="headerlink" title="max.request.size"></a>max.request.size</h5><p>控制生产者发送请求最大大小。假设这个值为1M，如果一个请求里只有一个消息，那这个消息不能大于1M，如果一次请求是一个批次，该批次包含了1000条消息，那么每个消息不能大于1KB。注意：broker具有自己对消息记录尺寸的覆盖，如果这个尺寸小于生产者的这个设置，会导致消息被拒绝。</p>
+<h4 id="顺序保证"><a href="#顺序保证" class="headerlink" title="顺序保证"></a><strong>顺序保证</strong></h4><p>Kafka 可以保证同一个分区里的消息是有序的。也就是说，如果生产者一定的顺序发送消息， broker 就会按照这个顺序把它们写入分区，消费者也会按照同样的顺序读取它们。在某些情况下， 顺序是非常重要的。例如，往一个账户存入100 元再取出来，这个与先取钱再存钱是截然不同的！不过，有些场景对顺序不是很敏感。</p>
+<p>如果把retires设为非零整数，同时把max.in.flight.request.per.connection设为比1 大的数，那么，如果第一个批次消息写入失败，而第二个批次写入成功， broker 会重试写入第一个批次。如果此时第一个批次也写入成功，那么两个批次的顺序就反过来了。</p>
+<p>一般来说，如果某些场景要求消息是有序的，那么消息是否写入成功也是很关键的，所以不建议把retires设为0 。可以把max.in.flight.request.per.connection 设为1，这样在生产者尝试发送第一批消息时，就不会有其他的消息发送给broker 。不过这样会严重影响生产者的吞吐量，所以只有在对消息的顺序有严格要求的情况下才能这么做。</p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a><strong>序列化</strong></h2><p>创建生产者对象必须指定序列化器，默认的序列化器并不能满足我们所有的场景。我们完全可以自定义序列化器。只要实现org.apache.kafka.common.serialization.Serializer接口即可。</p>
+<p>如何实现，看模块kafka-no-spring下包selfserial中代码。</p>
+<h3 id="自定义序列化需要考虑的问题"><a href="#自定义序列化需要考虑的问题" class="headerlink" title="自定义序列化需要考虑的问题"></a><strong>自定义序列化需要考虑的问题</strong></h3><p>自定义序列化容易导致程序的脆弱性。举例，在我们上面的实现里，我们有多种类型的消费者，每个消费者对实体字段都有各自的需求，比如，有的将字段变更为long型，有的会增加字段，这样会出现新旧消息的兼容性问题。特别是在系统升级的时候，经常会出现一部分系统升级，其余系统被迫跟着升级的情况。</p>
+<p>解决这个问题，可以考虑使用自带格式描述以及语言无关的序列化框架。比如Protobuf，或者Kafka官方推荐的Apache Avro。</p>
+<p>Avro会使用一个JSON文件作为schema来描述数据，Avro在读写时会用到这个schema，可以把这个schema内嵌在数据文件中。这样，不管数据格式如何变动，消费者都知道如何处理数据。</p>
+<p>但是内嵌的消息，自带格式，会导致消息的大小不必要的增大，消耗了资源。我们可以使用schema注册表机制，将所有写入的数据用到的schema保存在注册表中，然后在消息中引用schema的标识符，而读取的数据的消费者程序使用这个标识符从注册表中拉取schema来反序列化记录。</p>
+<p><strong>注意</strong>：Kafka本身并不提供schema注册表，需要借助第三方，现在已经有很多的开源实现，比如Confluent Schema Registry，可以从GitHub上获取。如何使用参考如下网址：</p>
+<p><a href="https://cloud.tencent.com/developer/article/1336568" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1336568</a></p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4m0qqhgpij30or0e6770.jpg" alt="img"> </p>
+<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a><strong>分区</strong></h2><p>我们在新增ProducerRecord对象中可以看到，ProducerRecord包含了目标主题，键和值，Kafka的消息都是一个个的键值对。键可以设置为默认的null。</p>
+<p>键的主要用途有两个：一，用来决定消息被写往主题的哪个分区，拥有相同键的消息将被写往同一个分区，二，还可以作为消息的附加消息。</p>
+<p>如果键值为null，并且使用默认的分区器，分区器使用轮询算法将消息均衡地分布到各个分区上。</p>
+<p>如果键不为空，并且使用默认的分区器，Kafka对键进行散列（Kafka自定义的散列算法，具体算法原理不知），然后根据散列值把消息映射到特定的分区上。很明显，同一个键总是被映射到同一个分区。但是只有不改变主题分区数量的情况下，键和分区之间的映射才能保持不变，一旦增加了新的分区，就无法保证了，所以如果要使用键来映射分区，那就要在创建主题的时候把分区规划好，而且永远不要增加新分区。</p>
+<h3 id="自定义分区器"><a href="#自定义分区器" class="headerlink" title="自定义分区器"></a><strong>自定义分区器</strong></h3><p>某些情况下，数据特性决定了需要进行特殊分区，比如电商业务，北京的业务量明显比较大，占据了总业务量的20%，我们需要对北京的订单进行单独分区处理，默认的散列分区算法不合适了， 我们就可以自定义分区算法，对北京的订单单独处理，其他地区沿用散列分区算法。或者某些情况下，我们用value来进行分区。</p>
+<p>具体实现，先创建一个4分区的主题，然后观察模块kafka-no-spring下包SelfPartitionProducer中代码。</p>
+<h1 id="Kafka的消费者"><a href="#Kafka的消费者" class="headerlink" title="Kafka的消费者"></a><strong>Kafka的消费者</strong></h1><h2 id="消费者和消费者群组、分区再均衡"><a href="#消费者和消费者群组、分区再均衡" class="headerlink" title="消费者和消费者群组、分区再均衡"></a><strong>消费者和消费者群组、分区再均衡</strong></h2><p>消费者的含义，同一般消息中间件中消费者的概念。在高并发的情况下，生产者产生消息的速度是远大于消费者消费的速度，单个消费者很可能会负担不起，此时有必要对消费者进行横向伸缩，于是我们可以使用多个消费者从同一个主题读取消息，对消息进行分流。</p>
+<h3 id="消费者群组"><a href="#消费者群组" class="headerlink" title="消费者群组"></a><strong>消费者群组</strong></h3><p>Kafka里消费者从属于消费者群组，一个群组里的消费者订阅的都是同一个主题，每个消费者接收主题一部分分区的消息。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4m0qmsfnhj30f50amq50.jpg" alt="img"> </p>
+<p>如上图，主题T有4个分区，群组中只有一个消费者，则该消费者将收到主题T1全部4个分区的消息。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4m0qlxma1j30fi0abtb3.jpg" alt="img"> </p>
+<p>如上图，在群组中增加一个消费者2，那么每个消费者将分别从两个分区接收消息，上图中就表现为消费者1接收分区1和分区3的消息，消费者2接收分区2和分区4的消息。</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4m0qndb1fj30ex0bf779.jpg" alt="img"> </p>
+<p>如上图，在群组中有4个消费者，那么每个消费者将分别从1个分区接收消息。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4m0qofemfj30fj0dk41v.jpg" alt="img"> </p>
+<p>但是，当我们增加更多的消费者，超过了主题的分区数量，就会有一部分的消费者被闲置，不会接收到任何消息。</p>
+<p>往消费者群组里增加消费者是进行横向伸缩能力的主要方式。所以我们有必要为主题设定合适规模的分区，在负载均衡的时候可以加入更多的消费者。但是要记住，一个群组里消费者数量超过了主题的分区数量，多出来的消费者是没有用处的。</p>
+<p>如果是多个应用程序，需要从同一个主题中读取数据，只要保证每个应用程序有自己的消费者群组就行了。如下图所示：</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4m0qppc15j30a30bw410.jpg" alt="img"> </p>
+<p>具体实现，先建立一个2分区的主题，看模块kafka-no-spring下包consumergroup中代码。</p>
+<h3 id="分区再均衡"><a href="#分区再均衡" class="headerlink" title="分区再均衡"></a><strong>分区再均衡</strong></h3><p>当消费者群组里的消费者发生变化，或者主题里的分区发生了变化，都会导致再均衡现象的发生。从前面的知识中，我们知道，Kafka中，存在着消费者对分区所有权的关系，</p>
+<p>这样无论是消费者变化，比如增加了消费者，新消费者会读取原本由其他消费者读取的分区，消费者减少，原本由它负责的分区要由其他消费者来读取，增加了分区，哪个消费者来读取这个新增的分区，这些行为，都会导致分区所有权的变化，这种变化就被称为<strong>再均衡</strong>。</p>
+<p>再均衡对Kafka很重要，这是消费者群组带来高可用性和伸缩性的关键所在。不过一般情况下，尽量减少再均衡，因为再均衡期间，消费者是无法读取消息的，会造成整个群组一小段时间的不可用。</p>
+<p>消费者通过向称为群组协调器的broker（不同的群组有不同的协调器）发送心跳来维持它和群组的从属关系以及对分区的所有权关系。如果消费者长时间不发送心跳，群组协调器认为它已经死亡，就会触发一次再均衡。</p>
+<p>在0.10.1及以后的版本中，心跳由单独的线程负责，相关的控制参数为max.poll.interval.ms。</p>
+<h4 id="消费者分区分配的过程"><a href="#消费者分区分配的过程" class="headerlink" title="消费者分区分配的过程"></a><strong>消费者分区分配的过程</strong></h4><p>消费者要加入群组时，会向群组协调器发送一个JoinGroup请求，第一个加入群主的消费者成为群主，群主会获得群组的成员列表，并负责给每一个消费者分配分区。分配完毕后，群组把分配情况发送给群组协调器，协调器再把这些信息发送给所有的消费者，每个消费者只能看到自己的分配信息，只有群主知道群组里所有消费者的分配信息。这个过程在每次再均衡时都会发生。</p>
+<h2 id="使用Kafka消费者"><a href="#使用Kafka消费者" class="headerlink" title="使用Kafka消费者"></a><strong>使用Kafka消费者</strong></h2><h3 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a><strong>订阅</strong></h3><p>创建消费者后，使用subscribe()方法订阅主题，这个方法接受一个主题列表为参数，也可以接受一个正则表达式为参数；正则表达式同样也匹配多个主题。如果新创建了新主题，并且主题名字和正则表达式匹配，那么会立即触发一次再均衡，消费者就可以读取新添加的主题。比如，要订阅所有和test相关的主题，可以subscribe(“tets.*”)</p>
+<h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a><strong>轮询</strong></h3><p>为了不断的获取消息，我们要在循环中不断的进行轮询，也就是不停调用poll方法。</p>
+<p>poll方法的参数为超时时间，控制poll方法的阻塞时间，它会让消费者在指定的毫秒数内一直等待broker返回数据。poll方法将会返回一个记录（消息）列表，每一条记录都包含了记录所属的主题信息，记录所在分区信息，记录在分区里的偏移量，以及记录的键值对。</p>
+<p>poll方法不仅仅只是获取数据，在新消费者第一次调用时，它会负责查找群组，加入群组，接受分配的分区。如果发生了再均衡，整个过程也是在轮询期间进行的。</p>
+<h3 id="多线程下的消费者"><a href="#多线程下的消费者" class="headerlink" title="多线程下的消费者"></a><strong>多线程下的消费者</strong></h3><p>KafkaConsumer的实现<strong>不是</strong>线程安全的，所以我们在多线程的环境下，使用KafkaConsumer的实例要小心，应该每个消费数据的线程拥有自己的KafkaConsumer实例，如何使用？参见代码，模块kafka-no-spring下包concurrent中</p>
+<h3 id="消费者配置"><a href="#消费者配置" class="headerlink" title="消费者配置"></a><strong>消费者配置</strong></h3><p>消费者有很多属性可以设置，大部分都有合理的默认值，无需调整。有些参数可能对内存使用，性能和可靠性方面有较大影响。可以参考org.apache.kafka.clients.consumer包下ConsumerConfig类。</p>
+<h5 id="fetch-min-bytes"><a href="#fetch-min-bytes" class="headerlink" title="fetch.min.bytes"></a>fetch.min.bytes</h5><p>每次fetch请求时，server应该返回的最小字节数。如果没有足够的数据返回，请求会等待，直到足够的数据才会返回。缺省为1个字节。多消费者下，可以设大这个值，以降低broker的工作负载</p>
+<h5 id="fetch-wait-max-ms"><a href="#fetch-wait-max-ms" class="headerlink" title="fetch.wait.max.ms"></a>fetch.wait.max.ms</h5><p>如果没有足够的数据能够满足fetch.min.bytes，则此项配置是指在应答fetch请求之前，server会阻塞的最大时间。缺省为500个毫秒。和上面的fetch.min.bytes结合起来，要么满足数据的大小，要么满足时间，就看哪个条件先满足。</p>
+<h5 id="max-partition-fetch-bytes"><a href="#max-partition-fetch-bytes" class="headerlink" title="max.partition.fetch.bytes"></a>max.partition.fetch.bytes</h5><p>指定了服务器从每个分区里返回给消费者的最大字节数，默认1MB。假设一个主题有20个分区和5个消费者，那么每个消费者至少要有4MB的可用内存来接收记录，而且一旦有消费者崩溃，这个内存还需更大。注意，这个参数要比服务器的message.max.bytes更大，否则消费者可能无法读取消息。</p>
+<h5 id="session-timeout-ms"><a href="#session-timeout-ms" class="headerlink" title="session.timeout.ms"></a>session.timeout.ms</h5><p>如果consumer在这段时间内没有发送心跳信息，则它会被认为挂掉了。默认3秒。</p>
+<h5 id="auto-offset-reset"><a href="#auto-offset-reset" class="headerlink" title="auto.offset.reset"></a>auto.offset.reset</h5><p>消费者在读取一个没有偏移量的分区或者偏移量无效的情况下，如何处理。默认值是latest，从最新的记录开始读取，另一个值是earliest，表示消费者从起始位置读取分区的记录。</p>
+<p><strong>注意</strong>：默认值是latest，意思是说，在偏移量无效的情况下，消费者将从最新的记录开始读取数据（<strong>在消费者启动之后生成的记录</strong>），可以先启动生产者，再启动消费者，观察到这种情况。观察代码，在模块kafka-no-spring下包hellokafka中。</p>
+<h5 id="enable-auto-commit"><a href="#enable-auto-commit" class="headerlink" title="enable .auto.commit"></a>enable .auto.commit</h5><p>默认值true，表明消费者是否自动提交偏移。为了尽量避免重复数据和数据丢失，可以改为false，自行控制何时提交。</p>
+<h5 id="partition-assignment-strategy"><a href="#partition-assignment-strategy" class="headerlink" title="partition.assignment.strategy"></a>partition.assignment.strategy</h5><p>分区分配给消费者的策略。系统提供两种策略。默认为Range。允许自定义策略。</p>
+<h6 id="Range"><a href="#Range" class="headerlink" title="Range"></a><em>Range</em></h6><p>把主题的连续分区分配给消费者。例如，有主题T1和T2，各有3个分区，消费者C1和C2，则<strong>可能</strong>的分配形式为：</p>
+<p>C1: T1(0，1),T2(0,，1)</p>
+<p>C2: T1(2),T2(2)</p>
+<h6 id="RoundRobin"><a href="#RoundRobin" class="headerlink" title="RoundRobin"></a><em>RoundRobin</em></h6><p>把主题的分区循环分配给消费者。例如，有主题T1和T2，各有3个分区，消费者C1和C2，则<strong>可能</strong>的分配形式为：</p>
+<p>C1: T1(0，2),T2(1)</p>
+<p>C2: T1(1),T2(0，2)</p>
+<h6 id="自定义策略"><a href="#自定义策略" class="headerlink" title="自定义策略"></a><em>自定义策略</em></h6><p>extends 类AbstractPartitionAssignor，然后在消费者端增加参数：</p>
+<p>properties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, 类.class.getName());即可。</p>
+<h5 id="client-id-1"><a href="#client-id-1" class="headerlink" title="client.id"></a>client.id</h5><p>当向server发出请求时，这个字符串会发送给server。目的是能够追踪请求源头，以此来允许ip/port许可列表之外的一些应用可以发送信息。这项应用可以设置任意字符串，因为没有任何功能性的目的，除了记录和跟踪。</p>
+<h5 id="max-poll-records"><a href="#max-poll-records" class="headerlink" title="max.poll.records"></a>max.poll.records</h5><p>控制每次poll方法返回的的记录数量。</p>
+<h5 id="receive-buffer-bytes和send-buffer-bytes-1"><a href="#receive-buffer-bytes和send-buffer-bytes-1" class="headerlink" title="receive.buffer.bytes和send.buffer.bytes"></a>receive.buffer.bytes和send.buffer.bytes</h5><p>指定TCP socket接受和发送数据包的缓存区大小。如果它们被设置为-1，则使用操作系统的默认值。如果生产者或消费者处在不同的数据中心，那么可以适当增大这些值，因为跨数据中心的网络一般都有比较高的延迟和比较低的带宽。</p>
+<h2 id="提交和偏移量"><a href="#提交和偏移量" class="headerlink" title="提交和偏移量"></a><strong>提交和偏移量</strong></h2><p>当我们调用poll方法的时候，broker返回的是生产者写入Kafka但是还没有被消费者读取过的记录，消费者可以使用Kafka来追踪消息在分区里的位置，我们称之为<strong>偏移量</strong>。消费者更新自己读取到哪个消息的操作，我们称之为<strong>提交</strong>。</p>
+<p>消费者是如何提交偏移量的呢？消费者会往一个叫做_consumer_offset的特殊主题发送一个消息，里面会包括每个分区的偏移量。发生了再均衡之后，消费者可能会被分配新的分区，为了能够继续工作，消费者者需要读取每个分区最后一次提交的偏移量，然后从指定的地方，继续做处理。</p>
+<p>如果提交的偏移量小于消费者实际处理的最后一个消息的偏移量，处于两个偏移量之间的消息会被重复处理，</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4m0qkueuvj30sn085q57.jpg" alt="img"> </p>
+<p>如果提交的偏移量大于客户端处理的最后一个消息的偏移量,那么处于两个偏移量之间的消息将会丢失</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4m0qla9fqj30t807agna.jpg" alt="img"> </p>
+<p>所以, 处理偏移量的方式对客户端会有很大的影响 。KafkaConsumer API提供了很多种方式来提交偏移量 。</p>
+<h3 id="自动提交"><a href="#自动提交" class="headerlink" title="自动提交"></a><strong>自动提交</strong></h3><p>最简单的提交方式是让消费者自动提交偏移量。 如果 enable.auto.comnit被设为 true，消费者会自动把从poll()方法接收到的<strong>最大</strong>偏移量提交上去。提交时间间隔由auto.commit.interval.ms控制，默认值是5s。自动提交是在轮询里进行的，消费者每次在进行轮询时会检査是否该提交偏移量了，如果是，那么就会提交从上一次轮询返回的偏移量。</p>
+<p>不过,在使用这种简便的方式之前,需要知道它将会带来怎样的结果。</p>
+<p>假设我们仍然使用默认的5s提交时间间隔, 在最近一次提交之后的3s发生了再均衡，再均衡之后,消费者从最后一次提交的偏移量位置开始读取消息。这个时候偏移量已经落后了3s，所以在这3s内到达的消息会被重复处理。可以通过修改提交时间间隔来更频繁地提交偏移量, 减小可能出现重复消息的时间窗, 不过这种情况是无法完全避免的 。</p>
+<p>在使用自动提交时,每次调用轮询方法都会把上一次调用返回的偏移量提交上去,它并不知道具体哪些消息已经被处理了,所以在再次调用之前最好确保所有当前调用返回的消息都已经处理完毕(enable.auto.comnit被设为 true时，在调用 close()方法之前也会进行自动提交)。一般情况下不会有什么问题,不过在处理异常或提前退出轮询时要格外小心。</p>
+<p>自动提交虽然方便,不过并没有为我们留有余地来避免重复处理消息。</p>
+<h3 id="手动提交"><a href="#手动提交" class="headerlink" title="手动提交"></a><strong>手动提交</strong></h3><p>我们通过控制偏移量提交时间来消除丢失消息的可能性，并在发生再均衡时减少重复消息的数量。消费者API提供了另一种提交偏移量的方式，开发者可以在必要的时候提交当前偏移量,而不是基于时间间隔。</p>
+<p>把auto.commit. offset设为 false，自行决定何时提交偏移量。使用 commitsync()提交偏移量最简单也最可靠。这个方法会提交由poll()方法返回的最新偏移量，提交成功后马上返回,如果提交失败就抛出异常。</p>
+<p>注意： commitsync()将会提交由poll()返回的最新偏移量,所以在处理完所有记录后要确保调用了 commitsync()，否则还是会有丢失消息的风险。如果发生了再均衡,从最近批消息到发生再均衡之间的所有消息都将被重复处理。</p>
+<p>具体使用，参见模块kafka-no-spring下包commit包中代码。</p>
+<h3 id="异步提交"><a href="#异步提交" class="headerlink" title="异步提交"></a><strong>异步提交</strong></h3><p>手动提交时，在broker对提交请求作出回应之前，应用程序会一直阻塞。这时我们可以使用异步提交API，我们只管发送提交请求，无需等待broker的响应。</p>
+<p>具体使用，参见模块kafka-no-spring下包commit包中代码。</p>
+<p>在成功提交或碰到无法恢复的错误之前, commitsync()会一直重试,但是 commitAsync不会。它之所以不进行重试,是因为在它收到服务器响应的时候,可能有一个更大的偏移量已经提交成功。</p>
+<p>假设我们发出一个请求用于提交偏移量2000,,这个时候发生了短暂的通信问题,服务器收不到请求,自然也不会作出任何响应。与此同时,我们处理了另外一批消息,并成功提交了偏移量3000。如果commitAsync()重新尝试提交偏移量2000,它有可能在偏移量3000之后提交成功。这个时候如果发生再均衡,就会出现重复消息。</p>
+<p>commitAsync()也支持回调,在 broker作出响应时会执行回调。回调经常被用于记录提交错误或生成度量指标。</p>
+<p>回调具体使用，参见模块kafka-no-spring下包commit包中代码。</p>
+<h3 id="同步和异步组合"><a href="#同步和异步组合" class="headerlink" title="同步和异步组合"></a><strong>同步和异步组合</strong></h3><p>一般情况下,针对偶尔出现的提交失败,不进行重试不会有太大问题，因为如果提交失败是因为临时问题导致的,那么后续的提交总会有成功的。但如果这是发生在关闭消费者或再均衡前的最后一次提交,就要确保能够提交成功。</p>
+<p>因此,在消费者关闭前一般会组合使用 commitAsync()和 commitsync()。具体使用，参见模块kafka-no-spring下包commit包中代码。</p>
+<h3 id="特定提交"><a href="#特定提交" class="headerlink" title="特定提交"></a><strong>特定提交</strong></h3><p>在我们前面的提交中，提交偏移量的频率与处理消息批次的频率是一样的。但如果想要更频繁地提交该怎么办?</p>
+<p>如果poll()方法返回一大批数据,为了避免因再均衡引起的重复处理整批消息,想要在批次中间提交偏移量该怎么办?这种情况无法通过调用 commitSync()或 commitAsync()来实现，因为它们只会提交最后一个偏移量,而此时该批次里的消息还没有处理完。</p>
+<p>消费者API允许在调用 commitsync()和 commitAsync()方法时传进去希望提交的分区和偏移量的map。假设我们处理了半个批次的消息,最后一个来自主题“customers”，分区3的消息的偏移量是5000，你可以调用 commitsync()方法来提交它。不过，因为消费者可能不只读取一个分区,因为我们需要跟踪所有分区的偏移量,所以在这个层面上控制偏移量的提交会让代码变复杂。</p>
+<p>具体使用，参见模块kafka-no-spring下包commit包中代码。</p>
+<h2 id="再均衡监听器"><a href="#再均衡监听器" class="headerlink" title="再均衡监听器"></a><strong>再均衡监听器</strong></h2><p>在提交偏移量一节中提到过,消费者在退出和进行分区再均衡之前,会做一些清理工作比如，提交偏移量、关闭文件句柄、数据库连接等。</p>
+<p>在为消费者分配新分区或移除旧分区时,可以通过消费者API执行一些应用程序代码，在调用 subscribe()方法时传进去一个 ConsumerRebalancelistener实例就可以了。</p>
+<p>ConsumerRebalancelistener有两个需要实现的方法。</p>
+<p>1) public void onPartitionsRevoked( Collection&lt; TopicPartition&gt; partitions)方法会在</p>
+<p>再均衡开始之前和消费者停止读取消息之后被调用。如果在这里提交偏移量，下一个接管分区的消费者就知道该从哪里开始读取了</p>
+<p>2) public void onPartitionsAssigned( Collection&lt; TopicPartition&gt; partitions)方法会在重新分配分区之后和消费者开始读取消息之前被调用。</p>
+<p>具体使用，我们先创建一个3分区的主题，然后实验一下，参见模块kafka-no-spring下rebalance包中代码。</p>
+<h2 id="从特定偏移量处开始记录"><a href="#从特定偏移量处开始记录" class="headerlink" title="从特定偏移量处开始记录"></a><strong>从特定偏移量处开始记录</strong></h2><p>到目前为止,我们知道了如何使用poll()方法从各个分区的最新偏移量处开始处理消息。</p>
+<p>不过,有时候我们也需要从特定的偏移量处开始读取消息。</p>
+<p>如果想从分区的起始位置开始读取消息,或者直接跳到分区的末尾开始读取消息,可以使 seekToBeginning(Collection<topicpartition> tp)和 seekToEnd( Collection<topicpartition>tp)这两个方法。</topicpartition></topicpartition></p>
+<p>不过,Kaka也为我们提供了用于查找特定偏移量的API。它有很多用途,比如向后回退几个消息或者向前跳过几个消息(对时间比较敏感的应用程序在处理滞后的情况下希望能够向前跳过若干个消息)。在使用 Kafka以外的系统来存储偏移量时,它将给我们带来更大的惊喜–让消息的业务处理和偏移量的提交变得一致。</p>
+<p>试想一下这样的场景:应用程序从Kaka读取事件(可能是网站的用户点击事件流),对它们进行处理(可能是使用自动程序清理点击操作并添加会话信息),然后把结果保存到数据库。假设我们真的不想丢失任何数据,也不想在数据库里多次保存相同的结果。</p>
+<p>我们可能会，毎处理一条记录就提交一次偏移量。尽管如此,在记录被保存到数据库之后以及偏移量被提交之前,应用程序仍然有可能发生崩溃,导致重复处理数据,数据库里就会出现重复记录。</p>
+<p>如果保存记录和偏移量可以在一个原子操作里完成,就可以避免出现上述情况。记录和偏移量要么都被成功提交,要么都不提交。如果记录是保存在数据库里而偏移量是提交到Kafka上,那么就无法实现原子操作不过,如果在同一个事务里把记录和偏移量都写到数据库里会怎样呢?那么我们就会知道记录和偏移量要么都成功提交,要么都没有,然后重新处理记录。</p>
+<p>现在的问题是:如果偏移量是保存在数据库里而不是 Kafka里,那么消费者在得到新分区时怎么知道该从哪里开始读取?这个时候可以使用seek()方法。在消费者启动或分配到新分区时,可以使用seck()方法查找保存在数据库里的偏移量。我们可以使用使用 Consumer Rebalancelistener和seek()方法确保我们是从数据库里保存的偏移量所指定的位置开始处理消息的。</p>
+<p>具体使用，参见模块kafka-no-spring下包rebalance包中代码。</p>
+<h2 id="优雅退出"><a href="#优雅退出" class="headerlink" title="优雅退出"></a><strong>优雅退出</strong></h2><p>如果确定要退出循环,需要通过另一个线程调用 consumer. wakeup()方法。如果循环运行在主线程里,可以在 ShutdownHook里调用该方法。要记住, consumer. wakeup()是消费者唯一一个可以从其他线程里安全调用的方法。调用 consumer. wakeup()可以退出poll(),并抛出 WakeupException异常。我们不需要处理 Wakeup Exception,因为它只是用于跳出循环的一种方式。不过,在退出线程之前调用 consumer.close()是很有必要的,它会提交任何还没有提交的东西,并向群组协调器发送消息,告知自己要离开群组,接下来就会触发再均衡,而不需要等待会话超时。</p>
+<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a><strong>反序列化</strong></h2><p>不过就是序列化过程的一个反向，原理和实现可以参考生产者端的实现，同样也可以自定义反序列化器。</p>
+<h2 id="独立消费者"><a href="#独立消费者" class="headerlink" title="独立消费者"></a><strong>独立消费者</strong></h2><p>到目前为止,我们讨论了消费者群组,分区被自动分配给群组里的消费者,在群组里新增或移除消费者时自动触发再均衡。不过有时候可能只需要一个消费者从一个主题的所有分区或者某个特定的分区读取数据。这个时候就不需要消费者群组和再均衡了,只需要把主题或者分区分配给消费者,然后开始读取消息并提交偏移量。</p>
+<p>如果是这样的话,就不需要订阅主题,取而代之的是为自己分配分区。一个消费者可以订阅主题(并加入消费者群组),或者为自己分配分区,但不能同时做这两件事情。</p>
+<p>具体使用，参见模块kafka-no-spring下包independconsumer中代码。</p>
+<h1 id="Spring和Kafka的整合"><a href="#Spring和Kafka的整合" class="headerlink" title="Spring和Kafka的整合"></a><strong>Spring和Kafka的整合</strong></h1><p>参见模块kafka-with-spring下</p>
+<h1 id="SpringBoot和Kafka的整合"><a href="#SpringBoot和Kafka的整合" class="headerlink" title="SpringBoot和Kafka的整合"></a><strong>SpringBoot和Kafka的整合</strong></h1><p>参见模块kafka-with-springboot下</p>
+<p>测试方式，启动项目后，在浏览器的地址栏中：</p>
+<p><a href="http://localhost:8080/kafka/send?key=要发送的消息的键&amp;value=要发送的消息的内容" target="_blank" rel="noopener">http://localhost:8080/kafka/send?key=要发送的消息的键&amp;value=要发送的消息的内容</a></p>
+<p>和</p>
+<p><a href="http://localhost:8080/kafka/sendAck?key=要发送的消息的键&amp;value=要发送的消息的内容" target="_blank" rel="noopener">http://localhost:8080/kafka/sendAck?key=要发送的消息的键&amp;value=要发送的消息的内容</a></p>
+<h1 id="（削峰填谷）流量整形"><a href="#（削峰填谷）流量整形" class="headerlink" title="（削峰填谷）流量整形"></a><strong>（削峰填谷）流量整形</strong></h1><p>参见模块kafka-traffic-shaping下，启动kafka-traffic-shaping后，可以在kafka-traffic-shaping-client</p>
+<p>中执行test目录下的两个测试类，观看使用了Mq前后的处理效果。</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-07-03  01:43:25</span></li>
+                
+                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/消息中间件/">消息中间件</a>
+                    
+                    <a href="/categories/消息中间件/Kafka/">Kafka</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/Kafka/">Kafka</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/07/03/kafka-3/" class="pre-post fa fa-caret-left">深入理解Kafka</a>
+        
+        
+        <a href="/2019/07/01/spring-10/" class="next-post fa">手写SpringMVC笔记</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一个Kafka程序"><span class="toc-number">1.</span> <span class="toc-text">第一个Kafka程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建我们的主题"><span class="toc-number">1.1.</span> <span class="toc-text">创建我们的主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者发送消息"><span class="toc-number">1.2.</span> <span class="toc-text">生产者发送消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#必选属性"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">必选属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#bootstrap-servers"><span class="toc-number">1.2.0.1.1.</span> <span class="toc-text">bootstrap.servers</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#key-serializer"><span class="toc-number">1.2.0.1.2.</span> <span class="toc-text">key.serializer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#value-serializer"><span class="toc-number">1.2.0.1.3.</span> <span class="toc-text">value.serializer</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消费者接受消息"><span class="toc-number">1.3.</span> <span class="toc-text">消费者接受消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#必选参数"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">必选参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#group-id"><span class="toc-number">1.3.0.1.1.</span> <span class="toc-text">group.id</span></a></li></ol></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#Kafka的生产者"><span class="toc-number">2.</span> <span class="toc-text">Kafka的生产者</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者发送消息的基本流程"><span class="toc-number">2.1.</span> <span class="toc-text">生产者发送消息的基本流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Kafka生产者"><span class="toc-number">2.2.</span> <span class="toc-text">使用Kafka生产者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三种发送方式"><span class="toc-number">2.2.1.</span> <span class="toc-text">三种发送方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#发送并忘记"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">发送并忘记</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#同步非阻塞发送"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">同步非阻塞发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#异步发送"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">异步发送</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程下的生产者"><span class="toc-number">2.2.2.</span> <span class="toc-text">多线程下的生产者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多发送配置"><span class="toc-number">2.2.3.</span> <span class="toc-text">更多发送配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#acks："><span class="toc-number">2.2.3.0.1.</span> <span class="toc-text">acks：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#buffer-memory"><span class="toc-number">2.2.3.0.2.</span> <span class="toc-text">buffer.memory</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#max-block-ms"><span class="toc-number">2.2.3.0.3.</span> <span class="toc-text">max.block.ms</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#retries"><span class="toc-number">2.2.3.0.4.</span> <span class="toc-text">retries</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#receive-buffer-bytes和send-buffer-bytes"><span class="toc-number">2.2.3.0.5.</span> <span class="toc-text">receive.buffer.bytes和send.buffer.bytes</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#batch-size"><span class="toc-number">2.2.3.0.6.</span> <span class="toc-text">batch.size</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#linger-ms"><span class="toc-number">2.2.3.0.7.</span> <span class="toc-text">linger.ms</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#compression-type"><span class="toc-number">2.2.3.0.8.</span> <span class="toc-text">compression.type</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#client-id"><span class="toc-number">2.2.3.0.9.</span> <span class="toc-text">client.id</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#max-in-flight-requests-per-connection"><span class="toc-number">2.2.3.0.10.</span> <span class="toc-text">max.in.flight.requests.per.connection</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#request-timeout-ms"><span class="toc-number">2.2.3.0.11.</span> <span class="toc-text">request.timeout.ms</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#metadata-fetch-timeout-ms"><span class="toc-number">2.2.3.0.12.</span> <span class="toc-text">metadata.fetch.timeout.ms</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#timeout-ms"><span class="toc-number">2.2.3.0.13.</span> <span class="toc-text">timeout.ms</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#max-request-size"><span class="toc-number">2.2.3.0.14.</span> <span class="toc-text">max.request.size</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#顺序保证"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">顺序保证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#序列化"><span class="toc-number">2.3.</span> <span class="toc-text">序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义序列化需要考虑的问题"><span class="toc-number">2.3.1.</span> <span class="toc-text">自定义序列化需要考虑的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分区"><span class="toc-number">2.4.</span> <span class="toc-text">分区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义分区器"><span class="toc-number">2.4.1.</span> <span class="toc-text">自定义分区器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kafka的消费者"><span class="toc-number">3.</span> <span class="toc-text">Kafka的消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#消费者和消费者群组、分区再均衡"><span class="toc-number">3.1.</span> <span class="toc-text">消费者和消费者群组、分区再均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#消费者群组"><span class="toc-number">3.1.1.</span> <span class="toc-text">消费者群组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分区再均衡"><span class="toc-number">3.1.2.</span> <span class="toc-text">分区再均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#消费者分区分配的过程"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">消费者分区分配的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Kafka消费者"><span class="toc-number">3.2.</span> <span class="toc-text">使用Kafka消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#订阅"><span class="toc-number">3.2.1.</span> <span class="toc-text">订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#轮询"><span class="toc-number">3.2.2.</span> <span class="toc-text">轮询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程下的消费者"><span class="toc-number">3.2.3.</span> <span class="toc-text">多线程下的消费者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消费者配置"><span class="toc-number">3.2.4.</span> <span class="toc-text">消费者配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#fetch-min-bytes"><span class="toc-number">3.2.4.0.1.</span> <span class="toc-text">fetch.min.bytes</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fetch-wait-max-ms"><span class="toc-number">3.2.4.0.2.</span> <span class="toc-text">fetch.wait.max.ms</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#max-partition-fetch-bytes"><span class="toc-number">3.2.4.0.3.</span> <span class="toc-text">max.partition.fetch.bytes</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#session-timeout-ms"><span class="toc-number">3.2.4.0.4.</span> <span class="toc-text">session.timeout.ms</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#auto-offset-reset"><span class="toc-number">3.2.4.0.5.</span> <span class="toc-text">auto.offset.reset</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#enable-auto-commit"><span class="toc-number">3.2.4.0.6.</span> <span class="toc-text">enable .auto.commit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#partition-assignment-strategy"><span class="toc-number">3.2.4.0.7.</span> <span class="toc-text">partition.assignment.strategy</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Range"><span class="toc-number">3.2.4.0.7.1.</span> <span class="toc-text">Range</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#RoundRobin"><span class="toc-number">3.2.4.0.7.2.</span> <span class="toc-text">RoundRobin</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#自定义策略"><span class="toc-number">3.2.4.0.7.3.</span> <span class="toc-text">自定义策略</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#client-id-1"><span class="toc-number">3.2.4.0.8.</span> <span class="toc-text">client.id</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#max-poll-records"><span class="toc-number">3.2.4.0.9.</span> <span class="toc-text">max.poll.records</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#receive-buffer-bytes和send-buffer-bytes-1"><span class="toc-number">3.2.4.0.10.</span> <span class="toc-text">receive.buffer.bytes和send.buffer.bytes</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交和偏移量"><span class="toc-number">3.3.</span> <span class="toc-text">提交和偏移量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动提交"><span class="toc-number">3.3.1.</span> <span class="toc-text">自动提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动提交"><span class="toc-number">3.3.2.</span> <span class="toc-text">手动提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步提交"><span class="toc-number">3.3.3.</span> <span class="toc-text">异步提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步和异步组合"><span class="toc-number">3.3.4.</span> <span class="toc-text">同步和异步组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特定提交"><span class="toc-number">3.3.5.</span> <span class="toc-text">特定提交</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#再均衡监听器"><span class="toc-number">3.4.</span> <span class="toc-text">再均衡监听器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从特定偏移量处开始记录"><span class="toc-number">3.5.</span> <span class="toc-text">从特定偏移量处开始记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优雅退出"><span class="toc-number">3.6.</span> <span class="toc-text">优雅退出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反序列化"><span class="toc-number">3.7.</span> <span class="toc-text">反序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#独立消费者"><span class="toc-number">3.8.</span> <span class="toc-text">独立消费者</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring和Kafka的整合"><span class="toc-number">4.</span> <span class="toc-text">Spring和Kafka的整合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot和Kafka的整合"><span class="toc-number">5.</span> <span class="toc-text">SpringBoot和Kafka的整合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#（削峰填谷）流量整形"><span class="toc-number">6.</span> <span class="toc-text">（削峰填谷）流量整形</span></a></li>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

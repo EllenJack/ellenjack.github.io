@@ -1,0 +1,459 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>docker实战 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="docker实战">
+                
+                docker实战
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>docker</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            docker
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/25</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+        </div>
+        
+        <div id="post-body">
+            <h3 id="nginx镜像制作实战"><a href="#nginx镜像制作实战" class="headerlink" title="nginx镜像制作实战"></a><strong>nginx镜像制作实战</strong></h3><h4 id="docker容器的主业"><a href="#docker容器的主业" class="headerlink" title="docker容器的主业"></a><strong>docker容器的主业</strong></h4><p>docker理念里，容器启动时，应当为它指定主业是什么，如nginx容器主业就是nginx代理服务，tomcat容器就是web服务等等</p>
+<p>1、容器创建时，必须指定主业任务，如不指定，则容器无事可干立即退出。</p>
+<p>2、在dockerfile打包镜像时，可以使用cmd命令来指定一个默认的主业，如下：</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jmnpxyiqj30fe02ydgd.jpg" alt></p>
+<p>3、既然镜像里是默认主业，即意味着创建容器时，可以覆盖此默认命令，如下</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmnptnolj30fe01r753.jpg" alt></p>
+<h4 id="推荐的-ENTRYPOINT方式"><a href="#推荐的-ENTRYPOINT方式" class="headerlink" title="推荐的 ENTRYPOINT方式"></a><strong>推荐的</strong> <strong>ENTRYPOINT方式</strong></h4><p>1、镜像本身应该有稳定的主业，应当指定后即不能更改用途，于是引入ENTRYPOINT</p>
+<p>2、使用ENTRYPOINT字义即容器入口，它不能被run中cmd覆盖，如下例：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmnpo31sj30fe02ojs3.jpg" alt></p>
+<p>执行：docker build -t nginxx:v3 .</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jmo2h987j30fe01n3z6.jpg" alt></p>
+<p>以后使用nginxx:v3这个镜像时，只能做nginx服务来使用啦</p>
+<h4 id="手动打包springboot镜像"><a href="#手动打包springboot镜像" class="headerlink" title="手动打包springboot镜像"></a><strong>手动打包springboot镜像</strong></h4><p>我们需要对业务项目打包发布，一样需要制作成为业务镜像，供运维使用，下面讲述springboot的制作过程：</p>
+<p>1、将springboot打好的jar包上传</p>
+<p>2、在同级目录下，创建Dockerfile文件，内容如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmo2c2foj30fe02pq3x.jpg" alt></p>
+<p>3、dockerfile打包业务镜像</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmo27pqpj30fe07udj3.jpg" alt></p>
+<p>4、启动镜像，即得到业务运行</p>
+<p>docker run -d -p 8090:8090  –name member member:v1</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmoff2vej30fe01a74p.jpg" alt></p>
+<p>5、浏览器打开页面校验：<a href="http://192.168.244.7:8090/" target="_blank" rel="noopener">http://192.168.244.7:8090/</a></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmofcfmrj30fe046aat.jpg" alt></p>
+<h4 id="maven源码打包用法"><a href="#maven源码打包用法" class="headerlink" title="maven源码打包用法"></a><strong>maven源码打包用法</strong></h4><p>更多的情况，我们是直接在运维环境里，上传源码，直接maven打包jar，然后再进一步打包成镜像，与手动打包过程类似</p>
+<p>如果环境中没有安装maven，请手动安装，脚本如下：</p>
+<p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2</p>
+<p># yum-config-manager –add-repo <a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="noopener">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a></p>
+<p># yum-config-manager –enable epel-apache-maven</p>
+<p>// 安装maven</p>
+<p># yum install -y apache-maven</p>
+<p>1、上传原码到docker环境中（一般是git/svn直接拉取源码）</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmof8uerj30fe02w75j.jpg" alt></p>
+<p>2、maven打包</p>
+<p>mvn clean package</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmot22j5j30fe04qjt8.jpg" alt></p>
+<p>生成的jar在同级target目录下</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmosxy4oj30fe052ac9.jpg" alt></p>
+<p>3、执行docker命令生成镜像</p>
+<p>dockerfile文件内容</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jmosq36dj30fe01tt94.jpg" alt></p>
+<p>命令创建镜像</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmp5rf9rj30b203tjsk.jpg" alt></p>
+<h4 id="maven插件打包"><a href="#maven插件打包" class="headerlink" title="maven插件打包"></a><strong>maven插件打包</strong></h4><p>前面打springboot包的方式，需要手动上传项目jar或者源码到服务器（违和感很强），这对于开发人员日常发布开发环境项目，极为不便</p>
+<p>下面，演示一个maven插件：docker-maven-plugin用法，来打通环境。</p>
+<h5 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h5><p>1、需要我们windows上安装docker服务</p>
+<p>2、需要docker服务配置http仓库接口，windows上docker服务配置如下（传统配置模式无权限修改文件）</p>
+<h5 id="本地环境配置"><a href="#本地环境配置" class="headerlink" title="本地环境配置"></a>本地环境配置</h5><p>1、windows上<strong>安装docker-toolbox，傻瓜安装即可。</strong></p>
+<p><strong>2、</strong>打开Docker Quickstart Terminal终端，等待初始始化完成后。</p>
+<p>3、输入docker-machine env命令，返回docker服务的api接口和证书位置，如下：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmp5jh7fj30fd0380u1.jpg" alt></p>
+<p>4、输入docker-machine ssh命令，进入sh环境中，配置http仓库路径</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmp5frkgj30fe05b75k.jpg" alt></p>
+<p>修改文件配置（当前用户是docker不是root，要sudo提升至root）：</p>
+<p>sudo vi /var/lib/boot2docker/profile</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpl46apj30be05jjsi.jpg" alt></p>
+<p>5、修改完成，保存。重启docker服务</p>
+<p>sudo /etc/init.d/docker restart</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpl177jj30e001o3yn.jpg" alt></p>
+<h5 id="项目环境配置maven插件"><a href="#项目环境配置maven插件" class="headerlink" title="项目环境配置maven插件"></a>项目环境配置maven插件</h5><p>在我们的工程pom中加入docker-maven-plugin插件的配置，如下</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmpkyhjzj30cr07s76e.jpg" alt> </p>
+<p>1、其中，imageName配置镜像的全路径名，即指定私库的名称</p>
+<p>2、dockerHost和dockerCertPath对应配置上一步中docker的api和证书值</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmpzcgrfj30fd0380u1.jpg" alt></p>
+<h5 id="打包运行"><a href="#打包运行" class="headerlink" title="打包运行"></a>打包运行</h5><p>以idea为例，整个项目装配完成，只需要操作maven的一二三步骤，即直接镜像进入仓库，整个过程毫无违和感</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpz860uj30fe06fjso.jpg" alt> </p>
+<p>若使用的不是idea工具，可直接使用maven命令，一句完成打包，如下：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmpz23t0j30fe058t9t.jpg" alt></p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmqg96iwj30fe09lmz4.jpg" alt></p>
+<h5 id="校验镜像仓库结果"><a href="#校验镜像仓库结果" class="headerlink" title="校验镜像仓库结果"></a>校验镜像仓库结果</h5><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jmqf5inzj30fe0500tj.jpg" alt></p>
+<p>至此，我们的服务器环境，已经可以直接运行docker run 镜像得到结果了</p>
+<h1 id="Docker-Compose使用"><a href="#Docker-Compose使用" class="headerlink" title="Docker-Compose使用"></a><strong>Docker-Compose使用</strong></h1><p>当项目涉及容器较多时，需要一个管理容器的工具</p>
+<h2 id="docker-compose安装"><a href="#docker-compose安装" class="headerlink" title="docker-compose安装"></a><strong>docker-compose安装</strong></h2><h3 id="curl方式安装"><a href="#curl方式安装" class="headerlink" title="curl方式安装"></a><strong>curl方式安装</strong></h3><p>sudo curl -L <a href="https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname" target="_blank" rel="noopener">https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname</a> -s<code>-</code>uname -m` &gt; /usr/local/bin/docker-compose        </p>
+<h3 id="增加可执行权限"><a href="#增加可执行权限" class="headerlink" title="增加可执行权限"></a><strong>增加可执行权限</strong></h3><p>sudo chmod +x /usr/local/bin/docker-compose</p>
+<h3 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a><strong>查看版本</strong></h3><p>docker-compose version</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmqf1wxnj30e202qjse.jpg" alt></p>
+<h2 id="docker-compose-yaml命令"><a href="#docker-compose-yaml命令" class="headerlink" title="docker-compose.yaml命令"></a><strong>docker-compose.yaml命令</strong></h2><p>docker-compose的命令与docker命令极为相似，用法上没有区别，下面列出它特有的几种命令： </p>
+<p>up 创建并启动容器：docker-compose up -d –scale 服务名=数字 </p>
+<p>​            ———- d表示后台运行，scale是表示对应的服务同时启动几个容器</p>
+<p>down 停止并删除容器： docker-compose down</p>
+<p>​            ———- 会停掉容器，并删除掉容器。如果不希望删除容器，请使用stop</p>
+<h2 id="docker-compose实战"><a href="#docker-compose实战" class="headerlink" title="docker-compose实战"></a><strong>docker-compose实战</strong></h2><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jmsb8gcgj30fe0bmjtg.jpg" alt></p>
+<p>编写一个项目整体服务，一个网关nginx + springboot的集群，如上图</p>
+<p>其中nginx服务，将配置文件挂载在主机当前项目目录的路径下：nginx/conf.d/</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmsb64igj30fe07ytb4.jpg" alt></p>
+<p>命令：docker-compose up -d</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmsb3olyj30fe03kjsw.jpg" alt></p>
+<p>docker-compose up -d –scale member-1=2</p>
+<p>把member-1服务启动两个容器</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmsncxdkj30fe04dwgc.jpg" alt></p>
+<h1 id="Docker网络路由"><a href="#Docker网络路由" class="headerlink" title="Docker网络路由"></a><strong>Docker网络路由</strong></h1><h2 id="docker的跨主机网络路由"><a href="#docker的跨主机网络路由" class="headerlink" title="docker的跨主机网络路由"></a><strong>docker的跨主机网络路由</strong></h2><p>假设我们现在有两台docker主机，各启动了自己的容器在运行</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmsn8k8pj30fe06iab2.jpg" alt></p>
+<h3 id="问题由来"><a href="#问题由来" class="headerlink" title="问题由来"></a><strong>问题由来</strong></h3><p>1、在网桥模式下，同一个主机下的容器，使用同一个网桥docker0，它们组成一个局域网，如上图主机1的172.17.6.0网段下的三个容器</p>
+<p>2、同一个主机下的容器，相互之间网络是通的</p>
+<p>3、但不同主机下，是不同的局域网，它们之间网络不能互通。如：172.17.6.2的容器，想要访问172.17.8.2的容器</p>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a><strong>方案</strong></h3><p>a机192.168.244.7，容器网段172.17.6.1/16，a机起了容器ip是172.17.6.2</p>
+<p>b机192.168.244.8，容器网段172.17.8.1/16，b机起了容器ip是172.17.8.2</p>
+<h4 id="两台机分别配置路由表"><a href="#两台机分别配置路由表" class="headerlink" title="两台机分别配置路由表"></a><strong>两台机分别配置路由表</strong></h4><p>a机，route add -net 172.17.8.0 netmask 255.255.255.0  gw 192.168.244.8</p>
+<p>b机，route add -net 172.17.6.0 netmask 255.255.255.0  gw 192.168.244.7</p>
+<p>添加好后，路由表类似下图</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmsn5no9j30fe03dabj.jpg" alt></p>
+<p>然后a机ping b机容器，发现仍是ping不通，卡住ping不通，就是数据包被drop掉了</p>
+<h4 id="ip-forward配置"><a href="#ip-forward配置" class="headerlink" title="ip_forward配置"></a><strong>ip_forward配置</strong></h4><p>我们在b机上使用以下命令查看网络包转发情况，发现有掉包</p>
+<p>iptables -t filter -nvL FORWARD</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jmsyrbwrj30fe037myu.jpg" alt></p>
+<p>我们需要b机上配置，寻找172.17段ip的网络包不要丢掉，要转发</p>
+<p>a机：    iptables -I DOCKER  –dst 172.17.0.0/16 -j ACCEPT</p>
+<p>b机：    iptables -I DOCKER  –dst 172.17.0.0/16 -j ACCEPT</p>
+<p>网络ok，整个网络包的流程，完整如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jmsylf74j30fe061dgz.jpg" alt></p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-06-25  17:44:47</span></li>
+                
+                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/工具/">工具</a>
+                    
+                    <a href="/categories/工具/docker/">docker</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/docker/">docker</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/06/30/spring-6/" class="pre-post fa fa-caret-left">Spring的AOP底层源码分析</a>
+        
+        
+        <a href="/2019/06/20/thread-8/" class="next-post fa">Java8新增的并发</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx镜像制作实战"><span class="toc-number">1.</span> <span class="toc-text">nginx镜像制作实战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#docker容器的主业"><span class="toc-number">1.1.</span> <span class="toc-text">docker容器的主业</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐的-ENTRYPOINT方式"><span class="toc-number">1.2.</span> <span class="toc-text">推荐的 ENTRYPOINT方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#手动打包springboot镜像"><span class="toc-number">1.3.</span> <span class="toc-text">手动打包springboot镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maven源码打包用法"><span class="toc-number">1.4.</span> <span class="toc-text">maven源码打包用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maven插件打包"><span class="toc-number">1.5.</span> <span class="toc-text">maven插件打包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#前提条件"><span class="toc-number">1.5.1.</span> <span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#本地环境配置"><span class="toc-number">1.5.2.</span> <span class="toc-text">本地环境配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#项目环境配置maven插件"><span class="toc-number">1.5.3.</span> <span class="toc-text">项目环境配置maven插件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#打包运行"><span class="toc-number">1.5.4.</span> <span class="toc-text">打包运行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#校验镜像仓库结果"><span class="toc-number">1.5.5.</span> <span class="toc-text">校验镜像仓库结果</span></a></li></ol></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose使用"><span class="toc-number"></span> <span class="toc-text">Docker-Compose使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose安装"><span class="toc-number"></span> <span class="toc-text">docker-compose安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#curl方式安装"><span class="toc-number">1.</span> <span class="toc-text">curl方式安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加可执行权限"><span class="toc-number">2.</span> <span class="toc-text">增加可执行权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看版本"><span class="toc-number">3.</span> <span class="toc-text">查看版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose-yaml命令"><span class="toc-number"></span> <span class="toc-text">docker-compose.yaml命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose实战"><span class="toc-number"></span> <span class="toc-text">docker-compose实战</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker网络路由"><span class="toc-number"></span> <span class="toc-text">Docker网络路由</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker的跨主机网络路由"><span class="toc-number"></span> <span class="toc-text">docker的跨主机网络路由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题由来"><span class="toc-number">1.</span> <span class="toc-text">问题由来</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案"><span class="toc-number">2.</span> <span class="toc-text">方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#两台机分别配置路由表"><span class="toc-number">2.1.</span> <span class="toc-text">两台机分别配置路由表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ip-forward配置"><span class="toc-number">2.2.</span> <span class="toc-text">ip_forward配置</span></a></li></ol></li></ol>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+</li></ol></li>
+
+</body>
+</html>

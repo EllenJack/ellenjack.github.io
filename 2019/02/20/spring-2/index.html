@@ -1,0 +1,412 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>Spring基础及组件使用(2) | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="Spring基础及组件使用(2)">
+                
+                Spring基础及组件使用(2)
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/02/20</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>411</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="CAP5章节-Conditional条件注册bean"><a href="#CAP5章节-Conditional条件注册bean" class="headerlink" title="CAP5章节  @Conditional条件注册bean"></a>CAP5章节  @Conditional条件注册bean</h2><p>1,  将IOC容器注册bean时, 当操作系统为WINDOWS时,注册Lison实例; 当操作系统为LINUX时, 注册James实例,此时要用得@Conditional注解进行定制化条件选择注册bean;</p>
+<p>2,  新建Cap7MainConfig1.java,</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jert16t7j30d80e73yz.jpg" alt></p>
+<p>新建WinCondition.java类做为条件类, 同时必须得实现spring提供的Confition接口</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jersxaduj30mm0duq3i.jpg" alt></p>
+<p>新建 LinuxCondition条件类, 用来处理操作系统为LINUX的bean注册</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jerst85cj30ls0dygm5.jpg" alt></p>
+<p>3,  把IOC容器里的所有person实例名打印出来(为了看效果,刚开始在配置类可以<strong>不加@Conditinal</strong>)</p>
+<p>​     @Test</p>
+<p>​     <strong>public</strong> <strong>void</strong> test01()</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jes58bq6j30tc08hgm2.jpg" alt></p>
+<p>4,  新建test02(), 测试@Conditional  条件加载bean到IOC容器(<strong>加上@Conditinal</strong>)</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jes558sgj30r808ggm1.jpg" alt></p>
+<p>当引入@Conditional时, 容器可以选择性的注册bean.</p>
+<h2 id="CAP6章节-Import注册bean"><a href="#CAP6章节-Import注册bean" class="headerlink" title="CAP6章节  @Import注册bean"></a>CAP6章节  @Import注册bean</h2><p>同样按流程先新建Cap8MainConfig1.java配置类</p>
+<p>新建Dog.ava类—–&gt;<strong>public</strong> <strong>class</strong> Dog {}</p>
+<p>新建Cat.java类—-&gt;<strong>public</strong> <strong>class</strong> Cat{}</p>
+<p>按以下1,2,3箭头步骤分别导入多个类,使用import将dog, cat的bean注册到容器中,并测试打印,看容器中是否已加载此类</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jet10h3qj30op0mbabm.jpg" alt></p>
+<p><strong>分别使用</strong> </p>
+<p>@Import(Dog.class)   </p>
+<p>@Import({Dog.class,Cat.class})</p>
+<p>ImportSelector可以批量导入组件的全类名数组,自定义逻辑返回需要导入的组件JamesImportSelector.java</p>
+<p>@Import({Dog.class,Cat.class,JamesImportSelector.class})</p>
+<p><strong>新建</strong> <strong>JamesImportSelector</strong> <strong>, 新建Fish  Tiger类(与建Cat和Dog一样)</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jet89v75j30lq0aq3yv.jpg" alt></p>
+<p>怎么测呢?</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jet864nwj30si09gdg6.jpg" alt></p>
+<p>当然,除了以上,还可以通过ImportBeanDefinitionRegistrar自定义注册,向容器中注册bean;</p>
+<p>@Import({Dog.<strong>class</strong>,Cat.<strong>class</strong>,JamesImportSelector.<strong>class</strong>,JamesImportBeanDefinitionRegistrar.<strong>class</strong>})</p>
+<p>新建<strong>JamesImportBeanDefinitionRegistrar</strong>自定义注册类,实现bean注册</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jet82pznj30tm0exq3u.jpg" alt></p>
+<p>当然除了以上加载方式,还可以通过实现FactoryBean接口方式来加载bean</p>
+<p>/*   使用spring提供的FactoryBean(工厂bean)</p>
+<ul>
+<li><p>beans.factory.FatoryBean源码跟进去</p>
+</li>
+<li><p>容器调用getObject()返回对象，把对象放到容器中；</p>
+</li>
+<li><p>getObjectType()返回对象类型</p>
+</li>
+<li><p>isSingleton()是否单例进行控制</p>
+</li>
+<li><p>新建JamesFactoryBean实现FactoryBean</p>
+</li>
+<li><p>在config里新建jamesFactoryBean()方法</p>
+</li>
+<li><p>写完test03测试用例后:</p>
+</li>
+<li><p>a,默认获取到的是工厂bean调用getObject创建的对象</p>
+</li>
+<li><p>b,要获取工厂Bean本身,需要在id前加个  &amp;jamesFactoryBean</p>
+</li>
+</ul>
+<p>*/    </p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jetlbtstj30fc0bo74k.jpg" alt></p>
+<p>把自定义的<strong>JamesImportBeanDefinitionRegistrar</strong>加入配置类进行测试</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jetl6qb6j30op06lq31.jpg" alt></p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-02-20  13:39:34</span></li>
+                
+                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/框架/">框架</a>
+                    
+                    <a href="/categories/框架/Spring/">Spring</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/Spring/">Spring</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/02/25/spring-3/" class="pre-post fa fa-caret-left">Spring基础及组件使用(3)(Bean生命周期)</a>
+        
+        
+        <a href="/2019/02/20/spring-1/" class="next-post fa">Spring基础及组件使用(1)</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP5章节-Conditional条件注册bean"><span class="toc-number">1.</span> <span class="toc-text">CAP5章节  @Conditional条件注册bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP6章节-Import注册bean"><span class="toc-number">2.</span> <span class="toc-text">CAP6章节  @Import注册bean</span></a></li></ol>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

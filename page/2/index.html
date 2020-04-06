@@ -1,0 +1,828 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/article-exp.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header>
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <ul id="main">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/06/20/thread-7/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jn8c2bpkj30np0b5aaj.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/06/20/thread-7/">
+                <h2 class="article-title">JMM和底层实现原理</h2>
+            </a>
+            
+            <p class="article-content">
+                JMM基础-计算机原理Java内存模型即Java Memory Model，简称JMM。JMM定义了Java 虚拟机(JVM)在计算机内存(RAM)中的工作方式。JVM是整个计算机虚拟模型，所以JMM是隶属于JVM的。Java1.5版本对其进行了重构，现在的Java仍沿用了Java1.5的版本。Jmm遇到的问题与现代计算机中遇到的问题是差不多的。
+物理计算机中的并发问题，物理机遇到的并发问题与虚拟机中的情况有不少相似之处，物理机对并发的处理方案对于虚拟机的实现也有相当大的参考意义。
+根据《Jeff Dean在Google全体工程大会的报告》我们可以看到
+
+计算机在做一些我们平时的基本操作时，需要的响应时间是不一样的。
+（以下案例仅做说明，并不代表真实情况。）
+如果从内存中读取1M的int型数据由CPU进行累加，耗时要多久？
+做个简单的计算，1M的数据，Java里int型为32位，4个...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/20</span>
+    </span>
+    
+    
+    
+    <a href="/2019/06/20/thread-7/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/06/20/thread-6/">
+        <div class="article-img img-ajax" data-src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jn03d6ngj30xi04zweu.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/06/20/thread-6/">
+                <h2 class="article-title">并发安全</h2>
+            </a>
+            
+            <p class="article-content">
+                如果多线程下使用这个类，不过多线程如何使用和调度这个类，这个类总是表示出正确的行为，这个类就是线程安全的。
+类的线程安全表现为：
+l  操作的原子性
+l  内存的可见性
+不做正确的同步，在多个线程之间共享状态的时候，就会出现线程不安全。
+怎么才能做到类的线程安全？栈封闭所有的变量都是在方法内部声明的，这些变量都处于栈封闭状态。
+无状态没有任何成员变量的类，就叫无状态的类
+让类不可变让状态不可变，两种方式：
+1，加final关键字，对于一个类，所有的成员变量应该是私有的，同样的只要有可能，所有的成员变量应该加上final关键字，但是加上final，要注意如果成员变量又是一个对象时，这个对象所对应的类也要是不可变，才能保证整个类是不可变的。
+2、根本就不提供任何可供修改成员变量的地方，同时成员变量也不作为方法的返回值
+volatile保证类的可见性，最适合一个线程写，多个线程读的情景，
+...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/20</span>
+    </span>
+    
+    
+    
+    <a href="/2019/06/20/thread-6/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/06/20/thread-5/">
+        <div class="article-img img-ajax" data-src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jmxloga8j30re0cjaab.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/06/20/thread-5/">
+                <h2 class="article-title">线程池</h2>
+            </a>
+            
+            <p class="article-content">
+                什么是线程池？为什么要用线程池？1、 降低资源的消耗。降低线程创建和销毁的资源消耗；
+2、 提高响应速度：线程的创建时间为T1，执行时间T2,销毁时间T3，免去T1和T3的时间
+3、 提高线程的可管理性。
+JDK中的线程池和工作机制线程池的创建ThreadPoolExecutor，jdk所有线程池实现的父类
+各个参数含义int corePoolSize  ：线程池中核心线程数，&lt; corePoolSize  ，就会创建新线程，= corePoolSize  ，这个任务就会保存到BlockingQueue，如果调用prestartAllCoreThreads（）方法就会一次性的启动corePoolSize  个数的线程。
+int maximumPoolSize, 允许的最大线程数，BlockingQueue也满了，&lt; maximumPoolSize时候就会再次创建新的线程
+...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/20</span>
+    </span>
+    
+    
+    
+    <a href="/2019/06/20/thread-5/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/06/20/thread-4/">
+        <div class="article-img img-ajax" data-src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jfkah4n4j30m70bt0tp.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/06/20/thread-4/">
+                <h2 class="article-title">并发容器</h2>
+            </a>
+            
+            <p class="article-content">
+                ConcurrentHashMapHashmap多线程会导致HashMap的Entry链表形成环形数据结构，一旦形成环形数据结构，Entry的next节点永远不为空，就会产生死循环获取Entry。
+HashTable使用synchronized来保证线程安全，但在线程竞争激烈的情况下HashTable的效率非常低下。因为当一个线程访问HashTable的同步方法，其他线程也访问HashTable的同步方法时，会进入阻塞或轮询状态。如线程1使用put进行元素添加，线程2不但不能使用put方法添加元素，也不能使用get方法来获取元素，所以竞争越激烈效率越低。
+putIfAbsent() ：没有这个值则放入map，有这个值则返回key本来对应的值。
+预备知识Hash散列，哈希：把任意长度的输入通过一种算法（散列），变换成为固定长度的输出，这个输出值就是散列值。属于压缩映射，容易产生哈希冲突...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/20</span>
+    </span>
+    
+    
+    
+    <a href="/2019/06/20/thread-4/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/03/05/docker-2/">
+        <div class="article-img img-ajax" data-src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jfb8uxusj30b700st8s.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/03/05/docker-2/">
+                <h2 class="article-title">docker进阶</h2>
+            </a>
+            
+            <p class="article-content">
+                仓库使用docker官方仓库注册https://hub.docker.com
+自由注册，邮件激活即可使用
+
+命令使用Docker  pull/search/login/push/tag
+tag [镜像名：版本]  [仓库]/[镜像名：版本]：标记本地镜像，将其归入某一仓库
+Push [仓库]/[镜像名：版本]: 推送镜像到仓库  –需要登陆 
+Search [镜像名]：在仓库中查询镜像 – 无法查询到tag版本 
+Pull [镜像名：版本]： 下载镜像到本地 
+Login：登陆仓库 
+1、命令登陆dockerhub
+
+2、再使用tag命令标记一个镜像，指定自己的仓库
+
+3、使用push命令推送此镜像到仓库里
+
+4、打开查询自己仓库的镜像
+
+私有仓库搭建下载registry镜像：docker pull registry
+—–可配置加速器加速下载 
+
+启动docker run -d –n...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>docker</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            docker
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/03/05</span>
+    </span>
+    
+    
+    
+    <a href="/2019/03/05/docker-2/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/03/05/docker-1/">
+        <div class="article-img img-ajax" data-src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jf5fwgb4j30b108075d.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/03/05/docker-1/">
+                <h2 class="article-title">Docker简介</h2>
+            </a>
+            
+            <p class="article-content">
+                Docker 是一个开源项目，诞生于 2013 年初，最初是 dotCloud 公司内部的一个业余项目。它基于 Google 公司推出的 Go 语言实现。 项目后来加入了 Linux 基金会，遵从了 Apache 2.0 协议，项目代码在 GitHub 上进行维护。
+Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。 Docker 的基础是 Linux 容器（LXC）等技术。
+（背景），云计算兴起后，服务器硬件扩展非常便利，软件服务部署成为了瓶颈，docker趁势而兴。
+为什么用 Docker容器的启动可以在秒级实现，比传统的虚拟机方式要快得多
+对系统资源的利用率很高，一台主机上可以同时运行数千个 Docker 容器
+docker的出现，让开发/测试/线上的环境部署，成为便利一条龙。
+更快速的交付和部署对开发和运维（devop）人员来说，最希望的就是一次创建或配置，可以在...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>docker</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            docker
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/03/05</span>
+    </span>
+    
+    
+    
+    <a href="/2019/03/05/docker-1/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/03/01/spring-5/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jeldkvodj30ev03laau.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/03/01/spring-5/">
+                <h2 class="article-title">Spring组件及AOP基本使用操作</h2>
+            </a>
+            
+            <p class="article-content">
+                @Autowired方法, 参数, 构造方法都可加载, 跟进源码看看A&gt;放到方法上的测试步骤:
+​    新建Moon.java
+
+   新建Sun.java
+
+setMoon()方法使用的参数,自定义类型的值从IOC容器中获取, 方法里的moon会从容器中拿到
+以下是验证方式
+在配置类要加入扫描bean包
+
+测试:
+  新建test02()测试方法
+
+结果如下:(为同一个bean)
+
+方法使用的参数,自定义类型的值从IOC容器中获取, 方法里的moon会从容器中拿到
+B&gt; 将Autowired标记在有参构造器
+
+构造函数的moon是从容器里拿到的
+执行test02()测试;
+同样,也可以放在构造器的参数位置也可以获取到IOC容器的bean.
+
+结论: 不管@Autowired是放到参数, 方法还是构造方法, 都是从容器里取到的bean…
+自动装配:Aware注入spri...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/03/01</span>
+    </span>
+    
+    
+    
+    <a href="/2019/03/01/spring-5/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/02/25/spring-4/">
+        <div class="article-img img-ajax" data-src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jewpqv55j30ia0acgng.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/02/25/spring-4/">
+                <h2 class="article-title">Spring的BeanPostProcessor分析及组件使用4</h2>
+            </a>
+            
+            <p class="article-content">
+                CAP7 章节 Spring 底层对 BeanPostProcessor 的使用
+1, ApplicationContextAwareProcessor 实现分析 :
+此类帮我们组建IOC容器,跟进ApplicationContextAwareProcessor我们发现, 这个后置处理器其实就是判断我们的bean有没有实现ApplicationContextAware 接口,并处理相应的逻辑,其实所有的后置处理器原理均如此.
+那么怎么组建呢? 只需要实现 ApplicationContextAware 接口
+步骤:
+​    1&gt;, 新建Plane.java(将Jeep.java复制一份即可)
+​         class Plane implements ApplicationContextAware
+
+分析一下ApplicationContextAwareProcesso...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/02/25</span>
+    </span>
+    
+    
+    
+    <a href="/2019/02/25/spring-4/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/02/25/spring-3/">
+        <div class="article-img img-ajax" data-src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jev1qoofj30lx02q748.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/02/25/spring-3/">
+                <h2 class="article-title">Spring基础及组件使用(3)(Bean生命周期)</h2>
+            </a>
+            
+            <p class="article-content">
+                注:当声明Object bean1 = anno.getBean(“&amp;jamesFactoryBean”);, 获取到的bean为jamesFactoryBean对象, 也可跟进源码分析看看
+CAP7章节  bean的生命周期bean的生命周期:指   bean创建—–初始化—-销毁  的过程
+bean的生命周期是由容器进行管理的
+我们可以自定义 bean初始化和销毁 方法: 容器在bean进行到当前生命周期的时候, 来调用自定义的初始化和销毁方法
+  如何定义和销毁(4种方式):
+ 1) 指定初始化和销毁方法 &lt;之前在beanx.xml, 可以指定init-method和destory-mothod&gt;
+​    用注释如何做: 新建Bike.java
+
+1.1&gt; 指定初始化和销毁方法
+​    在配置类里通过@Bean(initMethod=”init”,...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/02/25</span>
+    </span>
+    
+    
+    
+    <a href="/2019/02/25/spring-3/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/02/20/spring-2/">
+        <div class="article-img img-ajax" data-src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jersxaduj30mm0duq3i.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/02/20/spring-2/">
+                <h2 class="article-title">Spring基础及组件使用(2)</h2>
+            </a>
+            
+            <p class="article-content">
+                CAP5章节  @Conditional条件注册bean1,  将IOC容器注册bean时, 当操作系统为WINDOWS时,注册Lison实例; 当操作系统为LINUX时, 注册James实例,此时要用得@Conditional注解进行定制化条件选择注册bean;
+2,  新建Cap7MainConfig1.java,
+
+新建WinCondition.java类做为条件类, 同时必须得实现spring提供的Confition接口
+
+新建 LinuxCondition条件类, 用来处理操作系统为LINUX的bean注册
+
+3,  把IOC容器里的所有person实例名打印出来(为了看效果,刚开始在配置类可以不加@Conditinal)
+​     @Test
+​     public void test01()
+
+4,  新建test02(), 测试@Conditional  条件加载...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/02/20</span>
+    </span>
+    
+    
+    
+    <a href="/2019/02/20/spring-2/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+
+</ul>
+
+<div id="page-pagination">
+    <div id="page-nav">
+        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </div>
+</div>
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

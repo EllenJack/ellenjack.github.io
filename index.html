@@ -1,0 +1,830 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/article-exp.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header>
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <ul id="main">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/07/03/kafka-4/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4m15d6qyyj30s50cjn0a.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/07/03/kafka-4/">
+                <h2 class="article-title">消息队列常见问题</h2>
+            </a>
+            
+            <p class="article-content">
+                为什么使用消息队列？其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？
+面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息队列的常见使用场景，其实场景有很多，但是比较核心的有3个：解耦、异步、削峰。
+解耦：A系统发送个数据到BCD三个系统，接口调用发送，那如果E系统也要这个数据呢？那如果C系统现在不需要了呢？现在A系统又要发送第二种数据了呢？而且A系统要时时刻刻考虑BCDE四个系统如果挂了咋办？要不要重发？我要不要把消息存起来？
+你需要去考虑一下你负责的系统中是否有类似的场景，就是一个系统或者一个模块，调用了多个系统或者模块，互相之间的调用很复杂，维护起来很麻烦。但是其实这个调用是不需要直接同步调用接口的，如果用M...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Kafka</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Kafka
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/03</span>
+    </span>
+    
+    
+    
+    <a href="/2019/07/03/kafka-4/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/07/03/kafka-3/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4m179vhrhj30jm07x0u9.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/07/03/kafka-3/">
+                <h2 class="article-title">深入理解Kafka</h2>
+            </a>
+            
+            <p class="article-content">
+                深入理解Kafka集群的成员关系Kafka使用 zookeeper来维护集群成员的信息。每个 broker都有个唯一标识符, 这个标识符可以在配置文件里指定, 也可以自动生成。 在 broker启动的时候, 它通过创建临时节点把自己的 ID注册到 zoo-keeper。 Kafka组件订阅 Zookeeper的/brokers/ids路径(broker在 zookeeper上的注册路径) , 当有 broker加入集群或退出集群时, 这些组件就可以获得通知 。
+如果你要启动另一个具有相同 ID的 broker, 会得到一个错误。新 broker会试着进行注册,但不会成功, 因为 zookeeper里已经有一个具有相同 ID的 broker。
+在 broker停机、 出现网络分区或长时间垃圾回收停顿时, broker会从 Zookeeper上断开连接, 此时 broker在启动时创建的...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Kafka</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Kafka
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/03</span>
+    </span>
+    
+    
+    
+    <a href="/2019/07/03/kafka-3/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/07/03/kafka-2/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4m0qk6nsyj30j70ligok.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/07/03/kafka-2/">
+                <h2 class="article-title">Kafka应用</h2>
+            </a>
+            
+            <p class="article-content">
+                第一个Kafka程序创建我们的主题kafka-topics.bat –zookeeper localhost:2181/kafka –create –topic hello-kafka –replication-factor 1 –partitions 4
+生产者发送消息必选属性创建生产者对象时有三个属性必须指定。
+bootstrap.servers该属性指定broker的地址清单，地址的格式为host：port。清单里不需要包含所有的broker地址，生产者会从给定的broker里查询其他broker的信息。不过最少提供2个broker的信息，一旦其中一个宕机，生产者仍能连接到集群上。
+key.serializer生产者接口允许使用参数化类型，可以把Java对象作为键和值传broker，但是broker希望收到的消息的键和值都是字节数组，所以，必须提供将对象序列化成字节数组的序列化...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Kafka</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Kafka
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/03</span>
+    </span>
+    
+    
+    
+    <a href="/2019/07/03/kafka-2/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/07/01/spring-10/">
+        <div class="article-img img-ajax" data-src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jpl3wdfsj30uk0dmai5.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/07/01/spring-10/">
+                <h2 class="article-title">手写SpringMVC笔记</h2>
+            </a>
+            
+            <p class="article-content">
+                1,新建项目
+  
+  
+此时工程创建完毕.
+2,新建注解及控制类,服务类及DispatcherServlet类(见源码)
+ 
+内容分别如下:
+ 
+ 
+ 
+ 
+ 
+声明注解到控制层(此时注解待解析)
+ 
+声明service服务类注解EnjoyServiceImpl
+ 
+接口类如下
+ 
+创建一个新的DispatherServlet类,用来初始化bean和拦截请求
+ 
+ 
+它的子方法请下载云盘里的源码跟进查看,每一行代码都写了注解.
+3,将DispatcherServlet配置到web.xml(在项目启动时会加载这个DispatcherServlet的init方法)
+ 
+4,DispatcherServlet的doPost方法里对请求路径进行拦截,并根据路径到找对应要执行的方法
+ 
+ 
+使用处理器解析后的参数放到args数组, 直接使用method.invoke(instance, ar...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/01</span>
+    </span>
+    
+    
+    
+    <a href="/2019/07/01/spring-10/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/07/01/spring-9/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jou88pv1j30k20ca0vh.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/07/01/spring-9/">
+                <h2 class="article-title">Servlet3.0与SpringMvc那些事</h2>
+            </a>
+            
+            <p class="article-content">
+                1，以前来写web的三大组件：以前写servlet filter listener都需要在web.xml进行注册，包括springmvc的前端控制器DispactherServlet也需要在web.xml注册，现在可以通过注解的方式快速搭建我们的web应用
+2，servlet3.0需要tomcat7以上版本进行支持
+3，创建动态web工程（Dynamic Web Project），看一看原生版的servlet：
+   步骤如下
+3.1创建工程：
+   
+  3.2新建jsp页面
+   
+  3.3打开页面，新增请求地址，请求地址为order
+ 
+3.4那么我们建立一个原生的servlet来处理 order的请求
+ 
+加入tomcat，启动后测试访问地址，结果如下：
+ 
+可以访问到路径地址。
+当然这些注解不是我们讲的重点，原生的servlet开发还是很少的。
+4，Shared libr...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/01</span>
+    </span>
+    
+    
+    
+    <a href="/2019/07/01/spring-9/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/07/01/spring-8/">
+        <div class="article-img img-ajax" data-src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joji8q0qj30hj06eta8.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/07/01/spring-8/">
+                <h2 class="article-title">BeanFactory的两个重要后置处理器</h2>
+            </a>
+            
+            <p class="article-content">
+                1，扩展原理－BeanFactoryPostProcessor
+BeanFactoryPostProcessor：beanFactory的后置处理器；
+作用如下：          
+a),在BeanFactory标准初始化之后调用，来定制和修改BeanFactory的内容；
+b),所有的bean定义已经保存加载到beanFactory，但是bean的实例还未创建
+注意：之前也讲过BeanPostProcessor，它是bean后置处理器，bean创建对象初始化前后进行拦截工作的
+操作步骤：
+1〉新建ExtConfig.java配置类
+    
+新建JamesBeanFactoryPostProcessor.java处理器类（在com.enjoy.cap12.processor目录下）
+ 
+BeanFacotry是在bean组件创建之前还是之后生成的呢？写一个测试用例
+
+不难发现，在...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/01</span>
+    </span>
+    
+    
+    
+    <a href="/2019/07/01/spring-8/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/07/01/spring-7/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jo2vvie4j30um089wh8.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/07/01/spring-7/">
+                <h2 class="article-title">声明式事务</h2>
+            </a>
+            
+            <p class="article-content">
+                1， 环境搭建：导入数据源、数据库驱动、Spring-jdbc依赖
+在pom.xml新增c3p0依赖包(c3p0封装了jdbc 对DataSource接口的实现)
+ 
+在pom.xml新增数据库驱动依赖包
+ 
+在pom.xml新增spring-jdbc依赖包（jdbcTemplate）
+ 
+2，新建Cap10MainConfig,将数据源和操作模板加载到IOC容器中
+ 
+3，新建Order测试表
+CREATE TABLE order (  orderid int(11) DEFAULT NULL,  ordertime datetime DEFAULT NULL,  ordermoney decimal(20,0) DEFAULT NULL,  orderstatus char(1) DEFAULT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8
+4...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/01</span>
+    </span>
+    
+    
+    
+    <a href="/2019/07/01/spring-7/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/06/30/spring-6/">
+        <div class="article-img img-ajax" data-src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jmuyhromj30ix01dwea.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/06/30/spring-6/">
+                <h2 class="article-title">Spring的AOP底层源码分析</h2>
+            </a>
+            
+            <p class="article-content">
+                使用JoinPoint可以拿到相关的内容, 比如方法名,  参数
+
+那么方法正常返回, 怎么拿方法的返回值呢?
+
+那么如果是异常呢?定义
+
+小结: AOP看起来很麻烦, 只要3步就可以了:
+  1,将业务逻辑组件和切面类都加入到容器中, 告诉spring哪个是切面类(@Aspect)
+  2,在切面类上的每个通知方法上标注通知注解, 告诉Spring何时运行(写好切入点表达式,参照官方文档)
+  3,开启基于注解的AOP模式  @EableXXXX
+九 CAP27 AOP 源码透析
+ * AOP原理：【看给容器中注册了什么组件，这个组件什么时候工作，这个组件的功能是什么？】
+ *     @EnableAspectJAutoProxy；核心从这个入手,AOP整个功能要启作用,就是靠这个,加入它才有AOP
+​       跟进@EnableAspectJAutoProxy源码:
+//导...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/30</span>
+    </span>
+    
+    
+    
+    <a href="/2019/06/30/spring-6/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/06/25/docker-3/">
+        <div class="article-img img-ajax" data-src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jmo27pqpj30fe07udj3.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/06/25/docker-3/">
+                <h2 class="article-title">docker实战</h2>
+            </a>
+            
+            <p class="article-content">
+                nginx镜像制作实战docker容器的主业docker理念里，容器启动时，应当为它指定主业是什么，如nginx容器主业就是nginx代理服务，tomcat容器就是web服务等等
+1、容器创建时，必须指定主业任务，如不指定，则容器无事可干立即退出。
+2、在dockerfile打包镜像时，可以使用cmd命令来指定一个默认的主业，如下：
+
+3、既然镜像里是默认主业，即意味着创建容器时，可以覆盖此默认命令，如下
+
+推荐的 ENTRYPOINT方式1、镜像本身应该有稳定的主业，应当指定后即不能更改用途，于是引入ENTRYPOINT
+2、使用ENTRYPOINT字义即容器入口，它不能被run中cmd覆盖，如下例：
+
+执行：docker build -t nginxx:v3 .
+
+以后使用nginxx:v3这个镜像时，只能做nginx服务来使用啦
+手动打包springboot镜像我们需要对业务项...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>docker</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            docker
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/25</span>
+    </span>
+    
+    
+    
+    <a href="/2019/06/25/docker-3/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li class="article-excerpt-wrap " _href="/2019/06/20/thread-8/">
+        <div class="article-img img-ajax" data-src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jnj2hj5sj30r306rdg7.jpg">
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2019/06/20/thread-8/">
+                <h2 class="article-title">Java8新增的并发</h2>
+            </a>
+            
+            <p class="article-content">
+                原子操作CASLongAdderJDK1.8时，java.util.concurrent.atomic包中提供了一个新的原子类：LongAdder。 根据Oracle官方文档的介绍，LongAdder在高并发的场景下会比它的前辈————AtomicLong 具有更好的性能，代价是消耗更多的内存空间。
+AtomicLong是利用了底层的CAS操作来提供并发性的，调用了Unsafe类的getAndAddLong方法，该方法是个native方法，它的逻辑是采用自旋的方式不断更新目标值，直到更新成功。
+在并发量较低的环境下，线程冲突的概率比较小，自旋的次数不会很多。但是，高并发环境下，N个线程同时进行自旋操作，会出现大量失败并不断自旋的情况，此时AtomicLong的自旋会成为瓶颈。
+这就是LongAdder引入的初衷——解决高并发环境下AtomicLong的自旋瓶颈问题。
+AtomicLo...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>并发编程</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            多线程
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/06/20</span>
+    </span>
+    
+    
+    
+    <a href="/2019/06/20/thread-8/" class="read-article">Read</a>
+    
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+
+</ul>
+
+<div id="page-pagination">
+    <div id="page-nav">
+        <span class="extend disable prev" rel="prev">&laquo; Prev</span><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </div>
+</div>
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content="程序员的梦工厂/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>BeanFactory的两个重要后置处理器 | 小小杰博客</title>
+
+<link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+
+    
+    
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header style="position: absolute;">
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">小小杰博客</h1>
+        </a>
+        
+        <h2 class="subtitle">锦绣前程</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/2018/12/15/about/"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>学而时习之，不亦乐乎</p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Maven/"><i class="fa" aria-hidden="true">Maven</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/docker/"><i class="fa" aria-hidden="true">docker</i></a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发编程/"><i class="fa" aria-hidden="true">并发编程</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架/"><i class="fa" aria-hidden="true">框架</i></a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/框架/Spring/"><i class="fa" aria-hidden="true">Spring</i></a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/"><i class="fa" aria-hidden="true">消息中间件</i></a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/消息中间件/Kafka/"><i class="fa" aria-hidden="true">Kafka</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/消息中间件/RabbitMQ/"><i class="fa" aria-hidden="true">RabbitMQ</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">时光轴</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">七月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">六月 2019</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">三月 2019</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">二月 2019</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><i class="fa" aria-hidden="true">十二月 2018</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/docker/" style="font-size: 0.16rem; color: #4f83b8">docker</a> <a href="/tags/关于我/" style="font-size: 0.14rem; color: #69c">关于我</a> <a href="/tags/Kafka/" style="font-size: 0.17rem; color: #386da4">Kafka</a> <a href="/tags/Maven/" style="font-size: 0.14rem; color: #69c">Maven</a> <a href="/tags/RabbitMQ/" style="font-size: 0.14rem; color: #69c">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 0.2rem; color: #0a407c">Spring</a> <a href="/tags/多线程/" style="font-size: 0.18rem; color: #215690">多线程</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友情链接</h3><br>
+
+    
+        <a href="http://enjoy.ke.qq.com" class="fa" target="_blank">享学课堂</a>
+
+    
+        <a href="http://wuwenliang.net" class="fa" target="_blank">朝·闻·道</a>
+
+    
+        <a href="https://pleuvoir.github.io" class="fa" target="_blank">撄而后成</a>
+
+    
+
+</li>
+
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="BeanFactory的两个重要后置处理器">
+                
+                BeanFactory的两个重要后置处理器
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Spring</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Spring
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2019/07/01</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+        </div>
+        
+        <div id="post-body">
+            <p><strong>1，扩展原理－BeanFactoryPostProcessor</strong></p>
+<p>BeanFactoryPostProcessor：beanFactory的后置处理器；</p>
+<p>作用如下：          </p>
+<p>a),在BeanFactory标准初始化之后调用，来定制和修改BeanFactory的内容；</p>
+<pre><code>b),所有的bean定义已经保存加载到beanFactory，但是bean的实例还未创建
+</code></pre><p><strong>注意：</strong>之前也讲过BeanPostProcessor，它是bean后置处理器，bean创建对象初始化前后进行拦截工作的</p>
+<p>操作步骤：</p>
+<p>1〉新建ExtConfig.java配置类</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4joji8q0qj30hj06eta8.jpg" alt="img">    </p>
+<p>新建JamesBeanFactoryPostProcessor.java处理器类（在com.enjoy.cap12.processor目录下）</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4joje8ighj30ns082dk2.jpg" alt="img"> </p>
+<p>BeanFacotry是在bean组件创建之前还是之后生成的呢？写一个测试用例</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jp7puv6wj30o0034mxr.jpg" alt="img"></p>
+<p>不难发现，在“Moon constructor”创建之前，当前9个bean已被加载到beanFactory中了。</p>
+<p>测试结果结下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jojgddncj30ul04in2p.jpg" alt="img"> </p>
+<p> 那么以上BeanFactoryPostProcessor执行原理是怎么样的呢，打断点F5调试一下:</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jp49yos9j30n203274j.jpg" alt></p>
+<p>跟踪debug栈,不难发现以下步骤如下：</p>
+<p>  1)、ioc容器创建对象</p>
+<p>  2)、invokeBeanFactoryPostProcessors(beanFactory);</p>
+<pre><code>如何找到所有的BeanFactoryPostProcessor并执行他们的方法；
+
+    a）、直接在BeanFactory中找到所有类型是BeanFactoryPostProcessor的组件，并执行他们的方法
+</code></pre><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jp6g5srcj30o009bady.jpg" alt></p>
+<p> *             b）、在初始化创建其他组件前面执行</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jojhcjy6j30uj0jgdom.jpg" alt="img"> </p>
+<p>然后再点进去,</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jojhurobj30um05f0x6.jpg" alt="img"> </p>
+<p><strong>2，扩展原理－</strong> <strong>BeanDefinitionRegistryPostProcessor</strong></p>
+<p>postProcessBeanDefinitionRegistry();在所有bean定义信息将要被加载，bean实例还未创建的；</p>
+<p>操作步骤：</p>
+<p>新建JamesBeanDefinitionRegistryPostProcessor</p>
+<p><strong>注意</strong>：可使用BeanDefinitionBuilder构建器来创建bean定义信息</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jojf1uvnj30y60c510s.jpg" alt="img"> </p>
+<p>测试结果如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jojgv5bej30um07e10a.jpg" alt="img"> </p>
+<p>源码分析：从refresh()–&gt;invokeBeanFactoryPostProcessors()–&gt;PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(), 跟进去即发现代码逻辑如下：</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jojfhmvxj30ul0iadrv.jpg" alt="img"> </p>
+<p>所以，在任何情况下都会优先执行BeanDefinitionRegistryPostProcessor的处理器，而BeanFactoryPostProcessor的处理器在它后面执行</p>
+<p><strong>3，IOC容器处理流程（其实就是研究一下refresh()下的这些方法）</strong></p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jojfznccj30o10omths.jpg" alt="img"> </p>
+<p>Spring容器的refresh()【创建刷新】;</p>
+<p>1、prepareRefresh()刷新前的预处理;</p>
+<pre><code>1）、initPropertySources()初始化一些属性设置;子类自定义个性化的属性设置方法；
+
+2）、getEnvironment().validateRequiredProperties();检验属性的合法等
+
+3）、earlyApplicationEvents= new LinkedHashSet&lt;ApplicationEvent&gt;();保存容器中的一些早期的事件；
+</code></pre><p>2、obtainFreshBeanFactory();获取BeanFactory；</p>
+<pre><code>1）、refreshBeanFactory();刷新【创建】BeanFactory；
+
+        110行：创建了一个this.beanFactory = new DefaultListableBeanFactory();
+
+        设置id；
+
+2）、getBeanFactory();返回刚才GenericApplicationContext创建的BeanFactory对象；
+
+3）、将创建的BeanFactory【DefaultListableBeanFactory】返回；
+</code></pre><p>3、prepareBeanFactory(beanFactory);BeanFactory的预准备工作（以上创建了beanFactory,现在对BeanFactory对象进行一些设置属性）；</p>
+<pre><code>1）、设置BeanFactory的类加载器、支持表达式解析器...
+
+2）、添加部分BeanPostProcessor【ApplicationContextAwareProcessor】
+
+3）、设置忽略的自动装配的接口EnvironmentAware、EmbeddedValueResolverAware、xxx；
+
+4）、注册可以解析的自动装配；我们能直接在任何组件中自动注入：
+
+        BeanFactory、ResourceLoader、ApplicationEventPublisher、ApplicationContext
+
+5）、添加BeanPostProcessor【ApplicationListenerDetector】
+
+6）、添加编译时的AspectJ；
+
+7）、给BeanFactory中注册一些能用的组件；
+
+    environment【ConfigurableEnvironment】、
+
+    systemProperties【Map&lt;String, Object&gt;】、
+
+    systemEnvironment【Map&lt;String, Object&gt;】
+</code></pre><p>/**</p>
+<ul>
+<li>扩展原理：</li>
+<li>BeanPostProcessor：bean后置处理器，bean创建对象初始化前后进行拦截工作的</li>
+<li></li>
+<li>1、BeanFactoryPostProcessor：beanFactory的后置处理器；</li>
+<li>在BeanFactory标准初始化之后调用，来定制和修改BeanFactory的内容；</li>
+<li>所有的bean定义已经保存加载到beanFactory，但是bean的实例还未创建</li>
+<li></li>
+<li></li>
+<li>BeanFactoryPostProcessor原理:</li>
+<li>1)、ioc容器创建对象</li>
+<li>2)、invokeBeanFactoryPostProcessors(beanFactory);</li>
+<li>如何找到所有的BeanFactoryPostProcessor并执行他们的方法；</li>
+<li>1）、直接在BeanFactory中找到所有类型是BeanFactoryPostProcessor的组件，并执行他们的方法</li>
+<li>2）、在初始化创建其他组件前面执行</li>
+<li></li>
+</ul>
+<ul>
+<li>2、BeanDefinitionRegistryPostProcessor extends BeanFactoryPostProcessor</li>
+<li>postProcessBeanDefinitionRegistry();</li>
+<li>在所有bean定义信息将要被加载，bean实例还未创建的；</li>
+<li></li>
+<li>优先于BeanFactoryPostProcessor执行；</li>
+<li>利用BeanDefinitionRegistryPostProcessor给容器中再额外添加一些组件；</li>
+<li></li>
+<li>原理：</li>
+<li>1）、ioc创建对象</li>
+<li>2）、refresh()-》invokeBeanFactoryPostProcessors(beanFactory);</li>
+<li>3）、从容器中获取到所有的BeanDefinitionRegistryPostProcessor组件。</li>
+<li>1、依次触发所有的postProcessBeanDefinitionRegistry()方法</li>
+<li>2、再来触发postProcessBeanFactory()方法BeanFactoryPostProcessor； 为什么先执行postProcessBeanDefinitionRegistry()方法？两方法打断点，debug栈</li>
+<li></li>
+<li>4）、再来从容器中找到BeanFactoryPostProcessor组件；然后依次触发postProcessBeanFactory()方法<br>**/     </li>
+</ul>
+<p>＝＝＝＝＝IOC流程＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝<br>Spring容器的refresh()【创建刷新】;<br>1、prepareRefresh()刷新前的预处理;<br>    1）、initPropertySources()初始化一些属性设置;子类自定义个性化的属性设置方法；<br>    2）、getEnvironment().validateRequiredProperties();检验属性的合法等<br>    3）、earlyApplicationEvents= new LinkedHashSet<applicationevent>();保存容器中的一些早期的事件；<br>2、obtainFreshBeanFactory();获取BeanFactory；<br>    1）、refreshBeanFactory();刷新【创建】BeanFactory；<br>            110行：创建了一个this.beanFactory = new DefaultListableBeanFactory();<br>            设置id；<br>    2）、getBeanFactory();返回刚才GenericApplicationContext创建的BeanFactory对象；<br>    3）、将创建的BeanFactory【DefaultListableBeanFactory】返回；</applicationevent></p>
+<p>3、prepareBeanFactory(beanFactory);BeanFactory的预准备工作（以上创建了beanFactory,现在对BeanFactory对象进行一些设置属性）；<br>    1）、设置BeanFactory的类加载器、支持表达式解析器…<br>    2）、添加部分BeanPostProcessor【ApplicationContextAwareProcessor】<br>    3）、设置忽略的自动装配的接口EnvironmentAware、EmbeddedValueResolverAware、xxx；<br>    4）、注册可以解析的自动装配；我们能直接在任何组件中自动注入：<br>            BeanFactory、ResourceLoader、ApplicationEventPublisher、ApplicationContext<br>    5）、添加BeanPostProcessor【ApplicationListenerDetector】<br>    6）、添加编译时的AspectJ；<br>    7）、给BeanFactory中注册一些能用的组件；<br>        environment【ConfigurableEnvironment】、<br>        systemProperties【Map&lt;String, Object&gt;】、<br>        systemEnvironment【Map&lt;String, Object&gt;】<br>4、postProcessBeanFactory(beanFactory);BeanFactory准备工作完成后进行的后置处理工作；<br>    1）、子类通过重写这个方法来在BeanFactory创建并预准备完成以后做进一步的设置<br>======================以上是BeanFactory的创建及预准备工作==================================</p>
+<p>5、invokeBeanFactoryPostProcessors(beanFactory);执行BeanFactoryPostProcessor的方法；<br>    BeanFactoryPostProcessor：BeanFactory的后置处理器。在BeanFactory标准初始化之后执行的；<br>    两个接口：BeanFactoryPostProcessor、BeanDefinitionRegistryPostProcessor<br>    1）、执行BeanFactoryPostProcessor的方法；<br>        先执行BeanDefinitionRegistryPostProcessor<br>        1）、83行：获取所有的BeanDefinitionRegistryPostProcessor；<br>        2）、86行：看先执行实现了PriorityOrdered优先级接口的BeanDefinitionRegistryPostProcessor、<br>            postProcessor.postProcessBeanDefinitionRegistry(registry)<br>        3）、99行：在执行实现了Ordered顺序接口的BeanDefinitionRegistryPostProcessor；<br>            postProcessor.postProcessBeanDefinitionRegistry(registry)<br>        4）、109行：最后执行没有实现任何优先级或者是顺序接口的BeanDefinitionRegistryPostProcessors；<br>            postProcessor.postProcessBeanDefinitionRegistry(registry)</p>
+<pre><code>再执行BeanFactoryPostProcessor的方法
+1）、139行：获取所有的BeanFactoryPostProcessor
+2）、147行：看先执行实现了PriorityOrdered优先级接口的BeanFactoryPostProcessor、
+    postProcessor.postProcessBeanFactory()
+3）、167行：在执行实现了Ordered顺序接口的BeanFactoryPostProcessor；
+    postProcessor.postProcessBeanFactory()
+4）、175行：最后执行没有实现任何优先级或者是顺序接口的BeanFactoryPostProcessor；
+    postProcessor.postProcessBeanFactory()
+</code></pre><p>6、registerBeanPostProcessors(beanFactory);注册BeanPostProcessor（Bean的后置处理器）【 intercept bean creation】<br>        不同接口类型的BeanPostProcessor；在Bean创建前后的执行时机是不一样的<br>        BeanPostProcessor、<br>        DestructionAwareBeanPostProcessor、<br>        InstantiationAwareBeanPostProcessor、<br>        SmartInstantiationAwareBeanPostProcessor、<br>        MergedBeanDefinitionPostProcessor【internalPostProcessors】、</p>
+<pre><code>1）、189行：获取所有的 BeanPostProcessor;后置处理器都默认可以通过PriorityOrdered、Ordered接口来执行优先级
+2）、204行：先注册PriorityOrdered优先级接口的BeanPostProcessor；
+    把每一个BeanPostProcessor；添加到BeanFactory中
+    beanFactory.addBeanPostProcessor(postProcessor);
+3）、224行：再注册Ordered接口的
+4）、236行：最后注册没有实现任何优先级接口的
+5）、最终注册MergedBeanDefinitionPostProcessor；
+6）、注册一个ApplicationListenerDetector；来在Bean创建完成后检查是否是ApplicationListener，如果是
+    applicationContext.addApplicationListener((ApplicationListener&lt;?&gt;) bean);
+</code></pre><p>7、initMessageSource();初始化MessageSource组件（做国际化功能；消息绑定，消息解析）；<br>        1）、718行：获取BeanFactory<br>        2）、719行：看容器中是否有id为messageSource的，类型是MessageSource的组件<br>            如果有赋值给messageSource，如果没有自己创建一个DelegatingMessageSource；<br>                MessageSource：取出国际化配置文件中的某个key的值；能按照区域信息获取；<br>        3）、739行：把创建好的MessageSource注册在容器中，以后获取国际化配置文件的值的时候，可以自动注入MessageSource；<br>            beanFactory.registerSingleton(MESSAGE_SOURCE_BEAN_NAME, this.messageSource);<br>            MessageSource.getMessage(String code, Object[] args, String defaultMessage, Locale locale);以后可通过getMessage获取</p>
+<p>8、initApplicationEventMulticaster();初始化事件派发器；<br>        1）、753行：获取BeanFactory<br>        2）、754行：从BeanFactory中获取applicationEventMulticaster的ApplicationEventMulticaster；<br>        3）、762行：如果上一步没有配置；创建一个SimpleApplicationEventMulticaster<br>        4）、763行：将创建的ApplicationEventMulticaster添加到BeanFactory中，以后其他组件直接自动注入</p>
+<p>9、onRefresh();留给子容器（子类）<br>        1、子类重写这个方法，在容器刷新的时候可以自定义逻辑；</p>
+<p>10、registerListeners();给容器中将所有项目里面的ApplicationListener注册进来；<br>        1、822行：从容器中拿到所有的ApplicationListener<br>        2、824行：将每个监听器添加到事件派发器中；<br>            getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);<br>        3、832行：派发之前步骤产生的事件；</p>
+<p>11、finishBeanFactoryInitialization(beanFactory);初始化所有剩下的单实例bean；<br>    1、867行：beanFactory.preInstantiateSingletons();初始化后剩下的单实例bean，跟进<br>        1）、734行：获取容器中的所有Bean，依次进行初始化和创建对象<br>        2）、738行：获取Bean的定义信息；RootBeanDefinition<br>        3）、739行：Bean不是抽象的，是单实例的，是懒加载；<br>            1）、740行：判断是否是FactoryBean；是否是实现FactoryBean接口的Bean；<br>            2）、760行：不是工厂Bean。利用getBean(beanName);创建对象<br>                0、199行：getBean(beanName)； ioc.getBean();<br>                1、doGetBean(name, null, null, false);<br>                2、246行： getSingleton(beanName)先获取缓存中保存的单实例Bean《跟进去其实就是从MAP中拿》。如果能获取到说明这个Bean之前被创建过（所有创建过的单实例Bean都会被缓存起来）<br>                    从private final Map&lt;String, Object&gt; singletonObjects = new ConcurrentHashMap&lt;String, Object&gt;(256);获取的<br>                3、缓存中获取不到，开始Bean的创建对象流程；<br>                4、287行：标记当前bean已经被创建（防止多线程同时创建，使用synchronized）<br>                5、291行:获取Bean的定义信息；<br>                6、295行：getDependsOn()，bean.xml里创建person时，加depend-on=”jeep,moon”是先把jeep和moon创建出来<br>                         【获取当前Bean依赖的其他Bean;如果有按照getBean()把依赖的Bean先创建出来；】<br>                7、启动单实例Bean的创建流程；<br>                    1）、462行：createBean(beanName, mbd, args);<br>                    2）、490行：Object bean = resolveBeforeInstantiation(beanName, mbdToUse);让BeanPostProcessor先拦截返回代理对象；<br>                        【InstantiationAwareBeanPostProcessor】：提前执行；<br>                        先触发：postProcessBeforeInstantiation()；<br>                        如果有返回值：触发postProcessAfterInitialization()；<br>                    3）、如果前面的InstantiationAwareBeanPostProcessor没有返回代理对象；调用4）<br>                    4）、501行：Object beanInstance = doCreateBean(beanName, mbdToUse, args);创建Bean<br>                         1）、541行：【创建Bean实例】；createBeanInstance(beanName, mbd, args);<br>                             利用工厂方法或者对象的构造器创建出Bean实例；<br>                         2）、applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);<br>                             调用MergedBeanDefinitionPostProcessor的postProcessMergedBeanDefinition(mbd, beanType, beanName);<br>                         3）、578行：【Bean属性赋值】populateBean(beanName, mbd, instanceWrapper);<br>                             赋值之前：<br>                             1）、拿到InstantiationAwareBeanPostProcessor后置处理器；<br>                                 1305行：postProcessAfterInstantiation()；<br>                             2）、拿到InstantiationAwareBeanPostProcessor后置处理器；<br>                                 1348行：postProcessPropertyValues()；<br>                             =====赋值之前：===<br>                             3）、应用Bean属性的值；为属性利用setter方法等进行赋值；<br>                                 applyPropertyValues(beanName, mbd, bw, pvs);<br>                         4）、【Bean初始化】initializeBean(beanName, exposedObject, mbd);<br>                             1）、1693行：【执行Aware接口方法】invokeAwareMethods(beanName, bean);执行xxxAware接口的方法<br>                                 BeanNameAware\BeanClassLoaderAware\BeanFactoryAware<br>                             2）、1698行：【执行后置处理器初始化之前】applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);<br>                                 BeanPostProcessor.postProcessBeforeInitialization（）;<br>                             3）、1702行：【执行初始化方法】invokeInitMethods(beanName, wrappedBean, mbd);<br>                                 1）、是否是InitializingBean接口的实现；执行接口规定的初始化；<br>                                 2）、是否自定义初始化方法；<br>                             4）、1710行：【执行后置处理器初始化之后】applyBeanPostProcessorsAfterInitialization<br>                                 BeanPostProcessor.postProcessAfterInitialization()；</p>
+<pre><code>            5）、将创建的Bean添加到缓存中singletonObjects；sharedInstance = getSingleton(beanName, ()跟进去
+                 254行：addSingleton（），放到MAP中
+        ioc容器就是这些Map；很多的Map里面保存了单实例Bean，环境信息。。。。；
+所有Bean都利用getBean创建完成以后；
+    检查所有的Bean是否是SmartInitializingSingleton接口的；如果是；就执行afterSingletonsInstantiated()；
+</code></pre><p>12、finishRefresh();完成BeanFactory的初始化创建工作；IOC容器就创建完成；<br>        1）、882行：initLifecycleProcessor();初始化和生命周期有关的后置处理器；LifecycleProcessor<br>            默认从容器中找是否有lifecycleProcessor的组件【LifecycleProcessor】；如果没有new DefaultLifecycleProcessor();<br>            加入到容器；</p>
+<pre><code>        自己也可以尝试写一个LifecycleProcessor的实现类，可以在BeanFactory
+            void onRefresh();
+            void onClose();    
+    2）、    885行：getLifecycleProcessor().onRefresh();
+        拿到前面定义的生命周期处理器（BeanFactory）；回调onRefresh()；
+    3）、888行：publishEvent(new ContextRefreshedEvent(this));发布容器刷新完成事件；
+    4）、891行：liveBeansView.registerApplicationContext(this);
+
+======总结===========
+1）、Spring容器在启动的时候，先会保存所有注册进来的Bean的定义信息；
+    1）、xml注册bean；&lt;bean&gt;
+    2）、注解注册Bean；@Service、@Component、@Bean、xxx
+2）、Spring容器会合适的时机创建这些Bean
+    1）、用到这个bean的时候；利用getBean创建bean；创建好以后保存在容器中；
+    2）、统一创建剩下所有的bean的时候；finishBeanFactoryInitialization()；
+3）、后置处理器；BeanPostProcessor
+    1）、每一个bean创建完成，都会使用各种后置处理器进行处理；来增强bean的功能；
+        AutowiredAnnotationBeanPostProcessor:处理自动注入
+        AnnotationAwareAspectJAutoProxyCreator:来做AOP功能；
+        xxx....
+        增强的功能注解：
+        AsyncAnnotationBeanPostProcessor
+        ....
+4）、事件驱动模型；
+    ApplicationListener；事件监听；
+    ApplicationEventMulticaster；事件派发：
+</code></pre>
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
+                
+                
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
+                
+                <li>Published Date: <span>2019-07-01  01:37:49</span></li>
+                
+                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/框架/">框架</a>
+                    
+                    <a href="/categories/框架/Spring/">Spring</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/Spring/">Spring</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2019/07/01/spring-9/" class="pre-post fa fa-caret-left">Servlet3.0与SpringMvc那些事</a>
+        
+        
+        <a href="/2019/07/01/spring-7/" class="next-post fa">声明式事务</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/EllenJack/ellenjack.github.io.git" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">lill</a>&copy;2015 - 2020.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text" placeholder="search this website...">
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    
+
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>
