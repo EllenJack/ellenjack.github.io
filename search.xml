@@ -3,6 +3,73 @@
     
     
     <entry>
+        <title><![CDATA[阐述事务的隔离级别和传播属性]]></title>
+        <url>https://ellenjack.github.io/2020/04/06/informal-1/</url>
+        <content type="html"><![CDATA[<h2 id="七个事务传播属性"><a href="#七个事务传播属性" class="headerlink" title="七个事务传播属性"></a>七个事务传播属性</h2><p>　<strong>PROPAGATION_REQUIRED</strong> – 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br> <strong>PROPAGATION_SUPPORTS</strong> – 支持当前事务，如果当前没有事务，就以非事务方式执行。<br> <strong>PROPAGATION_MANDATORY</strong> – 支持当前事务，如果当前没有事务，就抛出异常。<br> <strong>PROPAGATION_REQUIRES_NEW</strong> – 新建事务，如果当前存在事务，把当前事务挂起。<br> <strong>PROPAGATION_NOT_SUPPORTED</strong> – 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br> <strong>PROPAGATION_NEVER</strong> – 以非事务方式执行，如果当前存在事务，则抛出异常。<br> <strong>PROPAGATION_NESTED</strong>–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。</p>
+<h2 id="五种隔离级别"><a href="#五种隔离级别" class="headerlink" title="五种隔离级别"></a>五种隔离级别</h2><p>隔离级别是指若干个并发的事务之间的隔离程度。</p>
+<p><strong>ISOLATION_DEFAULT</strong>–这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.另外四个与JDBC的隔离级别相对应；<br> <strong>ISOLATION_READ_UNCOMMITTED</strong>–这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</p>
+<p><strong>ISOLATION_READ_COMMITTED</strong>–保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。</p>
+<p><strong>ISOLATION_REPEATABLE_READ</strong>–这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。</p>
+<p><strong>ISOLATION_SERIALIZABLE</strong>–这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。除了防止脏读，不可重复读外，还避免了幻像读。</p>
+<p>mysql默认的事务隔离级别为repeatable-read</p>
+<p>show variables like ‘%tx_isolation%’;</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdk87skkgfj306703m3yi.jpg" alt="img"></p>
+<h3 id="1-1-1-未提交读（READ-UNCOMMITED）脏读"><a href="#1-1-1-未提交读（READ-UNCOMMITED）脏读" class="headerlink" title="1.1.1.  未提交读（READ UNCOMMITED）脏读"></a>1.1.1.  未提交读（READ UNCOMMITED）脏读</h3><p>set SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;</p>
+<p><strong>测试：</strong></p>
+<p>启动两个session</p>
+<p>一个session中</p>
+<p> start TRANSACTION</p>
+<p> update account set balance = balance -50 where id = 1</p>
+<p>另外一个session中查询</p>
+<p>select * from account</p>
+<p>回到第一个session中 回滚事务</p>
+<p>ROLLBACK</p>
+<p>在第二个session种</p>
+<p>update account set balance = balance -50 where id = 1</p>
+<p>查询结果还是 400</p>
+<p>第二个session以为结果是350，但前面的400数据为脏读数据，导致最后的结果和意料中的结果并不一致。</p>
+<h3 id="1-1-2-已提交读-（READ-COMMITED）不可重复读"><a href="#1-1-2-已提交读-（READ-COMMITED）不可重复读" class="headerlink" title="1.1.2.  已提交读 （READ COMMITED）不可重复读"></a>1.1.2.  已提交读 （READ COMMITED）不可重复读</h3><p><strong>测试</strong></p>
+<p>show variables like ‘%tx_isolation%’;</p>
+<p>set SESSION TRANSACTION ISOLATION LEVEL read committed;</p>
+<p>一个session中</p>
+<p> start TRANSACTION</p>
+<p> update account set balance = balance -50 where id = 1</p>
+<p>另外一个session中查询 (数据并没改变)</p>
+<p>select * from account</p>
+<p>回到第一个session中 回滚事务</p>
+<p>commit</p>
+<p>在第二个session种</p>
+<p>select * from account (数据已经改变)</p>
+<h3 id="1-1-3-可重复读（REPEATABLE-READ）"><a href="#1-1-3-可重复读（REPEATABLE-READ）" class="headerlink" title="1.1.3.  可重复读（REPEATABLE READ）"></a>1.1.3.  可重复读（REPEATABLE READ）</h3><p><strong>测试</strong></p>
+<p>show variables like ‘%tx_isolation%’;</p>
+<p>set SESSION TRANSACTION ISOLATION LEVEL repeatable read;</p>
+<p>一个session中</p>
+<p> start TRANSACTION</p>
+<p> update account set balance = balance -50 where id = 1</p>
+<p>另外一个session中查询 (数据并没改变)</p>
+<p>select * from account</p>
+<p>回到第一个session中 回滚事务</p>
+<p>commit</p>
+<p>在第二个session种</p>
+<p>select * from account (数据并未改变)</p>
+<h3 id="1-1-4-可串行化（SERIALIZABLE）"><a href="#1-1-4-可串行化（SERIALIZABLE）" class="headerlink" title="1.1.4.  可串行化（SERIALIZABLE）"></a>1.1.4.  可串行化（SERIALIZABLE）</h3>]]></content>
+        
+        <categories>
+            
+            <category> 随笔 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 事物 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
         <title><![CDATA[消息队列常见问题]]></title>
         <url>https://ellenjack.github.io/2019/07/03/kafka-4/</url>
         <content type="html"><![CDATA[<h2 id="为什么使用消息队列？"><a href="#为什么使用消息队列？" class="headerlink" title="为什么使用消息队列？"></a><strong>为什么使用消息队列？</strong></h2><p>其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？</p>

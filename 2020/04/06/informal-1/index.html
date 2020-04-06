@@ -22,7 +22,7 @@
 <meta name="verify" content="all">
     <!--Title-->
 
-<title>RabbitMQ 安装部署 | 小小杰博客</title>
+<title>阐述事务的隔离级别和传播属性 | 小小杰博客</title>
 
 <link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
 
@@ -154,9 +154,9 @@
     <article id="post">
         <div id="post-header">
 
-            <h1 id="RabbitMQ 安装部署">
+            <h1 id="阐述事务的隔离级别和传播属性">
                 
-                RabbitMQ 安装部署
+                阐述事务的隔离级别和传播属性
                 
             </h1>
             <div class="article-meta">
@@ -164,7 +164,7 @@
     
     <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-        <span>RabbitMQ</span>
+        <span>随笔</span>
     </span>
     
     
@@ -172,7 +172,7 @@
          <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            RabbitMQ
+            事物
             
         </span>
     </span>
@@ -180,7 +180,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2018/12/08</span>
+        <span class="date-meta ">2020/04/06</span>
     </span>
     
     
@@ -189,27 +189,57 @@
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>484</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
-            </p>
-            
         </div>
         
         <div id="post-body">
-            <p>这里注意获取镜像的时候要获取management版本的，不要获取last版本的，management版本的才带有管理界面。</p>
-<h1 id="查询镜像"><a href="#查询镜像" class="headerlink" title="查询镜像"></a>查询镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search rabbitmq:management</span><br></pre></td></tr></table></figure>
-<p>可以看到如下结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker search rabbitmq:management</span><br><span class="line">INDEX       NAME                                          DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">docker.io   docker.io/macintoshplus/rabbitmq-management   Based on rabbitmq:management whit python a...   1                    [OK]</span><br><span class="line">docker.io   docker.io/transmitsms/rabbitmq-sharded        Fork of rabbitmq:management with sharded_e...   0</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h1 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull rabbitmq:management</span><br></pre></td></tr></table></figure>
-<p>可以看到如下结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker pull rabbitmq:management</span><br><span class="line">Trying to pull repository docker.io/library/rabbitmq ...</span><br><span class="line">management: Pulling from docker.io/library/rabbitmq</span><br><span class="line">e7bb522d92ff: Pull complete</span><br><span class="line">ad90649c4d84: Pull complete</span><br><span class="line">5a318b914d6c: Pull complete</span><br><span class="line">cedd60f70052: Pull complete</span><br><span class="line">f4ec28761801: Pull complete</span><br><span class="line">b8fa44aa9074: Pull complete</span><br><span class="line">e8002a209c24: Pull complete</span><br><span class="line">cd1206edcd43: Pull complete</span><br><span class="line">769be0727074: Pull complete</span><br><span class="line">7308b93d35af: Pull complete</span><br><span class="line">c4102ef22c29: Pull complete</span><br><span class="line">fefc8e1aa4b5: Pull complete</span><br><span class="line">a271d400045b: Pull complete</span><br><span class="line">b0d4c40c62de: Pull complete</span><br><span class="line">Digest: sha256:8761de2c22badfc86dfe89791dc9dbf122f67ff0f8981966573d267af421b97f</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
-<h1 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management</span><br></pre></td></tr></table></figure>
-<p>看到如下结果，变成功了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management</span><br><span class="line">e194a2dbeb52f2296dfb6d1c527cf052d82be5ed9a4c974d70dcd6af3da3eb7e</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
-<h1 id="访问管理界面"><a href="#访问管理界面" class="headerlink" title="访问管理界面"></a>访问管理界面</h1><p>访问管理界面的地址就是 http://[宿主机IP]:15672，可以使用默认的账户登录，用户名和密码都guest，如：</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf516kggj311g0i078q.jpg" alt></p>
-
+            <h2 id="七个事务传播属性"><a href="#七个事务传播属性" class="headerlink" title="七个事务传播属性"></a>七个事务传播属性</h2><p>　<strong>PROPAGATION_REQUIRED</strong> – 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br> <strong>PROPAGATION_SUPPORTS</strong> – 支持当前事务，如果当前没有事务，就以非事务方式执行。<br> <strong>PROPAGATION_MANDATORY</strong> – 支持当前事务，如果当前没有事务，就抛出异常。<br> <strong>PROPAGATION_REQUIRES_NEW</strong> – 新建事务，如果当前存在事务，把当前事务挂起。<br> <strong>PROPAGATION_NOT_SUPPORTED</strong> – 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br> <strong>PROPAGATION_NEVER</strong> – 以非事务方式执行，如果当前存在事务，则抛出异常。<br> <strong>PROPAGATION_NESTED</strong>–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。</p>
+<h2 id="五种隔离级别"><a href="#五种隔离级别" class="headerlink" title="五种隔离级别"></a>五种隔离级别</h2><p>隔离级别是指若干个并发的事务之间的隔离程度。</p>
+<p><strong>ISOLATION_DEFAULT</strong>–这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.另外四个与JDBC的隔离级别相对应；<br> <strong>ISOLATION_READ_UNCOMMITTED</strong>–这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</p>
+<p><strong>ISOLATION_READ_COMMITTED</strong>–保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。</p>
+<p><strong>ISOLATION_REPEATABLE_READ</strong>–这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。</p>
+<p><strong>ISOLATION_SERIALIZABLE</strong>–这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。除了防止脏读，不可重复读外，还避免了幻像读。</p>
+<p>mysql默认的事务隔离级别为repeatable-read</p>
+<p>show variables like ‘%tx_isolation%’;</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdk87skkgfj306703m3yi.jpg" alt="img"></p>
+<h3 id="1-1-1-未提交读（READ-UNCOMMITED）脏读"><a href="#1-1-1-未提交读（READ-UNCOMMITED）脏读" class="headerlink" title="1.1.1.  未提交读（READ UNCOMMITED）脏读"></a>1.1.1.  未提交读（READ UNCOMMITED）脏读</h3><p>set SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;</p>
+<p><strong>测试：</strong></p>
+<p>启动两个session</p>
+<p>一个session中</p>
+<p> start TRANSACTION</p>
+<p> update account set balance = balance -50 where id = 1</p>
+<p>另外一个session中查询</p>
+<p>select * from account</p>
+<p>回到第一个session中 回滚事务</p>
+<p>ROLLBACK</p>
+<p>在第二个session种</p>
+<p>update account set balance = balance -50 where id = 1</p>
+<p>查询结果还是 400</p>
+<p>第二个session以为结果是350，但前面的400数据为脏读数据，导致最后的结果和意料中的结果并不一致。</p>
+<h3 id="1-1-2-已提交读-（READ-COMMITED）不可重复读"><a href="#1-1-2-已提交读-（READ-COMMITED）不可重复读" class="headerlink" title="1.1.2.  已提交读 （READ COMMITED）不可重复读"></a>1.1.2.  已提交读 （READ COMMITED）不可重复读</h3><p><strong>测试</strong></p>
+<p>show variables like ‘%tx_isolation%’;</p>
+<p>set SESSION TRANSACTION ISOLATION LEVEL read committed;</p>
+<p>一个session中</p>
+<p> start TRANSACTION</p>
+<p> update account set balance = balance -50 where id = 1</p>
+<p>另外一个session中查询 (数据并没改变)</p>
+<p>select * from account</p>
+<p>回到第一个session中 回滚事务</p>
+<p>commit</p>
+<p>在第二个session种</p>
+<p>select * from account (数据已经改变)</p>
+<h3 id="1-1-3-可重复读（REPEATABLE-READ）"><a href="#1-1-3-可重复读（REPEATABLE-READ）" class="headerlink" title="1.1.3.  可重复读（REPEATABLE READ）"></a>1.1.3.  可重复读（REPEATABLE READ）</h3><p><strong>测试</strong></p>
+<p>show variables like ‘%tx_isolation%’;</p>
+<p>set SESSION TRANSACTION ISOLATION LEVEL repeatable read;</p>
+<p>一个session中</p>
+<p> start TRANSACTION</p>
+<p> update account set balance = balance -50 where id = 1</p>
+<p>另外一个session中查询 (数据并没改变)</p>
+<p>select * from account</p>
+<p>回到第一个session中 回滚事务</p>
+<p>commit</p>
+<p>在第二个session种</p>
+<p>select * from account (数据并未改变)</p>
+<h3 id="1-1-4-可串行化（SERIALIZABLE）"><a href="#1-1-4-可串行化（SERIALIZABLE）" class="headerlink" title="1.1.4.  可串行化（SERIALIZABLE）"></a>1.1.4.  可串行化（SERIALIZABLE）</h3>
         </div>
         <div id="post-footer">
             <div class="avatar">
@@ -228,22 +258,20 @@
                     <a href="/about.html">lill</a>
                 </li>
                 
-                <li>Published Date: <span>2018-12-08  22:01:01</span></li>
+                <li>Published Date: <span>2020-04-06  18:43:18</span></li>
                 
-                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                <li>Updated Date: <span>2020-04-06  18:44:05</span></li>
                 
                 <li class="post-category">
                     Categories:
                     
-                    <a href="/categories/消息中间件/">消息中间件</a>
-                    
-                    <a href="/categories/消息中间件/RabbitMQ/">RabbitMQ</a>
+                    <a href="/categories/随笔/">随笔</a>
                     
                 </li>
                 <li class="post-tags">
                     Tags:
                     
-                    <a href="/tags/RabbitMQ/">RabbitMQ</a>
+                    <a href="/tags/事物/">事物</a>
                     
                 </li>
                 
@@ -266,8 +294,8 @@
     </article>
     <div class="article-nav">
         
-        <a href="/2018/12/15/about/" class="pre-post fa fa-caret-left">关于我</a>
         
+        <a href="/2019/07/03/kafka-4/" class="next-post fa">消息队列常见问题</a>
         
     </div>
     
@@ -332,7 +360,7 @@
     </div>
 </div>
 
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#查询镜像"><span class="toc-number">1.</span> <span class="toc-text">查询镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取镜像"><span class="toc-number">2.</span> <span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行镜像"><span class="toc-number">3.</span> <span class="toc-text">运行镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#访问管理界面"><span class="toc-number">4.</span> <span class="toc-text">访问管理界面</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#七个事务传播属性"><span class="toc-number">1.</span> <span class="toc-text">七个事务传播属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五种隔离级别"><span class="toc-number">2.</span> <span class="toc-text">五种隔离级别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-未提交读（READ-UNCOMMITED）脏读"><span class="toc-number">2.1.</span> <span class="toc-text">1.1.1.  未提交读（READ UNCOMMITED）脏读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-已提交读-（READ-COMMITED）不可重复读"><span class="toc-number">2.2.</span> <span class="toc-text">1.1.2.  已提交读 （READ COMMITED）不可重复读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-可重复读（REPEATABLE-READ）"><span class="toc-number">2.3.</span> <span class="toc-text">1.1.3.  可重复读（REPEATABLE READ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-可串行化（SERIALIZABLE）"><span class="toc-number">2.4.</span> <span class="toc-text">1.1.4.  可串行化（SERIALIZABLE）</span></a></li></ol></li></ol>
 
 
 

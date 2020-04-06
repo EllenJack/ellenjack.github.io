@@ -22,7 +22,7 @@
 <meta name="verify" content="all">
     <!--Title-->
 
-<title>RabbitMQ 安装部署 | 小小杰博客</title>
+<title>Category: 随笔 | 小小杰博客</title>
 
 <link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
 
@@ -31,7 +31,7 @@
 
     
 <link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="/css/pages/archive.css">
 <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
 
@@ -151,28 +151,21 @@
 
 
         <div id="main">
-    <article id="post">
-        <div id="post-header">
-
-            <h1 id="RabbitMQ 安装部署">
+    <div id="post-list">
+        <ul class="archives-post-list">
+            
+            <li class="post-items" _href="/2020/04/06/informal-1/">
                 
-                RabbitMQ 安装部署
-                
-            </h1>
-            <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>RabbitMQ</span>
-    </span>
+                <p class="info">随笔</p>
+                <h2 class="post-item-title">阐述事务的隔离级别和传播属性</h2>
+                <div class="article-meta">
     
     
     <span class="fa-wrap">
          <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            RabbitMQ
+            事物
             
         </span>
     </span>
@@ -180,109 +173,22 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2018/12/08</span>
+        <span class="date-meta ">2020/04/06</span>
     </span>
     
     
     
 </div>
 
+            </li>
             
-            
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>484</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
-            </p>
-            
-        </div>
-        
-        <div id="post-body">
-            <p>这里注意获取镜像的时候要获取management版本的，不要获取last版本的，management版本的才带有管理界面。</p>
-<h1 id="查询镜像"><a href="#查询镜像" class="headerlink" title="查询镜像"></a>查询镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search rabbitmq:management</span><br></pre></td></tr></table></figure>
-<p>可以看到如下结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker search rabbitmq:management</span><br><span class="line">INDEX       NAME                                          DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">docker.io   docker.io/macintoshplus/rabbitmq-management   Based on rabbitmq:management whit python a...   1                    [OK]</span><br><span class="line">docker.io   docker.io/transmitsms/rabbitmq-sharded        Fork of rabbitmq:management with sharded_e...   0</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h1 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull rabbitmq:management</span><br></pre></td></tr></table></figure>
-<p>可以看到如下结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker pull rabbitmq:management</span><br><span class="line">Trying to pull repository docker.io/library/rabbitmq ...</span><br><span class="line">management: Pulling from docker.io/library/rabbitmq</span><br><span class="line">e7bb522d92ff: Pull complete</span><br><span class="line">ad90649c4d84: Pull complete</span><br><span class="line">5a318b914d6c: Pull complete</span><br><span class="line">cedd60f70052: Pull complete</span><br><span class="line">f4ec28761801: Pull complete</span><br><span class="line">b8fa44aa9074: Pull complete</span><br><span class="line">e8002a209c24: Pull complete</span><br><span class="line">cd1206edcd43: Pull complete</span><br><span class="line">769be0727074: Pull complete</span><br><span class="line">7308b93d35af: Pull complete</span><br><span class="line">c4102ef22c29: Pull complete</span><br><span class="line">fefc8e1aa4b5: Pull complete</span><br><span class="line">a271d400045b: Pull complete</span><br><span class="line">b0d4c40c62de: Pull complete</span><br><span class="line">Digest: sha256:8761de2c22badfc86dfe89791dc9dbf122f67ff0f8981966573d267af421b97f</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
-<h1 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management</span><br></pre></td></tr></table></figure>
-<p>看到如下结果，变成功了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management</span><br><span class="line">e194a2dbeb52f2296dfb6d1c527cf052d82be5ed9a4c974d70dcd6af3da3eb7e</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure>
-<h1 id="访问管理界面"><a href="#访问管理界面" class="headerlink" title="访问管理界面"></a>访问管理界面</h1><p>访问管理界面的地址就是 http://[宿主机IP]:15672，可以使用默认的账户登录，用户名和密码都guest，如：</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jf516kggj311g0i078q.jpg" alt></p>
-
-        </div>
-        <div id="post-footer">
-            <div class="avatar">
-                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
-                
-                
-                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
-                
-            </div>
-            <ul class="author-profile-section">
-                <li>
-                  
-                  Author:
-                  
-                    
-                    <a href="/about.html">lill</a>
-                </li>
-                
-                <li>Published Date: <span>2018-12-08  22:01:01</span></li>
-                
-                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
-                
-                <li class="post-category">
-                    Categories:
-                    
-                    <a href="/categories/消息中间件/">消息中间件</a>
-                    
-                    <a href="/categories/消息中间件/RabbitMQ/">RabbitMQ</a>
-                    
-                </li>
-                <li class="post-tags">
-                    Tags:
-                    
-                    <a href="/tags/RabbitMQ/">RabbitMQ</a>
-                    
-                </li>
-                
-                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
-知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
-</a></li>
-                
-            </ul>
-            <div id="donate-wrap">
-                
-                
-                
-                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
-                
-                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
-                
-                
-            </div>
-        </div>
-    </article>
-    <div class="article-nav">
-        
-        <a href="/2018/12/15/about/" class="pre-post fa fa-caret-left">关于我</a>
-        
-        
+        </ul>
     </div>
-    
-    <div id="comments">
-        
-
-<script>
-  gitment.render(document.getElementById("comments"));
-</script>
-
-
-
-    </div>
-    
 </div>
+
+
+
+
 
 
     </div>
@@ -311,8 +217,6 @@
     <li class="totop-btn fa fa-angle-up"></li>
     <li class="exchange-btn fa fa-exchange"></li>
   
-    <li class="toc-btn fa fa-list-ul"></li>
-    
     
 
     
@@ -331,8 +235,6 @@
         </div>
     </div>
 </div>
-
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#查询镜像"><span class="toc-number">1.</span> <span class="toc-text">查询镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取镜像"><span class="toc-number">2.</span> <span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行镜像"><span class="toc-number">3.</span> <span class="toc-text">运行镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#访问管理界面"><span class="toc-number">4.</span> <span class="toc-text">访问管理界面</span></a></li></ol>
 
 
 

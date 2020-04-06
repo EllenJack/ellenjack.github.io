@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ellenjack.github.io/"/>
-  <updated>2020-03-25T16:12:24.798Z</updated>
+  <updated>2020-04-06T10:44:05.883Z</updated>
   <id>https://ellenjack.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>阐述事务的隔离级别和传播属性</title>
+    <link href="https://ellenjack.github.io/2020/04/06/informal-1/"/>
+    <id>https://ellenjack.github.io/2020/04/06/informal-1/</id>
+    <published>2020-04-06T10:43:18.000Z</published>
+    <updated>2020-04-06T10:44:05.883Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="七个事务传播属性"><a href="#七个事务传播属性" class="headerlink" title="七个事务传播属性"></a>七个事务传播属性</h2><p>　<strong>PROPAGATION_REQUIRED</strong> – 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br> <strong>PROPAGATION_SUPPORTS</strong> – 支持当前事务，如果当前没有事务，就以非事务方式执行。<br> <strong>PROPAGATION_MANDATORY</strong> – 支持当前事务，如果当前没有事务，就抛出异常。<br> <strong>PROPAGATION_REQUIRES_NEW</strong> – 新建事务，如果当前存在事务，把当前事务挂起。<br> <strong>PROPAGATION_NOT_SUPPORTED</strong> – 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br> <strong>PROPAGATION_NEVER</strong> – 以非事务方式执行，如果当前存在事务，则抛出异常。<br> <strong>PROPAGATION_NESTED</strong>–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。</p><h2 id="五种隔离级别"><a href="#五种隔离级别" class="headerlink" title="五种隔离级别"></a>五种隔离级别</h2><p>隔离级别是指若干个并发的事务之间的隔离程度。</p><p><strong>ISOLATION_DEFAULT</strong>–这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.另外四个与JDBC的隔离级别相对应；<br> <strong>ISOLATION_READ_UNCOMMITTED</strong>–这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</p><p><strong>ISOLATION_READ_COMMITTED</strong>–保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。</p><p><strong>ISOLATION_REPEATABLE_READ</strong>–这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。</p><p><strong>ISOLATION_SERIALIZABLE</strong>–这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。除了防止脏读，不可重复读外，还避免了幻像读。</p><p>mysql默认的事务隔离级别为repeatable-read</p><p>show variables like ‘%tx_isolation%’;</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdk87skkgfj306703m3yi.jpg" alt="img"></p><h3 id="1-1-1-未提交读（READ-UNCOMMITED）脏读"><a href="#1-1-1-未提交读（READ-UNCOMMITED）脏读" class="headerlink" title="1.1.1.  未提交读（READ UNCOMMITED）脏读"></a>1.1.1.  未提交读（READ UNCOMMITED）脏读</h3><p>set SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;</p><p><strong>测试：</strong></p><p>启动两个session</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>ROLLBACK</p><p>在第二个session种</p><p>update account set balance = balance -50 where id = 1</p><p>查询结果还是 400</p><p>第二个session以为结果是350，但前面的400数据为脏读数据，导致最后的结果和意料中的结果并不一致。</p><h3 id="1-1-2-已提交读-（READ-COMMITED）不可重复读"><a href="#1-1-2-已提交读-（READ-COMMITED）不可重复读" class="headerlink" title="1.1.2.  已提交读 （READ COMMITED）不可重复读"></a>1.1.2.  已提交读 （READ COMMITED）不可重复读</h3><p><strong>测试</strong></p><p>show variables like ‘%tx_isolation%’;</p><p>set SESSION TRANSACTION ISOLATION LEVEL read committed;</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询 (数据并没改变)</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>commit</p><p>在第二个session种</p><p>select * from account (数据已经改变)</p><h3 id="1-1-3-可重复读（REPEATABLE-READ）"><a href="#1-1-3-可重复读（REPEATABLE-READ）" class="headerlink" title="1.1.3.  可重复读（REPEATABLE READ）"></a>1.1.3.  可重复读（REPEATABLE READ）</h3><p><strong>测试</strong></p><p>show variables like ‘%tx_isolation%’;</p><p>set SESSION TRANSACTION ISOLATION LEVEL repeatable read;</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询 (数据并没改变)</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>commit</p><p>在第二个session种</p><p>select * from account (数据并未改变)</p><h3 id="1-1-4-可串行化（SERIALIZABLE）"><a href="#1-1-4-可串行化（SERIALIZABLE）" class="headerlink" title="1.1.4.  可串行化（SERIALIZABLE）"></a>1.1.4.  可串行化（SERIALIZABLE）</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;七个事务传播属性&quot;&gt;&lt;a href=&quot;#七个事务传播属性&quot; class=&quot;headerlink&quot; title=&quot;七个事务传播属性&quot;&gt;&lt;/a&gt;七个事务传播属性&lt;/h2&gt;&lt;p&gt;　&lt;strong&gt;PROPAGATION_REQUIRED&lt;/strong&gt; – 支持当前事
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://ellenjack.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="事物" scheme="https://ellenjack.github.io/tags/%E4%BA%8B%E7%89%A9/"/>
+    
+  </entry>
   
   <entry>
     <title>消息队列常见问题</title>
@@ -520,33 +545,6 @@
       
         &lt;p&gt;注:当声明Object bean1 = anno.getBean(“&amp;amp;jamesFactoryBean”);, 获取到的bean为jamesFactoryBean对象, 也可跟进源码分析看看&lt;/p&gt;
 &lt;h2 id=&quot;CAP7章节-bean的生命周期&quot;&gt;&lt;a href
-      
-    
-    </summary>
-    
-      <category term="框架" scheme="https://ellenjack.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="Spring" scheme="https://ellenjack.github.io/categories/%E6%A1%86%E6%9E%B6/Spring/"/>
-    
-    
-      <category term="Spring" scheme="https://ellenjack.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring基础及组件使用(2)</title>
-    <link href="https://ellenjack.github.io/2019/02/20/spring-2/"/>
-    <id>https://ellenjack.github.io/2019/02/20/spring-2/</id>
-    <published>2019-02-20T05:39:34.000Z</published>
-    <updated>2020-03-25T16:12:24.801Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="CAP5章节-Conditional条件注册bean"><a href="#CAP5章节-Conditional条件注册bean" class="headerlink" title="CAP5章节  @Conditional条件注册bean"></a>CAP5章节  @Conditional条件注册bean</h2><p>1,  将IOC容器注册bean时, 当操作系统为WINDOWS时,注册Lison实例; 当操作系统为LINUX时, 注册James实例,此时要用得@Conditional注解进行定制化条件选择注册bean;</p><p>2,  新建Cap7MainConfig1.java,</p><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jert16t7j30d80e73yz.jpg" alt></p><p>新建WinCondition.java类做为条件类, 同时必须得实现spring提供的Confition接口</p><p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jersxaduj30mm0duq3i.jpg" alt></p><p>新建 LinuxCondition条件类, 用来处理操作系统为LINUX的bean注册</p><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jerst85cj30ls0dygm5.jpg" alt></p><p>3,  把IOC容器里的所有person实例名打印出来(为了看效果,刚开始在配置类可以<strong>不加@Conditinal</strong>)</p><p>​     @Test</p><p>​     <strong>public</strong> <strong>void</strong> test01()</p><p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jes58bq6j30tc08hgm2.jpg" alt></p><p>4,  新建test02(), 测试@Conditional  条件加载bean到IOC容器(<strong>加上@Conditinal</strong>)</p><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jes558sgj30r808ggm1.jpg" alt></p><p>当引入@Conditional时, 容器可以选择性的注册bean.</p><h2 id="CAP6章节-Import注册bean"><a href="#CAP6章节-Import注册bean" class="headerlink" title="CAP6章节  @Import注册bean"></a>CAP6章节  @Import注册bean</h2><p>同样按流程先新建Cap8MainConfig1.java配置类</p><p>新建Dog.ava类—–&gt;<strong>public</strong> <strong>class</strong> Dog {}</p><p>新建Cat.java类—-&gt;<strong>public</strong> <strong>class</strong> Cat{}</p><p>按以下1,2,3箭头步骤分别导入多个类,使用import将dog, cat的bean注册到容器中,并测试打印,看容器中是否已加载此类</p><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jet10h3qj30op0mbabm.jpg" alt></p><p><strong>分别使用</strong> </p><p>@Import(Dog.class)   </p><p>@Import({Dog.class,Cat.class})</p><p>ImportSelector可以批量导入组件的全类名数组,自定义逻辑返回需要导入的组件JamesImportSelector.java</p><p>@Import({Dog.class,Cat.class,JamesImportSelector.class})</p><p><strong>新建</strong> <strong>JamesImportSelector</strong> <strong>, 新建Fish  Tiger类(与建Cat和Dog一样)</strong></p><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jet89v75j30lq0aq3yv.jpg" alt></p><p>怎么测呢?</p><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jet864nwj30si09gdg6.jpg" alt></p><p>当然,除了以上,还可以通过ImportBeanDefinitionRegistrar自定义注册,向容器中注册bean;</p><p>@Import({Dog.<strong>class</strong>,Cat.<strong>class</strong>,JamesImportSelector.<strong>class</strong>,JamesImportBeanDefinitionRegistrar.<strong>class</strong>})</p><p>新建<strong>JamesImportBeanDefinitionRegistrar</strong>自定义注册类,实现bean注册</p><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jet82pznj30tm0exq3u.jpg" alt></p><p>当然除了以上加载方式,还可以通过实现FactoryBean接口方式来加载bean</p><p>/*   使用spring提供的FactoryBean(工厂bean)</p><ul><li><p>beans.factory.FatoryBean源码跟进去</p></li><li><p>容器调用getObject()返回对象，把对象放到容器中；</p></li><li><p>getObjectType()返回对象类型</p></li><li><p>isSingleton()是否单例进行控制</p></li><li><p>新建JamesFactoryBean实现FactoryBean</p></li><li><p>在config里新建jamesFactoryBean()方法</p></li><li><p>写完test03测试用例后:</p></li><li><p>a,默认获取到的是工厂bean调用getObject创建的对象</p></li><li><p>b,要获取工厂Bean本身,需要在id前加个  &amp;jamesFactoryBean</p></li></ul><p>*/    </p><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jetlbtstj30fc0bo74k.jpg" alt></p><p>把自定义的<strong>JamesImportBeanDefinitionRegistrar</strong>加入配置类进行测试</p><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jetl6qb6j30op06lq31.jpg" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;CAP5章节-Conditional条件注册bean&quot;&gt;&lt;a href=&quot;#CAP5章节-Conditional条件注册bean&quot; class=&quot;headerlink&quot; title=&quot;CAP5章节  @Conditional条件注册bean&quot;&gt;&lt;/a&gt;CAP5章节
       
     
     </summary>
