@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ellenjack.github.io/"/>
-  <updated>2020-04-06T10:44:05.883Z</updated>
+  <updated>2020-04-08T07:39:14.554Z</updated>
   <id>https://ellenjack.github.io/</id>
   
   <author>
@@ -17,19 +17,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>阐述事务的隔离级别和传播属性</title>
-    <link href="https://ellenjack.github.io/2020/04/06/informal-1/"/>
-    <id>https://ellenjack.github.io/2020/04/06/informal-1/</id>
-    <published>2020-04-06T10:43:18.000Z</published>
-    <updated>2020-04-06T10:44:05.883Z</updated>
+    <title>类加载机制和双亲委派模型</title>
+    <link href="https://ellenjack.github.io/2020/04/08/informal-2/"/>
+    <id>https://ellenjack.github.io/2020/04/08/informal-2/</id>
+    <published>2020-04-08T07:29:15.000Z</published>
+    <updated>2020-04-08T07:39:14.554Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="七个事务传播属性"><a href="#七个事务传播属性" class="headerlink" title="七个事务传播属性"></a>七个事务传播属性</h2><p>　<strong>PROPAGATION_REQUIRED</strong> – 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br> <strong>PROPAGATION_SUPPORTS</strong> – 支持当前事务，如果当前没有事务，就以非事务方式执行。<br> <strong>PROPAGATION_MANDATORY</strong> – 支持当前事务，如果当前没有事务，就抛出异常。<br> <strong>PROPAGATION_REQUIRES_NEW</strong> – 新建事务，如果当前存在事务，把当前事务挂起。<br> <strong>PROPAGATION_NOT_SUPPORTED</strong> – 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br> <strong>PROPAGATION_NEVER</strong> – 以非事务方式执行，如果当前存在事务，则抛出异常。<br> <strong>PROPAGATION_NESTED</strong>–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。</p><h2 id="五种隔离级别"><a href="#五种隔离级别" class="headerlink" title="五种隔离级别"></a>五种隔离级别</h2><p>隔离级别是指若干个并发的事务之间的隔离程度。</p><p><strong>ISOLATION_DEFAULT</strong>–这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.另外四个与JDBC的隔离级别相对应；<br> <strong>ISOLATION_READ_UNCOMMITTED</strong>–这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</p><p><strong>ISOLATION_READ_COMMITTED</strong>–保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。</p><p><strong>ISOLATION_REPEATABLE_READ</strong>–这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。</p><p><strong>ISOLATION_SERIALIZABLE</strong>–这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。除了防止脏读，不可重复读外，还避免了幻像读。</p><p>mysql默认的事务隔离级别为repeatable-read</p><p>show variables like ‘%tx_isolation%’;</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdk87skkgfj306703m3yi.jpg" alt="img"></p><h3 id="1-1-1-未提交读（READ-UNCOMMITED）脏读"><a href="#1-1-1-未提交读（READ-UNCOMMITED）脏读" class="headerlink" title="1.1.1.  未提交读（READ UNCOMMITED）脏读"></a>1.1.1.  未提交读（READ UNCOMMITED）脏读</h3><p>set SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;</p><p><strong>测试：</strong></p><p>启动两个session</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>ROLLBACK</p><p>在第二个session种</p><p>update account set balance = balance -50 where id = 1</p><p>查询结果还是 400</p><p>第二个session以为结果是350，但前面的400数据为脏读数据，导致最后的结果和意料中的结果并不一致。</p><h3 id="1-1-2-已提交读-（READ-COMMITED）不可重复读"><a href="#1-1-2-已提交读-（READ-COMMITED）不可重复读" class="headerlink" title="1.1.2.  已提交读 （READ COMMITED）不可重复读"></a>1.1.2.  已提交读 （READ COMMITED）不可重复读</h3><p><strong>测试</strong></p><p>show variables like ‘%tx_isolation%’;</p><p>set SESSION TRANSACTION ISOLATION LEVEL read committed;</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询 (数据并没改变)</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>commit</p><p>在第二个session种</p><p>select * from account (数据已经改变)</p><h3 id="1-1-3-可重复读（REPEATABLE-READ）"><a href="#1-1-3-可重复读（REPEATABLE-READ）" class="headerlink" title="1.1.3.  可重复读（REPEATABLE READ）"></a>1.1.3.  可重复读（REPEATABLE READ）</h3><p><strong>测试</strong></p><p>show variables like ‘%tx_isolation%’;</p><p>set SESSION TRANSACTION ISOLATION LEVEL repeatable read;</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询 (数据并没改变)</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>commit</p><p>在第二个session种</p><p>select * from account (数据并未改变)</p><h3 id="1-1-4-可串行化（SERIALIZABLE）"><a href="#1-1-4-可串行化（SERIALIZABLE）" class="headerlink" title="1.1.4.  可串行化（SERIALIZABLE）"></a>1.1.4.  可串行化（SERIALIZABLE）</h3>]]></content>
+    <content type="html"><![CDATA[<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedewb6ij31hc0jw4nt.jpg" alt></p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedei3xoj31k20u07o6.jpg" alt></p><h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedeogskj30vt0l0aif.jpg" alt></p><p><strong>双亲委派模型过程</strong><br>某个特定的类加载器在接到加载类的请求时，首先将加载任务委托给父类加载器，依次递归，如果父类加载器可以完成类加载任务，就成功返回；只有父类加载器无法完成此加载任务时，才自己去加载。</p><p><strong>双亲委派模型好处</strong><br>Java类随着它的类加载器一起具备了带有优先级的层次关系，保证java程序稳定运行</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;七个事务传播属性&quot;&gt;&lt;a href=&quot;#七个事务传播属性&quot; class=&quot;headerlink&quot; title=&quot;七个事务传播属性&quot;&gt;&lt;/a&gt;七个事务传播属性&lt;/h2&gt;&lt;p&gt;　&lt;strong&gt;PROPAGATION_REQUIRED&lt;/strong&gt; – 支持当前事
+        &lt;h2 id=&quot;类加载机制&quot;&gt;&lt;a href=&quot;#类加载机制&quot; class=&quot;headerlink&quot; title=&quot;类加载机制&quot;&gt;&lt;/a&gt;类加载机制&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/00831rSTly1gdmedew
       
     
     </summary>
@@ -37,7 +37,30 @@
       <category term="随笔" scheme="https://ellenjack.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="事物" scheme="https://ellenjack.github.io/tags/%E4%BA%8B%E7%89%A9/"/>
+  </entry>
+  
+  <entry>
+    <title>阐述事务的隔离级别和传播属性</title>
+    <link href="https://ellenjack.github.io/2020/04/06/informal-1/"/>
+    <id>https://ellenjack.github.io/2020/04/06/informal-1/</id>
+    <published>2020-04-06T10:43:18.000Z</published>
+    <updated>2020-04-08T07:32:08.152Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="七个事务传播属性"><a href="#七个事务传播属性" class="headerlink" title="七个事务传播属性"></a>七个事务传播属性</h2><p> <strong>PROPAGATION_REQUIRED</strong> – 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br> <strong>PROPAGATION_SUPPORTS</strong> – 支持当前事务，如果当前没有事务，就以非事务方式执行。<br> <strong>PROPAGATION_MANDATORY</strong> – 支持当前事务，如果当前没有事务，就抛出异常。<br> <strong>PROPAGATION_REQUIRES_NEW</strong> – 新建事务，如果当前存在事务，把当前事务挂起。<br> <strong>PROPAGATION_NOT_SUPPORTED</strong> – 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br> <strong>PROPAGATION_NEVER</strong> – 以非事务方式执行，如果当前存在事务，则抛出异常。<br> <strong>PROPAGATION_NESTED</strong>–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。</p><h2 id="五种隔离级别"><a href="#五种隔离级别" class="headerlink" title="五种隔离级别"></a>五种隔离级别</h2><p>隔离级别是指若干个并发的事务之间的隔离程度。</p><p><strong>ISOLATION_DEFAULT</strong>–这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.另外四个与JDBC的隔离级别相对应；</p><p><strong>ISOLATION_READ_UNCOMMITTED</strong>–这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</p><p><strong>ISOLATION_READ_COMMITTED</strong>–保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。</p><p><strong>ISOLATION_REPEATABLE_READ</strong>–这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。</p><p><strong>ISOLATION_SERIALIZABLE</strong>–这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。除了防止脏读，不可重复读外，还避免了幻像读。</p><p>mysql默认的事务隔离级别为repeatable-read</p><p>show variables like ‘%tx_isolation%’;</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdk87skkgfj306703m3yi.jpg" alt="img"></p><h3 id="1-1-1-未提交读（READ-UNCOMMITED）脏读"><a href="#1-1-1-未提交读（READ-UNCOMMITED）脏读" class="headerlink" title="1.1.1.  未提交读（READ UNCOMMITED）脏读"></a>1.1.1.  未提交读（READ UNCOMMITED）脏读</h3><p>set SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;</p><p><strong>测试：</strong></p><p>启动两个session</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>ROLLBACK</p><p>在第二个session种</p><p>update account set balance = balance -50 where id = 1</p><p>查询结果还是 400</p><p>第二个session以为结果是350，但前面的400数据为脏读数据，导致最后的结果和意料中的结果并不一致。</p><h3 id="1-1-2-已提交读-（READ-COMMITED）不可重复读"><a href="#1-1-2-已提交读-（READ-COMMITED）不可重复读" class="headerlink" title="1.1.2.  已提交读 （READ COMMITED）不可重复读"></a>1.1.2.  已提交读 （READ COMMITED）不可重复读</h3><p><strong>测试</strong></p><p>show variables like ‘%tx_isolation%’;</p><p>set SESSION TRANSACTION ISOLATION LEVEL read committed;</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询 (数据并没改变)</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>commit</p><p>在第二个session种</p><p>select * from account (数据已经改变)</p><h3 id="1-1-3-可重复读（REPEATABLE-READ）"><a href="#1-1-3-可重复读（REPEATABLE-READ）" class="headerlink" title="1.1.3.  可重复读（REPEATABLE READ）"></a>1.1.3.  可重复读（REPEATABLE READ）</h3><p><strong>测试</strong></p><p>show variables like ‘%tx_isolation%’;</p><p>set SESSION TRANSACTION ISOLATION LEVEL repeatable read;</p><p>一个session中</p><p> start TRANSACTION</p><p> update account set balance = balance -50 where id = 1</p><p>另外一个session中查询 (数据并没改变)</p><p>select * from account</p><p>回到第一个session中 回滚事务</p><p>commit</p><p>在第二个session种</p><p>select * from account (数据并未改变)</p><h3 id="1-1-4-可串行化（SERIALIZABLE）"><a href="#1-1-4-可串行化（SERIALIZABLE）" class="headerlink" title="1.1.4.  可串行化（SERIALIZABLE）"></a>1.1.4.  可串行化（SERIALIZABLE）</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;七个事务传播属性&quot;&gt;&lt;a href=&quot;#七个事务传播属性&quot; class=&quot;headerlink&quot; title=&quot;七个事务传播属性&quot;&gt;&lt;/a&gt;七个事务传播属性&lt;/h2&gt;&lt;p&gt; &lt;strong&gt;PROPAGATION_REQUIRED&lt;/strong&gt; – 支持当前事
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://ellenjack.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="事务" scheme="https://ellenjack.github.io/tags/%E4%BA%8B%E5%8A%A1/"/>
     
   </entry>
   
@@ -517,34 +540,6 @@
       
       
         &lt;h2 id=&quot;CAP7-章节-Spring-底层对-BeanPostProcessor-的使用&quot;&gt;&lt;a href=&quot;#CAP7-章节-Spring-底层对-BeanPostProcessor-的使用&quot; class=&quot;headerlink&quot; title=&quot;CAP7 章节 Spri
-      
-    
-    </summary>
-    
-      <category term="框架" scheme="https://ellenjack.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="Spring" scheme="https://ellenjack.github.io/categories/%E6%A1%86%E6%9E%B6/Spring/"/>
-    
-    
-      <category term="Spring" scheme="https://ellenjack.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring基础及组件使用(3)(Bean生命周期)</title>
-    <link href="https://ellenjack.github.io/2019/02/25/spring-3/"/>
-    <id>https://ellenjack.github.io/2019/02/25/spring-3/</id>
-    <published>2019-02-25T04:45:47.000Z</published>
-    <updated>2020-03-25T16:12:24.802Z</updated>
-    
-    <content type="html"><![CDATA[<p>注:当声明Object bean1 = anno.getBean(“&amp;jamesFactoryBean”);, 获取到的bean为jamesFactoryBean对象, 也可跟进源码分析看看</p><h2 id="CAP7章节-bean的生命周期"><a href="#CAP7章节-bean的生命周期" class="headerlink" title="CAP7章节  bean的生命周期"></a>CAP7章节  bean的生命周期</h2><p>bean的生命周期:指   bean创建—–初始化—-销毁  的过程</p><p>bean的生命周期是由容器进行管理的</p><p>我们可以自定义 bean初始化和销毁 方法: 容器在bean进行到当前生命周期的时候, 来调用自定义的初始化和销毁方法</p><p>  如何定义和销毁(4种方式):</p><p> <strong>1)</strong> 指定初始化和销毁方法 &lt;之前在beanx.xml, 可以指定init-method和destory-mothod&gt;</p><p>​    用注释如何做: 新建Bike.java</p><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeu5j5q8j30e505qgll.jpg" alt></p><p>1.1&gt; 指定初始化和销毁方法</p><p>​    在配置类里通过@Bean(initMethod=”init”, destroyMethod=”destroy”)指定</p><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeu5gr75j30cx045dfs.jpg" alt></p><p>1.2&gt; 单实例: 当容器关闭的时候,会调用destroy消耗</p><p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeu5cnetj30vj07l74k.jpg" alt></p><p>多实例: 容器只负责初始化,但不会管理bean, 容器关闭不会调用销毁方法</p><p> <strong>2</strong> <strong>)</strong> 让Bean实现 InitializingBean 和 DisposableBean接口</p><p>A, InitializingBean(定义初始化逻辑,可点进去看此类):afterPropertiesSet()方法:当beanFactory创建好对象,且把bean所有属性设置好之后,会调这个方法,相当于初始化方法</p><p>​    B, DisposableBean(定义销毁逻辑,可点进去看此类):destory()方法,当bean销毁时,会把单实例bean进行销毁</p><p>  操作步骤:</p><p> 2.1&gt; 新建Train.java类, 实现 InitializingBean, DisposableBean 接口</p><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeunpw3ij30g00990sz.jpg" alt></p><p> 2.2&gt; 加载bean方式</p><p>:@Bean public Train train()或@Component  public class Train</p><p>​    或<a href="mailto:在Config加上扫描@ComponentScan(\" target="_blank" rel="noopener">在Config加上扫描@ComponentScan(“com.enjoy.cap7.bean”)</a>,用以下方式</p><p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jeunlsgpj30bh01y3yd.jpg" alt></p><p>​    测试用例只要加载容器和关闭容器即可.</p><p><strong>3)</strong> 可以使用JSR250规则定义的(java规范)两个注解来实现</p><p>​     @PostConstruct: 在Bean创建完成,且属于赋值完成后进行初始化,属于JDK规范的注解</p><p>​     @PreDestroy: 在bean将被移除之前进行通知, 在容器销毁之前进行清理工作</p><p>​     步骤:新建Jeep.java</p><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeunhf86j30ev08kmxa.jpg" alt></p><p>—–只有以上三种,以下是后置处理器,负责在初始化方法前后作用——–</p><p>BeanPostProcessor类[interface]: bean的后 置处理器,在bean初始化之前调用进行拦截</p><p>​     作用:在bean初始化前后进行一些处理工作, 打开此类</p><p>​     a&gt; postProcessBeforeInitialization():在初始化之前进行后置处理工作(在init-method之前),</p><p>​        什么时候调用:它任何初始化方法调用之前(比如在InitializingBean的afterPropertiesSet初始化之前,或自定义init-method调用之前使用)        </p><p>​     b&gt; postProcessAfterInitialization():在初始化之后进行后置处理工作, 比如在InitializingBean的afterPropertiesSet()</p><p>​     步骤: 新建后置处理器类JamesBeanPostProcessor</p><p>​     <img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jev1w7r9j30na0a40t2.jpg" alt></p><p>总结:bean的整个生命周期我们都能控制     </p><p>可以分析Bike的日志证明在init初始化之前调用了<strong>postProcessBeforeInitialization</strong> <strong>(),</strong></p><p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jev1qoofj30lx02q748.jpg" alt></p><h2 id="容器启动及BeanPostProcessor源码分析"><a href="#容器启动及BeanPostProcessor源码分析" class="headerlink" title="容器启动及BeanPostProcessor源码分析"></a>容器启动及BeanPostProcessor源码分析</h2><p>针对以上cap12进行debug测试;</p><p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jev1kt87j30oy08fwey.jpg" alt></p><p>加完断点后, 测试用例debug, 分析容器创建流程</p><p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jevf8zzhj30j704sjrh.jpg" alt></p><p>BeanPostProcessor原理:</p><p>可从容器类跟进顺序为:</p><p>AnnotationConfigApplicationContext–&gt;refresh()–&gt;</p><p>finishBeanFactoryInitialization(beanFactory)—&gt;</p><p>beanFactory.preInstantiateSingletons()–&gt;</p><p>760行getBean(beanName)—&gt;</p><p>199行doGetBean(name, <strong>null</strong>, <strong>null</strong>, <strong>false</strong>)–&gt;</p><p>317行createBean(beanName, mbd, args)–&gt;</p><p>501行doCreateBean(beanName, mbdToUse, args)–&gt;</p><p>541行createBeanInstance(beanName, mbd, args)(完成bean创建)–&gt;</p><p>578行populateBean(beanName, mbd, instanceWrapper)(属性赋值)–&gt;</p><p>579行initializeBean(beanName, exposedObject, mbd)(Bean初始化)-&gt;</p><p>1069行到1710行,后置处理器完成对init方法的前后处理.</p><p>最终得到如下如下</p><p>createBeanInstance(beanName, mbd, args)(完成bean创建)</p><p>populateBean(beanName, mbd, instanceWrapper); 给bean进行属性赋值</p><p>initializeBean() //初始化Bean方法内容如下,后置处理器对init方法的前后处理</p><p>{</p><p>  applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);</p><p>  <strong>invokeInitMethods(beanName, wrappedBean, mbd)</strong> //执行自定义初始化</p><p>  applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName)</p><p>}</p><p>从以上分析不难发现,bean的生命周期为bean的创建, 初始化, 当容器关闭时对单实例的bean进行销毁.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;注:当声明Object bean1 = anno.getBean(“&amp;amp;jamesFactoryBean”);, 获取到的bean为jamesFactoryBean对象, 也可跟进源码分析看看&lt;/p&gt;
-&lt;h2 id=&quot;CAP7章节-bean的生命周期&quot;&gt;&lt;a href
       
     
     </summary>

@@ -3,11 +3,31 @@
     
     
     <entry>
+        <title><![CDATA[类加载机制和双亲委派模型]]></title>
+        <url>https://ellenjack.github.io/2020/04/08/informal-2/</url>
+        <content type="html"><![CDATA[<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedewb6ij31hc0jw4nt.jpg" alt></p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedei3xoj31k20u07o6.jpg" alt></p>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedeogskj30vt0l0aif.jpg" alt></p>
+<p><strong>双亲委派模型过程</strong><br>某个特定的类加载器在接到加载类的请求时，首先将加载任务委托给父类加载器，依次递归，如果父类加载器可以完成类加载任务，就成功返回；只有父类加载器无法完成此加载任务时，才自己去加载。</p>
+<p><strong>双亲委派模型好处</strong><br>Java类随着它的类加载器一起具备了带有优先级的层次关系，保证java程序稳定运行</p>
+]]></content>
+        
+        <categories>
+            
+            <category> 随笔 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
         <title><![CDATA[阐述事务的隔离级别和传播属性]]></title>
         <url>https://ellenjack.github.io/2020/04/06/informal-1/</url>
-        <content type="html"><![CDATA[<h2 id="七个事务传播属性"><a href="#七个事务传播属性" class="headerlink" title="七个事务传播属性"></a>七个事务传播属性</h2><p>　<strong>PROPAGATION_REQUIRED</strong> – 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br> <strong>PROPAGATION_SUPPORTS</strong> – 支持当前事务，如果当前没有事务，就以非事务方式执行。<br> <strong>PROPAGATION_MANDATORY</strong> – 支持当前事务，如果当前没有事务，就抛出异常。<br> <strong>PROPAGATION_REQUIRES_NEW</strong> – 新建事务，如果当前存在事务，把当前事务挂起。<br> <strong>PROPAGATION_NOT_SUPPORTED</strong> – 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br> <strong>PROPAGATION_NEVER</strong> – 以非事务方式执行，如果当前存在事务，则抛出异常。<br> <strong>PROPAGATION_NESTED</strong>–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。</p>
+        <content type="html"><![CDATA[<h2 id="七个事务传播属性"><a href="#七个事务传播属性" class="headerlink" title="七个事务传播属性"></a>七个事务传播属性</h2><p> <strong>PROPAGATION_REQUIRED</strong> – 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br> <strong>PROPAGATION_SUPPORTS</strong> – 支持当前事务，如果当前没有事务，就以非事务方式执行。<br> <strong>PROPAGATION_MANDATORY</strong> – 支持当前事务，如果当前没有事务，就抛出异常。<br> <strong>PROPAGATION_REQUIRES_NEW</strong> – 新建事务，如果当前存在事务，把当前事务挂起。<br> <strong>PROPAGATION_NOT_SUPPORTED</strong> – 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br> <strong>PROPAGATION_NEVER</strong> – 以非事务方式执行，如果当前存在事务，则抛出异常。<br> <strong>PROPAGATION_NESTED</strong>–如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。</p>
 <h2 id="五种隔离级别"><a href="#五种隔离级别" class="headerlink" title="五种隔离级别"></a>五种隔离级别</h2><p>隔离级别是指若干个并发的事务之间的隔离程度。</p>
-<p><strong>ISOLATION_DEFAULT</strong>–这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.另外四个与JDBC的隔离级别相对应；<br> <strong>ISOLATION_READ_UNCOMMITTED</strong>–这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</p>
+<p><strong>ISOLATION_DEFAULT</strong>–这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.另外四个与JDBC的隔离级别相对应；</p>
+<p><strong>ISOLATION_READ_UNCOMMITTED</strong>–这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读，不可重复读和幻像读。</p>
 <p><strong>ISOLATION_READ_COMMITTED</strong>–保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。</p>
 <p><strong>ISOLATION_REPEATABLE_READ</strong>–这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。</p>
 <p><strong>ISOLATION_SERIALIZABLE</strong>–这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。除了防止脏读，不可重复读外，还避免了幻像读。</p>
@@ -63,7 +83,7 @@
         
         <tags>
             
-            <tag> 事物 </tag>
+            <tag> 事务 </tag>
             
         </tags>
         
