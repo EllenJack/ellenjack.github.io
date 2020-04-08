@@ -3,6 +3,36 @@
     
     
     <entry>
+        <title><![CDATA[JVM的内存布局和垃圾回收机制]]></title>
+        <url>https://ellenjack.github.io/2020/04/08/informal-4/</url>
+        <content type="html"><![CDATA[<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmgb6g26ij30w80ojgvn.jpg" alt></p>
+<p><strong>Java虚拟机栈：</strong><br>每个方法在被调用时就会创建一个栈帧，每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程</p>
+<p><strong>Java堆：</strong><br>是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，对象实例在这里分配内存。是垃圾收集器（GC）管理的主要区域</p>
+<p><strong>方法区：</strong><br>存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据，运行时常量池（Runtime Constant Pool）是方法区的一部分。</p>
+<p><strong>直接内存：</strong><br>直接内存（Direct Memory）并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg05tihcj31r50u0e2r.jpg" alt></p>
+<p><strong>标记-清除算法(Mark-Sweep)</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg2ns7elj31en0u0qn2.jpg" alt></p>
+<p><strong>复制算法（Copying)</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg3vaqz5j31ca0u0k40.jpg" alt></p>
+<p><strong>标记-整理算法（Mark-Compact）</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg5u0m7ij31as0u0b29.jpg" alt></p>
+<p><strong>算法都用上</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg7n9yedj31l60tq1kx.jpg" alt></p>
+]]></content>
+        
+        <categories>
+            
+            <category> 随笔 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> jvm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
         <title><![CDATA[B+树：MySql数据库索引是如何实现的]]></title>
         <url>https://ellenjack.github.io/2020/04/08/informal-3/</url>
         <content type="html"><![CDATA[<h2 id="索引的用处"><a href="#索引的用处" class="headerlink" title="索引的用处"></a>索引的用处</h2><p>MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。</p>

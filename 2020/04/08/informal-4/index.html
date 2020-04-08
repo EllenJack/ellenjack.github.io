@@ -22,7 +22,7 @@
 <meta name="verify" content="all">
     <!--Title-->
 
-<title>Tag: 多线程 | 小小杰博客</title>
+<title>JVM的内存布局和垃圾回收机制 | 小小杰博客</title>
 
 <link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
 
@@ -31,7 +31,7 @@
 
     
 <link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/pages/archive.css">
+<link rel="stylesheet" href="/css/pages/post.css">
 <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
 
@@ -151,214 +151,129 @@
 
 
         <div id="main">
-    <div id="post-list">
-        <ul class="archives-post-list">
-            
-            <li class="post-items" _href="/2019/06/20/thread-8/">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="JVM的内存布局和垃圾回收机制">
                 
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">Java8新增的并发</h2>
-                <div class="article-meta">
+                JVM的内存布局和垃圾回收机制
+                
+            </h1>
+            <div class="article-meta">
     
     
     <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
+        <span>随笔</span>
     </span>
     
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            jvm
+            
+        </span>
+    </span>
     
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/06/20</span>
+        <span class="date-meta ">2020/04/08</span>
     </span>
     
     
     
 </div>
 
-            </li>
             
-            <li class="post-items" _href="/2019/06/20/thread-7/">
-                
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">JMM和底层实现原理</h2>
-                <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/06/20</span>
-    </span>
-    
-    
-    
-</div>
+            
+        </div>
+        
+        <div id="post-body">
+            <p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmgb6g26ij30w80ojgvn.jpg" alt></p>
+<p><strong>Java虚拟机栈：</strong><br>每个方法在被调用时就会创建一个栈帧，每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程</p>
+<p><strong>Java堆：</strong><br>是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，对象实例在这里分配内存。是垃圾收集器（GC）管理的主要区域</p>
+<p><strong>方法区：</strong><br>存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据，运行时常量池（Runtime Constant Pool）是方法区的一部分。</p>
+<p><strong>直接内存：</strong><br>直接内存（Direct Memory）并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg05tihcj31r50u0e2r.jpg" alt></p>
+<p><strong>标记-清除算法(Mark-Sweep)</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg2ns7elj31en0u0qn2.jpg" alt></p>
+<p><strong>复制算法（Copying)</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg3vaqz5j31ca0u0k40.jpg" alt></p>
+<p><strong>标记-整理算法（Mark-Compact）</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg5u0m7ij31as0u0b29.jpg" alt></p>
+<p><strong>算法都用上</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmg7n9yedj31l60tq1kx.jpg" alt></p>
 
-            </li>
-            
-            <li class="post-items" _href="/2019/06/20/thread-6/">
+        </div>
+        <div id="post-footer">
+            <div class="avatar">
+                <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jcpbkpo7j30u01407wj.jpg" alt="avatar">
                 
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">并发安全</h2>
-                <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/06/20</span>
-    </span>
-    
-    
-    
-</div>
-
-            </li>
-            
-            <li class="post-items" _href="/2019/06/20/thread-5/">
                 
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">线程池</h2>
-                <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/06/20</span>
-    </span>
-    
-    
-    
-</div>
-
-            </li>
-            
-            <li class="post-items" _href="/2019/06/20/thread-4/">
+                <a href="javascript:void(0)" class="donate fa">赠我一杯 &#128536;</a>
                 
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">并发容器</h2>
-                <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/06/20</span>
-    </span>
-    
-    
-    
-</div>
-
-            </li>
-            
-            <li class="post-items" _href="/2019/02/19/thread-3/">
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  Author:
+                  
+                    
+                    <a href="/about.html">lill</a>
+                </li>
                 
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">显式锁和AQS</h2>
-                <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/02/19</span>
-    </span>
-    
-    
-    
-</div>
-
-            </li>
-            
-            <li class="post-items" _href="/2019/02/18/thread-2/">
+                <li>Published Date: <span>2020-04-08  16:24:49</span></li>
                 
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">线程的并发工具类</h2>
-                <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/02/18</span>
-    </span>
-    
-    
-    
-</div>
-
-            </li>
-            
-            <li class="post-items" _href="/2018/12/15/thread-1/">
+                <li>Updated Date: <span>2020-04-08  16:50:02</span></li>
                 
-                <p class="info">多线程</p>
-                <h2 class="post-item-title">线程基础、线程之间的共享和协作</h2>
-                <div class="article-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-        <span>并发编程</span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2018/12/15</span>
-    </span>
-    
-    
-    
-</div>
-
-            </li>
-            
-        </ul>
+                <li class="post-category">
+                    Categories:
+                    
+                    <a href="/categories/随笔/">随笔</a>
+                    
+                </li>
+                <li class="post-tags">
+                    Tags:
+                    
+                    <a href="/tags/jvm/">jvm</a>
+                    
+                </li>
+                
+                <li> License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4j3v2hrrjj30a00fk750.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jc3z12itj30h90no0tp.jpg" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        
+        <a href="/2020/04/08/informal-3/" class="next-post fa">B+树：MySql数据库索引是如何实现的</a>
+        
     </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
 </div>
-
-
 
 
     </div>
@@ -387,6 +302,8 @@
     <li class="totop-btn fa fa-angle-up"></li>
     <li class="exchange-btn fa fa-exchange"></li>
   
+    <li class="toc-btn fa fa-list-ul"></li>
+    
     
 
     
@@ -405,6 +322,8 @@
         </div>
     </div>
 </div>
+
+    
 
 
 
