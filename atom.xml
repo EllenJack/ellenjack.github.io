@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ellenjack.github.io/"/>
-  <updated>2020-04-08T07:39:14.554Z</updated>
+  <updated>2020-04-08T07:40:55.319Z</updated>
   <id>https://ellenjack.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://ellenjack.github.io/2020/04/08/informal-2/"/>
     <id>https://ellenjack.github.io/2020/04/08/informal-2/</id>
     <published>2020-04-08T07:29:15.000Z</published>
-    <updated>2020-04-08T07:39:14.554Z</updated>
+    <updated>2020-04-08T07:40:55.319Z</updated>
     
     <content type="html"><![CDATA[<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedewb6ij31hc0jw4nt.jpg" alt></p><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedei3xoj31k20u07o6.jpg" alt></p><h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gdmedeogskj30vt0l0aif.jpg" alt></p><p><strong>双亲委派模型过程</strong><br>某个特定的类加载器在接到加载类的请求时，首先将加载任务委托给父类加载器，依次递归，如果父类加载器可以完成类加载任务，就成功返回；只有父类加载器无法完成此加载任务时，才自己去加载。</p><p><strong>双亲委派模型好处</strong><br>Java类随着它的类加载器一起具备了带有优先级的层次关系，保证java程序稳定运行</p>]]></content>
     
@@ -36,6 +36,8 @@
     
       <category term="随笔" scheme="https://ellenjack.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
+    
+      <category term="类加载" scheme="https://ellenjack.github.io/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/"/>
     
   </entry>
   
