@@ -22,7 +22,7 @@
 <meta name="verify" content="all">
     <!--Title-->
 
-<title>Spring基础及组件使用(1) | 小小杰博客</title>
+<title>B+树：MySql数据库索引是如何实现的 | 小小杰博客</title>
 
 <link rel="alternate" href="/atom.xml" title="小小杰博客" type="application/atom+xml">
 
@@ -154,9 +154,9 @@
     <article id="post">
         <div id="post-header">
 
-            <h1 id="Spring基础及组件使用(1)">
+            <h1 id="B+树：MySql数据库索引是如何实现的">
                 
-                Spring基础及组件使用(1)
+                B+树：MySql数据库索引是如何实现的
                 
             </h1>
             <div class="article-meta">
@@ -164,7 +164,7 @@
     
     <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-        <span>Spring</span>
+        <span>随笔</span>
     </span>
     
     
@@ -172,7 +172,7 @@
          <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            Spring
+            索引
             
         </span>
     </span>
@@ -180,7 +180,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta ">2019/02/20</span>
+        <span class="date-meta ">2020/04/08</span>
     </span>
     
     
@@ -189,82 +189,39 @@
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>413</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
-            </p>
-            
         </div>
         
         <div id="post-body">
-            <h2 id="CAP1-章节-将你的工程从-XML-配置到注解"><a href="#CAP1-章节-将你的工程从-XML-配置到注解" class="headerlink" title="CAP1 章节  将你的工程从 XML 配置到注解"></a>CAP1 章节  将你的工程从 XML 配置到注解</h2><p>一、创建工程</p>
-<p>1，创建Maven工程：</p>
-<p>2，<img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeoimup8j30fq06lab2.jpg" alt></p>
-<p>3，<img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeoijxd5j30g907rdgp.jpg" alt></p>
-<p>4，pom.xml引入spring-context jar和Junit测试用例包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">​      &lt;dependency&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;version&gt;5.0.6.RELEASE&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">​      &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">​         &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line"></span><br><span class="line">​      &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
-<p>5，如果是以前,我们应该建立spring的beanx.xml</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeoif48lj30ms09qmym.jpg" alt></p>
-<p>beans.xml内容如下,使用bean标签注册一些组件&lt;新建Person.java&gt;:</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jeow2zgaj30kp043aba.jpg" alt></p>
-<p>3,新建cap1包名，新建Person.java类</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeovnukej30dn0ch76c.jpg" alt></p>
-<p>4，新建MainTest1测试类：ClassPathXmlApplicationContext:类路径下的XML</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeovh6pfj30o004gab5.jpg" alt></p>
-<p>如果我们用注解开发, 很明显是不需要XML的</p>
-<p>5，注解测试： 如何使用注解（去掉配置文件）开发</p>
-<p>新建MainConfig类</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jepawgjtj30d4070jsa.jpg" alt></p>
-<p>6，注解测试： 新建MainTest2注解测试，用来测试//AnnoatationConfigApplicationContext: 注解配置来获取IOC容器</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jeparrqnj30o0091ac2.jpg" alt></p>
-<h2 id="CAP2-章节-ComponentScan-扫描规则"><a href="#CAP2-章节-ComponentScan-扫描规则" class="headerlink" title="CAP2 章节  ComponentScan 扫描规则"></a>CAP2 章节  ComponentScan 扫描规则</h2><p>2.1 操作:新建cap2文件夹,新建Cap2MainConfig.java配置类</p>
-<p>作用:指定要扫描的包</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jepanw9jj30o009976c.jpg" alt></p>
-<p>1,@ComponentScan(value=”com.enjoy.cap2”)表示扫描此目录下的包</p>
-<p>2,建立测试用例方法;</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jepob1zsj30ny064ta4.jpg" alt></p>
-<p>2.2 新建Cap2MainConfig2配置类</p>
-<p>作用:定制包扫描时的过滤规则</p>
-<p>新建dao, service,controller</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jepo64e1j306h02yaa4.jpg" alt> <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jepo1hh2j306f03rmxe.jpg" alt> <img src="http://ww1.sinaimg.cn/large/006tNc79ly1g4jeqdrrqvj307201ygln.jpg" alt></p>
-<p>在Cap2MainConfig2加入配置: @Filter: 扫描规则</p>
-<p> @ComponentScan(value=”com.enjoy.cap2”,includeFilters={       @Filter(type=FilterType.ANNOTATION,classes={Controller.class}),      @Filter(type=FilterType.ASSIGNABLE_TYPE,classes={BookService.class})</p>
-<p>},useDefaultFilters=false) //默认是true,扫描所有组件，要改成false,使用自定义扫描范围</p>
-<p>*/</p>
-<p>//@ComponentScan value:指定要扫描的包</p>
-<p>//excludeFilters = Filter[] 指定扫描的时候按照什么规则排除那些组件</p>
-<p>//includeFilters = Filter[] 指定扫描的时候只需要包含哪些组件</p>
-<p>//useDefaultFilters = false 默认是true,扫描所有组件，要改成false</p>
-<p>//－－－－扫描规则如下</p>
-<p>//FilterType.ANNOTATION：按照注解</p>
-<p>//FilterType.ASSIGNABLE_TYPE：按照给定的类型；比如按BookService类型</p>
-<p>//FilterType.ASPECTJ：使用ASPECTJ表达式</p>
-<p>//FilterType.REGEX：使用正则指定</p>
-<p>//FilterType.CUSTOM：使用自定义规则，自已写类，实现TypeFilter接口</p>
-<p>//FilterType.CUSTOM的例子,常用</p>
-<p>先新增自定义过滤规则类:</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jeqdo6qrj30o00aztcf.jpg" alt></p>
-<p>在Cap2MainConfig申明</p>
-<p>@ComponentScan(value=”com.enjoy.cap2”,includeFilters={</p>
-<p>​       @Filter(type=FilterType.CUSTOM,classes={JamesTypeFilters.class})</p>
-<p>},useDefaultFilters=false) </p>
-<p>public class Cap2MainConfig2 {}</p>
-<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeqdfzi6j30o00c3jvl.jpg" alt></p>
-<h2 id="CAP3-章节-scope-扫描规则"><a href="#CAP3-章节-scope-扫描规则" class="headerlink" title="CAP3 章节  scope 扫描规则"></a>CAP3 章节  scope 扫描规则</h2><p>1,新建Cap3MainConfig.java</p>
-<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g4jeqv6gcxj30ny091abv.jpg" alt></p>
-<p>2,没加@Scope之前, 默认的bean是单实例的. 新建 test01()方法测试如下:</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jeqv231xj30o009udi3.jpg" alt></p>
-<p>返回true, 证明取到的是同一个person bean,只实例化了一次.</p>
-<p>3, 加入@Scope(“prototype”) //多实例</p>
-<p>prototype: 多实例：IOC容器启动并不会去调用方法创建对象放在容器中，而是                                                                  每次获取的时候才会调用方法创建对象,见test02</p>
-<p>singleton: 单实例（默认）：IOC容器启动会调用方法创建对象放到IOC容器中</p>
-<p>以后每交获取就是直接从容器（理解成从map.get对象）中拿  </p>
-<p>request:  主要针对WEB应用，同一次请求创建一个实例</p>
-<p>session:  同一个session创建一个实例（后面两个用得不多，了解即可）</p>
-<h2 id="CAP4-章节-lazy-懒加载"><a href="#CAP4-章节-lazy-懒加载" class="headerlink" title="CAP4 章节  lazy 懒加载"></a>CAP4 章节  lazy 懒加载</h2><p>1,新建Cap4MainConfig.java</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g4jequwmh6j30ny0cuq5c.jpg" alt></p>
-<p>2,建立测试用例test01();</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g4jer5yo2mj30ny05dab8.jpg" alt></p>
-<p>当在Cap4MainConfig加入@Lazy时,  只有获取anno.getBean时才会加载到IOC容器中</p>
+            <h2 id="索引的用处"><a href="#索引的用处" class="headerlink" title="索引的用处"></a>索引的用处</h2><p>MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。</p>
+<p>当表中有大量记录时，若要对表进行查询，第一种搜索信息方式是全表搜索，是将所有记录一一取出，和查询条件进行一一对比，然后返回满足条件的记录，这样做会消耗大量数据库系统时间，并造成大量磁盘I/O操作；第二种就是在表中建立索引，然后在索引中找到符合查询条件的索引值，最后通过保存在索引中的ROWID（相当于页码）快速找到表中对应的记录。</p>
+<h2 id="用平衡二叉树？"><a href="#用平衡二叉树？" class="headerlink" title="用平衡二叉树？"></a>用平衡二叉树？</h2><p>数据库查询是数据库的最主要功能之一。我们都希望查询数据的速度能尽可能的快，因此数据库系统的设计者会从查询算法的角度进行优化。</p>
+<p>最基本的查询算法当然是顺序查找（linear search），这种复杂度为O(n)的算法在数据量很大时显然是糟糕的，好在计算机科学的发展提供了很多更优秀的查找算法，例如二分查找、平衡二叉树查找。</p>
+<p>从理论上来说，似乎没有什么问题，但是如果仔细考虑我们对数据库的使用，会发现，</p>
+<p>第一，我们一个表中的数据存储量会很大，数据量在万以内的我们都认为这是个小数据量表，一般的表数据量都以十万计，百万级别的表也不在少数，用二叉树来索引的话，这个树就会是个很高很瘦的树，层次很深，查找的次数会有几十次次之多。</p>
+<p>第二，因为数据量很大，相应的索引也会很大，不可能全部存储在内存中，数据库是做数据持久化的地方，索引文件不可能永驻内存，因此索引往往以索引文件的形式存储的磁盘上，</p>
+<p>这样。索引查找过程中就要产生磁盘I/O消耗，相对于内存存取，I/O存取的消耗要高几个数量级，所以评价一个数据结构作为索引的优劣最重要的指标就是在查找过程中磁盘I/O操作次数的渐进复杂度。</p>
+<p>这样磁盘存取也成为我们在设计索引时必须要考虑的主要因素之一。</p>
+<h2 id="磁盘存取原理"><a href="#磁盘存取原理" class="headerlink" title="磁盘存取原理"></a>磁盘存取原理</h2><p>盘片被划分成一系列同心环，圆心是盘片中心，每个同心环叫做一个磁道。磁道被沿半径线划分成一个个小的段，每个段叫做一个扇区，每个扇区是磁盘的最小存储单元。</p>
+<p>当需要从磁盘读取数据时，为了读取这个扇区的数据，需要将磁头放到这个扇区上方，为了实现这一点，磁头需要移动对准相应磁道，这个过程叫做寻道，所耗费时间叫做寻道时间，然后磁盘旋转将目标扇区旋转到磁头下，这个过程耗费的时间叫做旋转时间。</p>
+<p>由于存储介质的特性，磁盘本身存取就比主存慢很多，再加上机械运动耗费，磁盘的存取速度往往是主存的几百分分之一，因此为了提高效率，要尽量减少磁盘I/O。为了达到这个目的，磁盘往往不是严格按需读取，而是每次都会预读，即使只需要一个字节，磁盘也会从这个位置开始，顺序向后读取一定长度的数据放入内存。这样做的理论依据是计算机科学中著名的局部性原理：</p>
+<p><strong>当一个数据被用到时，其附近的数据也通常会马上被使用。</strong></p>
+<p>由于磁盘顺序读取的效率很高（不需要寻道时间，只需很少的旋转时间），因此对于具有局部性的程序来说，预读可以提高I/O效率。预读的长度一般为4k的整数倍(这个4K大小的数据块，称为页)。</p>
+<h2 id="B树-平衡多路查找树-B-树"><a href="#B树-平衡多路查找树-B-树" class="headerlink" title="B树(平衡多路查找树, B-树)"></a>B树(平衡多路查找树, B-树)</h2><p>综上所述，有没有一种既可以避免二叉树这种搜寻深度过深，又可以充分利用磁盘预读原理的数据结构呢。这个就是B树了。</p>
+<p>B树中一个节点可以允许有多个子节点，在实际使用时，一个B树节点的实际大小一般设为一个4K大小的页，这样每个节点只需要一次I/O就可以完全载入。</p>
+<p>同时，B树的每个节点有多个key，并且以升序排列。这样在查找时就很方便了。 </p>
+<p>大家可以从图上看到，存储了27个数据，允许7个子节点的B树的层次比存储了20个数据的平衡二叉树要少，数据越多，层次相对于平衡二叉树就越少，而且B树的允许的子节点个数越多，这个B树也就层次越少。</p>
+<p>在硬盘上实际存储B树时，一个B树节点的实际大小一般设为一个4K大小的页，所以B树的允许子节点都非常大（通常在100到1000之间），所以即使存储大量的数据，B树的高度仍然比较小。</p>
+<p>每个结点中存储了关键字（key）和关键字对应的数据（data），以及孩子结点的指针。<strong>我们将一个**</strong>key<strong><strong>和其对应的</strong></strong>data<strong>**称为一个记录</strong>。<strong>但为了方便描述，除非特别说明，后续文中就用**</strong>key<strong><strong>来代替（</strong></strong>key, value<strong>**）键值对这个整体</strong>。在数据库中我们将B树（和B+树）作为索引结构，可以加快查询速速，此时B树中的key就表示键，而data表示了这个键对应的条目在硬盘上的逻辑地址。</p>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>Mysql等数据库系统实际使用的则是B+树，B+树是B-树的变体，其定义基本与B-树相同，主要的不同点在于：</p>
+<p>1、关键字（key）的个数比指向子结点的指针的个数要少1个。</p>
+<p>2、所有的非叶子节点上不包含数据信息，因此在内存页中能够存放更多的key，所有数据（或者说记录）都保存在叶子结点中。</p>
+<p>3、叶子结点都是相链的，因此对整棵树的遍历只需要一次线性遍历叶子结点即可</p>
+<h2 id="Mysql索引的实现"><a href="#Mysql索引的实现" class="headerlink" title="Mysql索引的实现"></a>Mysql索引的实现</h2><h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><p>使用B+Tree作为索引结构，叶节点的data域存放的是数据记录的地址，这里设表一共有三列，假设我们以Col1为主键，可以看出MyISAM的索引文件仅仅保存数据记录的地址。在MyISAM中，主索引和辅助索引（Secondary key）在结构上没有任何区别，只是主索引要求key是唯一的，而辅助索引的key可以重复。如果我们在Col2上建立一个辅助索引，同样也是一颗B+Tree，data域保存数据记录的地址。因此，MyISAM中索引检索的算法为首先按照B+Tree搜索算法搜索索引，如果指定的Key存在，则取出其data域的值，然后以data域的值为地址，读取相应数据记录。MyISAM的索引方式也叫做“非聚集”的。</p>
+<h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><p>也使用B+Tree作为索引结构，但具体实现方式却与MyISAM截然不同。</p>
+<p>第一个重大区别是InnoDB的数据文件本身就是索引文件。从上文知道，MyISAM索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。而在InnoDB中，表数据文件本身就是按B+Tree组织的一个索引结构，这棵树的叶节点data域保存了完整的数据记录。这个索引的key是数据表的主键，因此InnoDB表数据文件本身就是主索引。</p>
+<p>叶节点包含了完整的数据记录。这种索引叫做聚集索引。因为InnoDB的数据文件本身要按主键聚集，所以InnoDB要求表必须有主键（MyISAM可以没有），如果没有显式指定，则MySQL系统会自动选择一个可以唯一标识数据记录的列作为主键，如果不存在这种列，则MySQL自动为InnoDB表生成一个隐含字段作为主键，这个字段长度为6个字节，类型为长整形。</p>
+<p>第二个与MyISAM索引的不同是InnoDB的辅助索引data域存储相应记录主键的值而不是地址。换句话说，InnoDB的所有辅助索引都引用主键作为data域</p>
+<p>聚集索引这种实现方式使得按主键的搜索十分高效，但是辅助索引搜索需要检索两遍索引：首先检索辅助索引获得主键，然后用主键到主索引中检索获得记录。</p>
 
         </div>
         <div id="post-footer">
@@ -284,22 +241,20 @@
                     <a href="/about.html">lill</a>
                 </li>
                 
-                <li>Published Date: <span>2019-02-20  13:23:34</span></li>
+                <li>Published Date: <span>2020-04-08  16:01:55</span></li>
                 
-                <li>Updated Date: <span>2020-03-26  00:12:24</span></li>
+                <li>Updated Date: <span>2020-04-08  16:09:27</span></li>
                 
                 <li class="post-category">
                     Categories:
                     
-                    <a href="/categories/框架/">框架</a>
-                    
-                    <a href="/categories/框架/Spring/">Spring</a>
+                    <a href="/categories/随笔/">随笔</a>
                     
                 </li>
                 <li class="post-tags">
                     Tags:
                     
-                    <a href="/tags/Spring/">Spring</a>
+                    <a href="/tags/索引/">索引</a>
                     
                 </li>
                 
@@ -322,10 +277,8 @@
     </article>
     <div class="article-nav">
         
-        <a href="/2019/02/20/spring-2/" class="pre-post fa fa-caret-left">Spring基础及组件使用(2)</a>
         
-        
-        <a href="/2019/02/19/thread-3/" class="next-post fa">显式锁和AQS</a>
+        <a href="/2020/04/08/informal-2/" class="next-post fa">类加载机制和双亲委派模型</a>
         
     </div>
     
@@ -390,7 +343,7 @@
     </div>
 </div>
 
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP1-章节-将你的工程从-XML-配置到注解"><span class="toc-number">1.</span> <span class="toc-text">CAP1 章节  将你的工程从 XML 配置到注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP2-章节-ComponentScan-扫描规则"><span class="toc-number">2.</span> <span class="toc-text">CAP2 章节  ComponentScan 扫描规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP3-章节-scope-扫描规则"><span class="toc-number">3.</span> <span class="toc-text">CAP3 章节  scope 扫描规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP4-章节-lazy-懒加载"><span class="toc-number">4.</span> <span class="toc-text">CAP4 章节  lazy 懒加载</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#索引的用处"><span class="toc-number">1.</span> <span class="toc-text">索引的用处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用平衡二叉树？"><span class="toc-number">2.</span> <span class="toc-text">用平衡二叉树？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#磁盘存取原理"><span class="toc-number">3.</span> <span class="toc-text">磁盘存取原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B树-平衡多路查找树-B-树"><span class="toc-number">4.</span> <span class="toc-text">B树(平衡多路查找树, B-树)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-树"><span class="toc-number">5.</span> <span class="toc-text">B+树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql索引的实现"><span class="toc-number">6.</span> <span class="toc-text">Mysql索引的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyISAM"><span class="toc-number">6.1.</span> <span class="toc-text">MyISAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InnoDB"><span class="toc-number">6.2.</span> <span class="toc-text">InnoDB</span></a></li></ol></li></ol>
 
 
 
