@@ -3,6 +3,97 @@
     
     
     <entry>
+        <title><![CDATA[Kubernetes 概述]]></title>
+        <url>https://ellenjack.github.io/2020/06/20/k8s-1/</url>
+        <content type="html"><![CDATA[<h2 id="1-1-背景"><a href="#1-1-背景" class="headerlink" title="1.1 背景"></a>1.1 背景</h2><p>   kubernetes(以下简称k8s)是google基于Blog进行改进后，开源出来的一款“容器管理应用”。由于近几年来容器技术的火爆，许许多多的服务都不会直接部署在linux主机或各大云厂商的虚拟机上；利用Docker，将每个服务做成一个Image，把他们跑在各自的Container中。</p>
+<p>   这样做的好处有非常多，比如环境配置隔离、服务启动快、移植便捷等等。但是使用的Container多到一定程度，就会带来容器管理上的问题：使用docker ps命令之后有一大堆Container，如果标识的不清楚也很容易混淆；某些分布式服务，需要将Docker部署到许多不同的机器上，这也会增加我们运维的难度。因此，我们现在需要一款“专门管理容器”的平台，为我们提供可视化界面，方便我们对各个容器进行管理。</p>
+<p>   k8s就是这样一款辅助我们管理容器的平台，支持管理在分布式环境(即多台服务器上)启动的Container。</p>
+<h2 id="1-2-基础概念"><a href="#1-2-基础概念" class="headerlink" title="1.2 基础概念"></a>1.2 基础概念</h2><ul>
+<li>Maste<strong>r</strong></li>
+</ul>
+<p>Cluster的大脑，主要职责是调度，可以运行多个master来保证高可用。</p>
+<ul>
+<li><strong>Node</strong>：</li>
+</ul>
+<p>职责是运行容器应用，Node由Master管理，负责监控并汇报容器的状态，同时根据Master的要求管理容器的生命周期。</p>
+<ul>
+<li>Pod</li>
+</ul>
+<p>Pod 是K8s的最小工作单元。每个Pod包含一个或多个容器。</p>
+<p>Ø 有些容器天生就是需要紧密联系，一起工作。Pod提供了比容器更高层次的抽象，K8s以Pod为最小单位进行调度、扩展、共享资源、管理生命周期。</p>
+<p>Ø Pod中的所有容器使用同一个网络的namespace，即相同的IP地址和Port空间。它们可以直接用localhost通信。同样的，这些容器可以共享存储，当K8s挂载Volume到Pod上，本质上是将volume挂载到Pod中的每一个容器。</p>
+<ul>
+<li><p>Pod控制器</p>
+<p> K8s通常不直接创建Pod，而是通过Controller来管理Pod。Controller中定义了pod的部署属性，比如几个副本、在什么样的Node上运行等。</p>
+</li>
+</ul>
+<p>K8s提供了多种Controller，包括Deployment、ReplicaSet、DaemonSet、StatefuleSet、Job等。</p>
+<p>Ø <strong>ReplicationController</strong> （副本控制器），确保Pod的数量始终保持设定的个数。也支持Pod的滚动更新。</p>
+<p>Ø <strong>ReplicaSet</strong> （副本集），它不直接使用，有一个声明式更新的控制器叫<strong>Deployment</strong>来负责管理。但是Deployment只能负责管理那些无状态的应用。</p>
+<p>Ø <strong>StatefulSet</strong> （有状态副本集），负责管理有状态的应用。</p>
+<p>Ø <strong>DaemonSet</strong> ，如果需要在每一个Node上只运行一个副本，而不是随意运行，就需要DaemonSet。</p>
+<p>Ø <strong>Job</strong>，运行作业，对于时间不固定的操作，比如：某个应用生成了一大堆数据集，现在需要临时启动一个Pod去清理这些数据集，清理完成后，这个Pod就可以结束了。 这些不需要一直处于运行状态的应用，就用Job这个类型的控制器去控制。如果Pod运行过程中意外中止了，Job负责重启Pod。如果Pod任务执行完了，就不需要再启动了。</p>
+<p>Ø <strong>Cronjob</strong>，周期性作业。</p>
+<ul>
+<li>Service：</li>
+</ul>
+<p>Deployement可以部署多个副本，每个Pod都有自己的副IP，外界如何访问这些副本。Pod会被频繁的销毁和重启，IP实时变化，不能用IP， 答案是通过service。K8s service 定义了外界访问一组特定Pod的方式。service有自己的IP和端口，service为Pod提供了负载均衡。　　      </p>
+<ul>
+<li>Namespace: </li>
+</ul>
+<p>Namespace将物理的Cluster逻辑上划分成多个虚拟Cluster，每个Cluster就是一个Namespace。不同的Namespace里的资源是完全隔离的。</p>
+<p>Ø default：默认的namespace</p>
+<p>Ø kube-system: K8s自己创建的的系统资源放到这个namespace</p>
+<h2 id="1-3-K8S的架构"><a href="#1-3-K8S的架构" class="headerlink" title="1.3 K8S的架构"></a>1.3 K8S的架构</h2><p>Kubernetes集群包含有节点代理Kubelet 和Master组件（APIs，scheduler，etc.），下面是K8S的架构图。   </p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gfyv7688adj30n20aswg0.jpg" alt>                            </p>
+<p>Master节点包含API Server、Scheduler（调度器）、ControllerManager（控制器管理器）这三个核心的组件。</p>
+<p>Node节点包含的核心组件有Kubelet、Docker容器引擎、Kube-proxy</p>
+<ul>
+<li><strong>API Server**</strong>（kube-apiserver）**</li>
+</ul>
+<p>提供了HTTP/HTTPS RESTful API,即Kubernetes API。 API server是Kubernetes Cluster的前端接口。其他客户端工具（CLI或UI）以及K8S其它组件可以通过它管理Cluster资源。</p>
+<ul>
+<li><strong>Scheduler</strong>(kube-scheduler)</li>
+</ul>
+<p>调度器，它负责决定将Pod放在哪个Node上运行。调度时候考虑Cluster拓扑，各个节点的负载，以及应用对高可用、性能、数据亲和性的需求。</p>
+<ul>
+<li><strong>Controller-Manager</strong></li>
+</ul>
+<p>负责监控每一个Controller（控制器）的健康状态，并确保控制器是健康的。而控制器是确保Pod健康的组件。</p>
+<ul>
+<li><strong>etcd</strong></li>
+</ul>
+<p>负责保存K8s Cluster的配置信息和各种资源的状态信息。当数据发生变化时，etcd可以快速的通知K8s 组件。</p>
+<ul>
+<li><strong>Pod**</strong>网络**</li>
+</ul>
+<p>Pod能通信，k8s cluster必须部署Pod网络（比如flannel是其中一个方案）　     </p>
+<ul>
+<li><strong>Kubelet</strong></li>
+</ul>
+<p>是Node的agent,当scheduler确定在某个Node上运行Pod后，会将Pod的具体配置信息（image、volume等）发送给该节点的kubelet，kubelet根据这些信息创建和运行容器，并向Master报告运行状态。</p>
+<ul>
+<li><strong>Kube-proxy</strong></li>
+</ul>
+<p>service在逻辑上代表了后端的多个Pod，外界通过service访问Pod。service接收到的请求是如何转发到Pod的呢？这就是kube-proxy要完成的工作。每个node都运行kube-proxy服务，它负责将访问service的TCP/UDP数据流转发到后端容器。如果有多个副本，kube-proxy实现负载均衡。</p>
+]]></content>
+        
+        <categories>
+            
+            <category> 物理部署 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> k8s </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
         <title><![CDATA[排序算法的原理、实现和比较]]></title>
         <url>https://ellenjack.github.io/2020/04/10/informal-5/</url>
         <content type="html"><![CDATA[<h1 id="排序算法概述"><a href="#排序算法概述" class="headerlink" title="排序算法概述"></a>排序算法概述</h1><p>排序就是将一组对象按照某种逻辑顺序重新排列的过程。比如，订单按照日期排序的——这种排序很可能使用了某种排序算法。在计算时代早期，大家普遍认为30% 的计算周期都用在了排序上。如果今天这个比例降低了，可能的原因之一是如今的排序算法更加高效，而并非排序的重要性降低了。现在计算机的广泛使用使得数据无处不在，而整理数据的第一步通常就是进行排序。几乎所有的计算机系统都实现了各种排序算法以供系统和用户使用。</p>
@@ -1933,9 +2024,7 @@ InfrastructureAdvisorAutoProxyCreator：？
         
         <categories>
             
-            <category> 工具 </category>
-            
-            <category> docker </category>
+            <category> 物理部署 </category>
             
         </categories>
         
@@ -3028,9 +3117,7 @@ InfrastructureAdvisorAutoProxyCreator：？
         
         <categories>
             
-            <category> 工具 </category>
-            
-            <category> docker </category>
+            <category> 物理部署 </category>
             
         </categories>
         
@@ -3244,9 +3331,7 @@ InfrastructureAdvisorAutoProxyCreator：？
         
         <categories>
             
-            <category> 工具 </category>
-            
-            <category> docker </category>
+            <category> 物理部署 </category>
             
         </categories>
         
@@ -3982,9 +4067,7 @@ InfrastructureAdvisorAutoProxyCreator：？
         
         <categories>
             
-            <category> 工具 </category>
-            
-            <category> Maven </category>
+            <category> 物理部署 </category>
             
         </categories>
         
@@ -4194,7 +4277,7 @@ InfrastructureAdvisorAutoProxyCreator：？
     <entry>
         <title><![CDATA[关于我]]></title>
         <url>https://ellenjack.github.io/2018/12/15/about/</url>
-        <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    name: &quot;Ellen&quot;,</span><br><span class="line">     </span><br><span class="line">    birthday: &quot;1994-12-13&quot;, </span><br><span class="line">    </span><br><span class="line">    gender: &quot;男&quot;, </span><br><span class="line">    </span><br><span class="line">    address: &quot;浙江省杭州市&quot;, </span><br><span class="line">    </span><br><span class="line">    education: &quot;本科 / 湖北师范大学&quot;, </span><br><span class="line">    </span><br><span class="line">    major: &quot;计算机科学与技术&quot;, </span><br><span class="line">    </span><br><span class="line">    Github: &quot;https://github.com/EllenJack/&quot;, </span><br><span class="line">    </span><br><span class="line">    skills: [&quot;Java&quot;], </span><br><span class="line">    </span><br><span class="line">    blog: &quot;http://ellenjack.github.io/&quot;,</span><br><span class="line">     </span><br><span class="line">    Email: &quot;1198566763@qq.com&quot;, </span><br><span class="line">    </span><br><span class="line">    description: [&quot;锦绣前程&quot;] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    name: &quot;Ellen&quot;,</span><br><span class="line">     </span><br><span class="line">    birthday: &quot;1994-12-13&quot;, </span><br><span class="line">    </span><br><span class="line">    gender: &quot;男&quot;, </span><br><span class="line">    </span><br><span class="line">    address: &quot;浙江省杭州市&quot;, </span><br><span class="line">    </span><br><span class="line">    education: &quot;本科 / 湖北师范大学&quot;, </span><br><span class="line">    </span><br><span class="line">    major: &quot;计算机科学与技术&quot;, </span><br><span class="line">    </span><br><span class="line">    Github: &quot;https://github.com/EllenJack/&quot;, </span><br><span class="line">    </span><br><span class="line">    skills: [&quot;Java&quot;], </span><br><span class="line">    </span><br><span class="line">    blog: &quot;http://ellenjack.github.io/&quot;,</span><br><span class="line">     </span><br><span class="line">    Email: &quot;1198566763@qq.com&quot;, </span><br><span class="line">    </span><br><span class="line">    description: [&quot;代码改变世界&quot;] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
         
         
