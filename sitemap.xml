@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ellenjack.github.io/2020/06/20/k8s-2/</loc>
+    
+    <lastmod>2020-06-20T09:33:10.296Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ellenjack.github.io/2020/06/20/k8s-1/</loc>
     
-    <lastmod>2020-06-20T09:07:17.179Z</lastmod>
+    <lastmod>2020-06-20T09:24:14.991Z</lastmod>
     
   </url>
   
@@ -135,13 +142,6 @@
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/07/01/spring-8/</loc>
-    
-    <lastmod>2020-03-25T16:12:24.804Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://ellenjack.github.io/2019/07/01/spring-9/</loc>
     
     <lastmod>2020-03-25T16:12:24.804Z</lastmod>
@@ -149,9 +149,9 @@
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/06/30/spring-6/</loc>
+    <loc>https://ellenjack.github.io/2019/07/01/spring-8/</loc>
     
-    <lastmod>2020-03-25T16:12:24.803Z</lastmod>
+    <lastmod>2020-03-25T16:12:24.804Z</lastmod>
     
   </url>
   
@@ -163,7 +163,14 @@
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/03/01/spring-5/</loc>
+    <loc>https://ellenjack.github.io/2019/06/30/spring-6/</loc>
+    
+    <lastmod>2020-03-25T16:12:24.803Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ellenjack.github.io/2019/02/25/spring-4/</loc>
     
     <lastmod>2020-03-25T16:12:24.802Z</lastmod>
     
@@ -177,21 +184,21 @@
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/02/25/spring-4/</loc>
+    <loc>https://ellenjack.github.io/2019/03/01/spring-5/</loc>
     
     <lastmod>2020-03-25T16:12:24.802Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/02/20/spring-2/</loc>
+    <loc>https://ellenjack.github.io/2019/07/01/spring-10/</loc>
     
     <lastmod>2020-03-25T16:12:24.801Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/07/01/spring-10/</loc>
+    <loc>https://ellenjack.github.io/2019/02/20/spring-2/</loc>
     
     <lastmod>2020-03-25T16:12:24.801Z</lastmod>
     
