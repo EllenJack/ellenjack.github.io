@@ -4,8 +4,7 @@ date: 2019-03-05 13:24:21
 tags:
 - docker
 category:
-- 工具
-- docker
+- 物理部署
 ---
 Docker 是一个开源项目，诞生于 2013 年初，最初是 dotCloud 公司内部的一个业余项目。它基于 Google 公司推出的 Go 语言实现。 项目后来加入了 Linux 基金会，遵从了 Apache 2.0 协议，项目代码在 [GitHub](https://github.com/docker/docker) 上进行维护。
 

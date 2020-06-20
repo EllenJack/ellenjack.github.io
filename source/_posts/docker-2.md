@@ -4,8 +4,7 @@ date: 2019-03-05 13:48:53
 tags:
 - docker
 category:
-- 工具
-- docker
+- 物理部署
 ---
 
 # **仓库使用**

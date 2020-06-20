@@ -4,8 +4,7 @@ date: 2019-06-25 17:44:47
 tags:
 - docker
 category:
-- 工具
-- docker
+- 物理部署
 ---
 
 ### **nginx镜像制作实战**
