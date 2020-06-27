@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ellenjack.github.io/2020/06/27/k8s-3/</loc>
+    
+    <lastmod>2020-06-27T12:08:21.228Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ellenjack.github.io/2020/06/20/k8s-2/</loc>
     
     <lastmod>2020-06-20T09:33:10.296Z</lastmod>
@@ -191,7 +198,7 @@
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/07/01/spring-10/</loc>
+    <loc>https://ellenjack.github.io/2019/02/20/spring-1/</loc>
     
     <lastmod>2020-03-25T16:12:24.801Z</lastmod>
     
@@ -205,7 +212,7 @@
   </url>
   
   <url>
-    <loc>https://ellenjack.github.io/2019/02/20/spring-1/</loc>
+    <loc>https://ellenjack.github.io/2019/07/01/spring-10/</loc>
     
     <lastmod>2020-03-25T16:12:24.801Z</lastmod>
     
